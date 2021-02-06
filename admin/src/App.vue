@@ -105,6 +105,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import axios from 'axios'
 //import router from './router'
 export default {
@@ -148,6 +149,37 @@ export default {
     }
   },
   mounted(){
+  Vue.prototype.$appName = [
+    { message: 'Foo',categoria:0,fascia:0, giochi: [
+{src:'Creationquiz',modificato: true, message: 'calabrone',url:"./gattino.jpg",opzioni: [
+{ domanda: 'ssFoo',
+soluzione: 2,
+argomento:['cane','lupo','tricheco','pastasciutta']
+},
+{ domanda: 'Foo',
+soluzione: 2,
+argomento:['cane','lupo','alveare','pastasciutta']
+}
+] },
+  {src:'Creationquiz',modificato: true, message: 'Ffddddoo',url:"./gattino.jpg" },
+    {src:'Creationquiz',modificato: true, message: 'Fodddddho',url:"./gattino.jpg" },
+{src:'Creationquiz',modificato: true, message: 'Bdddddddddddar',url:"./gattino.jpg" }
+] },
+      { message: 'Ffoo',categoria:0,fascia:0, giochi: [
+  {src:'Creationquiz',modificato: true, message: 'calabrone',url:"./gattino.jpg" },
+    {src:'Creationquiz',modificato: true, message: 'Ffoo',url:"./gattino.jpg" },
+      {src:'Creationquiz',modificato: true, message: 'Foho',url:"./gattino.jpg" },
+  {src:'Creationquiz',modificato: true, message: 'Bar',url:"./gattino.jpg" }
+  ] },
+        { message: 'Foho',categoria:0,fascia:0, giochi: [
+    {src:'Creationquiz',modificato: true, message: 'Foo',url:"./gattino.jpg" },
+      {src:'Creationquiz',modificato: true, message: 'Ffoo',url:"./gattino.jpg" },
+        {src:'Creationquiz',modificato: true, message: 'Foho',url:"./gattino.jpg" },
+    {src:'Creationquiz',modificato: true, message: 'Bar',url:"./gattino.jpg" }
+    ] }
+  ];
+  console.log("montato");
+  
   }
 
 }
