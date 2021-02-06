@@ -1,4 +1,127 @@
+const session = require("express-session");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const passport = require("passport");
+const cookieSession = require('cookie-session');
+const fs = require('fs');
 const app = require("express")();
+
+app.use(cors({credentials: true, origin: 'http://localhost:8081'}));
+// Tipologia di autenticazione locale
+const LocalStrategy = require('passport-local').Strategy;
+
+//Creo la sessione con un cookie che dura 24 ore
+app.use(bodyParser.json())
+
+app.use(cookieSession({
+    name: 'mysession',
+    keys: ['vueauthrandomkey'],
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
+//utilizzo effetticamente passport
+app.use(passport.initialize());
+
+app.use(passport.session());
+
+
+
+//Middleware
+const authMiddleware = (req, res, next) => {
+  if (!req.isAuthenticated()) {
+    res.status(401).send('You are not authenticated');
+  } else {
+    return next();
+  }
+};
+//Strategia di passport
+passport.use(
+  new LocalStrategy(
+    {
+      usernameField: "username",
+      passwordField: "password"
+    },
+
+    (username, password, done) => {
+      let user = JSON.parse(fs.readFileSync('users.json')).users.find((user) => {
+        return user.username === username && user.password === password
+      })
+
+      if (user) {
+        done(null, user)
+      } else {
+        done(null, false, { message: 'Incorrect username or password'})
+      }
+    }
+  )
+);
+
+//Faccio la chiamata all'autenticazione
+//login
+app.post("/api/login", (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }
+    if (!user) {
+      return res.status(400).send([user, "Cannot log in", info]);
+    }
+    req.login(user, err => {
+      res.send("Logged in " + user.name);
+    });
+  })(req, res, next);
+});
+
+//logout
+app.get("/api/logout", function(req, res) {
+  req.logout();
+  console.log("logged out");
+  return res.send();
+});
+
+//ricavare i dati dell'utente loggato
+app.get("/api/user", authMiddleware, (req, res) => {
+  console.log("Stai cercando un utente");
+  let user = JSON.parse(fs.readFileSync('users.json')).users.find(user => {
+    console.log(user.name);
+    return user.id === req.session.passport.user;
+  })
+  //console.log([user, req.session]);
+  res.send({ user: user });
+});
+
+//Registrazione di un nuovo utente
+app.post("/api/register", (req, res) => {
+  //metto l'array di utenti letti da file in una variabile
+  let data = JSON.parse(fs.readFileSync('users.json'));
+  //creo un nuovo utente con i dati forniti
+  let newUser = { 
+    id: data.users.length + 1, 
+    name: req.body.name, 
+    username: req.body.username , 
+    password:req.body.password 
+  };
+  //aggiungo il nuovo utente all'oggetto
+  data.users.push(newUser);
+  //riscrivo su file
+  fs.writeFileSync("users.json", JSON.stringify(data, null, 4));
+  return res.send();
+});
+
+//Serializzo e deserializzo l'utente acceduto per mantenerne la sessione
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+passport.deserializeUser((id, done) => {
+  let user = JSON.parse(fs.readFileSync('users.json')).users.find((user) => {
+    return user.id === id;
+  })
+
+  done(null, user);
+});
+
+
+
 const playerHttp = require("http").Server(app);
 const playerIo = require("socket.io")(playerHttp, {
   cors: {
@@ -8,6 +131,7 @@ const playerIo = require("socket.io")(playerHttp, {
     credentials: true,
   },
 });
+
 const adminHttp = require("http").Server(app);
 const adminIo = require("socket.io")(adminHttp, {
   cors: {
@@ -17,6 +141,7 @@ const adminIo = require("socket.io")(adminHttp, {
     credentials: true,
   },
 });
+
 
 //PLAYER - SOCKET
 playerIo.on("connection", (playerSocket) => {
@@ -33,3 +158,7 @@ adminIo.on("connection", (adminSocket) => {
 adminHttp.listen(3001, () => {
   console.log("admin http server listening on port: 3001");
 });
+
+app.listen(3500, () => {
+  console.log("listening on port 3500");
+})
