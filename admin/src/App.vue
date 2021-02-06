@@ -42,6 +42,8 @@
               <router-link href="#" to="/about" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</router-link>
               <router-link href="#" to="/login" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Accedi</router-link>
               <router-link href="#" to="/register" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Registrati</router-link>
+              <router-link href="#" to="/Creation" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"> Creazione</router-link>
+              <router-link href="#" to="/Team" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Team</router-link>
             </div>
             <div id="loggedIn" v-show="this.utenteAccesso()">
               <router-link href="#" to="/profile" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Profilo</router-link>
@@ -51,11 +53,11 @@
       </div>
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 
-        <!-- Profile dropdown 
+        <!-- Profile dropdown
         <div class="ml-3 relative">
           <div @click="getUserData">
-            <button 
-            @click="dropdown_state = !dropdown_state"           
+            <button
+            @click="dropdown_state = !dropdown_state"
             class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-haspopup="true">
               <span class="sr-only">Open user menu</span>
               <img class="h-8 w-8 rounded-full" src="http://placekitten.com/200/300" alt="">
@@ -70,7 +72,7 @@
                 leave-class="opacity-100 scale-100"
                 leave-to-class="opacity-0 scale-95"
           >
-          <div 
+          <div
           v-show="dropdown_state"
           class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
             <a href="#/profile" id="linkToProfile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Your Profile</a>
@@ -100,7 +102,7 @@
   </div>
 </nav>
     <router-view v-bind:logged="this.logged" />
-    
+
   </div>
 </template>
 
@@ -117,19 +119,19 @@ export default {
   },
   methods: {
     //Metodo per ricavare i dati utente e controllare che sia acceduto
-    getUserData: function() {    
+    getUserData: function() {
       axios.get("http://localhost:3500/api/user", { withCredentials: true }
-      ).then((response) => {   
+      ).then((response) => {
         this.username = response.data.username;
-        this.password = response.data.password; 
+        this.password = response.data.password;
         this.logged = true;
         console.log(response.headers);
         //console.log(this.logged);
       }).catch((errors) => {
         this.logged = false;
-        //console.log(this.logged);     
+        //console.log(this.logged);
         console.log(errors);
-      })    
+      })
     },
     //Metodo per aggiornare i bottoni della navbar
     utenteAccesso: function(){
@@ -137,7 +139,7 @@ export default {
       //console.log(this.logged);
       return this.logged;
     }
-    
+
   },
   data: function() {
     return {
@@ -179,9 +181,8 @@ argomento:['cane','lupo','alveare','pastasciutta']
     ] }
   ];
   console.log("montato");
-  
+
   }
 
 }
 </script>
-
