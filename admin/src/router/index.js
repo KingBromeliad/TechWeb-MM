@@ -14,6 +14,41 @@ const routes = [
     component: Home
   },
   {
+    path: '/creation',
+    name: 'Creation',
+    component: () => import('../views/Creation.vue'),
+  },
+  {
+    path: '/creationsgame',
+    name: 'Creationsgame',
+    component: () => import('../views/Creationsgame.vue'),
+  },
+  {
+    path: '/games',
+    name: 'Games',
+    component: () => import('../views/Games.vue'),
+  },
+  {
+  path: '/gamequiz',
+  name: 'Gamequiz',
+  component: () => import('../views/Gamequiz.vue'),
+},
+{
+path: '/team',
+name: 'Team',
+component: () => import('../views/Team.vue'),
+},
+  {
+    path: '/creationquiz',
+    name: 'Creationquiz',
+    component: () => import('../views/Creationquiz.vue')
+  },
+  {
+    path: '/creationstory',
+    name: 'Creationstory',
+    component: () => import('../views/Creationstory.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     component: Login
