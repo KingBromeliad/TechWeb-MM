@@ -6,10 +6,7 @@
       </div>
       <div class="space-y-8 flex-col place-content-center bg-gradient-to-r from-green-400 to-blue-500 rounded-2xl">
         <div class="pt-10 text-center">
-          <p class="text-4xl font-medium">Come ti chiami?</p>
-        </div>
-        <div class="flex place-content-center">
-          <input class="text-4xl text-center h-16 w-80 bg-white rounded-lg shadow-lg"/>
+          <qrcode-stream @decode="onDecode"></qrcode-stream>
         </div>
         <div class="pb-10 flex place-content-center">
           <button class="h-16 w-80 bg-black rounded-lg text-white text-4xl font-medium shadow-lg">Inizia l'avventura!</button>
@@ -22,5 +19,10 @@
 <script>
 export default {
   name: 'Home',
+  methods: {
+    onDecode(decodedString){
+      alert(decodedString);
+    }
+  }
 }
 </script>
