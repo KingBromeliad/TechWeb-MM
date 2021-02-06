@@ -17,6 +17,9 @@ Vue.use(VueSocketIOExt, socket)
 Vue.config.productionTip = false
 
 new Vue({
+  provide: {
+    logged: false
+  },
   router,
   render: h => h(App)
 }).$mount('#app')
