@@ -16,10 +16,10 @@
           Get started
         </a>
       </div>
-            <div class="inline-flex rounded-md shadow ml-1">
+      <div class="inline-flex rounded-md shadow ml-1">
         <a
           href="#"
-          @click="chatActive= !chatActive"
+          @click="chatActive = !chatActive"
           class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
         >
           Chat
@@ -31,41 +31,33 @@
 </template>
 
 <script>
-import Chat from './components/Chat.vue';
+import Chat from "./components/Chat.vue";
+import axios from 'axios'
 
 export default {
   name: "App",
   components: {
-    Chat
+    Chat,
   },
-  sockets: {
-    connect() {
-      console.log("socket connected");
-    },
-    userAuth(user) {
-      console.log(user);
-      this.username = user;
-    },
+  mounted: function() {
+
+    axios
+      .get("/openStory")
+      .then(function(response) {
+        this.game = response.data.game;
+        console.log(response);
+      })
+      .catch(function(error) {
+        // handle error
+        console.log(error);
+      });
   },
   data: function() {
     return {
       username: "",
       progress: "0",
       chatActive: false,
-      game: [
-        {
-          name: "start",
-          route: "/",
-        },
-        {
-          name: "info",
-          route: "info",
-        },
-        {
-          name: "start",
-          route: "/",
-        },
-      ],
+      game: [],
     };
   },
   methods: {

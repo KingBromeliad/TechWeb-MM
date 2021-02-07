@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import "tailwindcss/tailwind.css"
+import axios from 'axios'
+
+/*
 import VueSocketIOExt from 'vue-socket.io-extended'
 import { io } from 'socket.io-client'
-import "tailwindcss/tailwind.css"
-
 const socket = io("http://localhost:3000/", {
     withCredentials: true,
     extraHeaders: {
@@ -13,7 +15,8 @@ const socket = io("http://localhost:3000/", {
 })
 
 Vue.use(VueSocketIOExt, socket)
-
+*/
+Vue.use(axios)
 Vue.config.productionTip = false
 
 new Vue({
