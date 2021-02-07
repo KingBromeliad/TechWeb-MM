@@ -21,7 +21,7 @@
         leave-from-class="opacity-100"
         leave-to-class="opacity-0"
       >
-      <!--
+        <!--
         <div
           class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
           aria-hidden="true"
@@ -234,15 +234,12 @@
 
 <script>
 export default {
-  name: 'chat',
+  name: "chat",
   props: {
-    slideOver : Boolean,
-
-},
-data: function() {
-  return {
-
-  }
-}
-}
+    slideOver: Boolean,
+  },
+  data: function () {
+    return {};
+  },
+};
 </script>

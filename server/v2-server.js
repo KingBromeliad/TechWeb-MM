@@ -108,6 +108,18 @@ app.post("/api/register", (req, res) => {
   return res.send();
 });
 
+//per creare la storia
+app.post("/creaStoria", (req, res) => {
+  res.send();
+});
+
+//Per aprire la storia dalla parte player
+app.get("/apriStoria", (req, res) => {
+  console.log(req.body);
+  res.send(storiaDinosauri.json);
+});
+
+
 //Serializzo e deserializzo l'utente acceduto per mantenerne la sessione
 passport.serializeUser((user, done) => {
   done(null, user.id);
