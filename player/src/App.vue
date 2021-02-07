@@ -1,10 +1,22 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div>
+    <div
+      class="flex justify-center fixed right-6 z-10 p-4 h-20 w-1/4 text-gray-800 text-xl font-sans font-extrabold bg-white rounded-b-lg shadow-md"
+    >
+      <router-link class="mr-10 mt-auto mb-auto text-center" to="/"
+        >Home</router-link
+      >
+      <div class="inline-flex rounded-md shadow">
+        <a
+          href="#"
+          @click="nextView()"
+          class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+        >
+          Get started
+        </a>
+      </div>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -13,40 +25,41 @@ export default {
   name: "App",
   sockets: {
     connect() {
-      console.log('socket connected')
+      console.log("socket connected");
     },
     userAuth(user) {
       console.log(user);
-      this.username = user
+      this.username = user;
     },
   },
   data: function() {
     return {
-    username : "",
-    }
+      username: "",
+      progress: "0",
+      game: [
+        {
+          name: "start",
+          route: "/",
+        },
+        {
+          name: "info",
+          route: "info",
+        },
+        {
+          name: "start",
+          route: "/",
+        },
+      ],
+    };
+  },
+  methods: {
+    //MAIN NAVIGATION: WORK IN PROGRESS
+    nextView() {
+      if (this.progress < this.game.length - 1) {
+        this.progress++;
+        this.$router.push(this.game[this.progress].route);
+      }
+    },
   },
 };
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>

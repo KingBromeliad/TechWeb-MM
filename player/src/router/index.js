@@ -4,12 +4,16 @@ import Home from '../views/Home.vue'
 import Storia from '../views/Storia.vue'
 import Quiz from '../views/Quiz.vue'
 import FinalEval from '../views/FinalEval.vue'
+import About from '../views/About.vue'
+//--game pages--//
+import Info from '../views/game/Info.vue'
+import Start from '../views/game/Start.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'Home',
     component: Home
   },
@@ -31,10 +35,17 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: About
+  },
+  {
+    path: '/info',
+    name: 'Info',
+    component: Info
+  },
+  {
+    path: '/',
+    name: 'Start',
+    component: Start
   }
 ]
 
