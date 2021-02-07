@@ -138,8 +138,8 @@
                           <div>
                             <span
                               class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600"
-                              >Hello mum, i'm on the television! this app is
-                              fantastic</span
+                              > {{ mes1 }}
+                              </span
                             >
                           </div>
                         </div>
@@ -239,8 +239,19 @@ export default {
   props: {
     slideOver: Boolean,
   },
+  sockets: {
+    connect() {
+      console.log("connected");
+    },
+    welcome_message(data) {
+      this.mes1 = data.username + data.text;
+    },
+
+  },
   data: function () {
-    return {};
+    return {
+      mes1: String
+    };
   },
 };
 </script>

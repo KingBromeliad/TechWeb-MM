@@ -5,7 +5,7 @@ import "tailwindcss/tailwind.css"
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-/*
+
 import VueSocketIOExt from 'vue-socket.io-extended'
 import { io } from 'socket.io-client'
 const socket = io("http://localhost:3000/", {
@@ -16,7 +16,7 @@ const socket = io("http://localhost:3000/", {
 })
 
 Vue.use(VueSocketIOExt, socket)
-*/
+
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 

@@ -12,6 +12,7 @@ const whitelist = ['http://localhost:8081', 'http://localhost:8080'];
 app.use(cors({credentials: true, origin: whitelist}));
 // Tipologia di autenticazione locale
 const LocalStrategy = require('passport-local').Strategy;
+const { Socket } = require("dgram");
 
 //Creo la sessione con un cookie che dura 24 ore
 app.use(bodyParser.json())
@@ -161,10 +162,31 @@ const adminIo = require("socket.io")(adminHttp, {
   },
 });
 
+const botName = "Mistero al Museo Bot";
 
 //PLAYER - SOCKET
 playerIo.on("connection", (playerSocket) => {
   console.log("Player client connected, connection id: " + playerSocket.id);
+  playerSocket.broadcast.emit('welcome_message', {
+    username: botName,
+    text: "Welcome: " + playerSocket.id
+  });
+  
+  playerSocket.on('player_message', (data) => {
+    playerSocket.emit('player_message', {
+      username: playerSocket.id,
+      text: data
+    });
+  });
+
+  playerSocket.on('disconnect', () => {
+    playerSocket.broadcast.emit('player_message', {
+      username: botName,
+      text: playerSocket.id + ' ha lasciato la chat'
+    });
+  });
+
+
 });
 playerHttp.listen(3000, () => {
   console.log("player http server listening on port: 3000");
