@@ -150,6 +150,7 @@
                         />
                       </div>
                     </div>
+                    
                     <div class="chat-message">
                       <div class="flex items-end justify-end">
                         <div
