@@ -42,7 +42,7 @@ export default {
   mounted: function() {
 
     axios
-      .get("/openStory")
+      .get("http://localhost:3500/openStory")
       .then(function(response) {
         this.game = response.data.game;
         console.log(response);
