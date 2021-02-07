@@ -114,7 +114,7 @@ app.post("/creaStoria", (req, res) => {
 });
 
 //Per aprire la storia dalla parte player
-app.get("/apriStoria", (req, res) => {
+app.get("/openStory", (req, res) => {
   console.log(req.body);
   res.send(storiaDinosauri.json);
 });
