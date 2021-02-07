@@ -26,7 +26,7 @@
         </a>
       </div>
     </div>
-    <router-view />
+    <router-view :game="this.game" :position="this.progress" />
   </div>
 </template>
 
@@ -39,7 +39,7 @@ export default {
   components: {
     Chat,
   },
-  mounted: function() {
+  beforeCreate: function() {
 
  this.axios.get("http://localhost:3500/openStory").then((response) => {
   console.log(response.data)
@@ -50,7 +50,7 @@ export default {
   data: function() {
     return {
       username: "",
-      progress: "0",
+      progress: 0,
       chatActive: false,
       game: [],
     };

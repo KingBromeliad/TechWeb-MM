@@ -162,25 +162,26 @@ const adminIo = require("socket.io")(adminHttp, {
   },
 });
 
-const botName = "Mistero al Museo Bot";
+const botName = "Robottino Maggicco";
 
 //PLAYER - SOCKET
 playerIo.on("connection", (playerSocket) => {
   console.log("Player client connected, connection id: " + playerSocket.id);
-  playerSocket.broadcast.emit('welcome_message', {
+  playerSocket.emit('welcome_message', {
     username: botName,
     text: "Welcome: " + playerSocket.id
   });
   
   playerSocket.on('player_message', (data) => {
-    playerSocket.emit('player_message', {
+    console.log(data);
+    playerSocket.emit('my_message', {
       username: playerSocket.id,
       text: data
     });
   });
 
   playerSocket.on('disconnect', () => {
-    playerSocket.broadcast.emit('player_message', {
+    playerSocket.broadcast.emit('player_disconnect', {
       username: botName,
       text: playerSocket.id + ' ha lasciato la chat'
     });

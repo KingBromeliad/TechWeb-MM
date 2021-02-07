@@ -6,6 +6,8 @@
 </template>
 <script>
 export default {
-    
+        props: {
+        game : Array
+    } 
 }
 </script>

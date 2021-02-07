@@ -2,7 +2,27 @@
     "game": [
         {
             "name": "start",
-            "route": "/"
+            "route": "/",
+            "text" : [
+                "Ciao cucciolo d'uomo, benevenuto nel pianeta dei dinosauri!",
+                "Qui vivono felicemente più di mille dinosauri, siamo tutti amici",
+                "Ognuno viaggia dove vuole, gioca con chi vuole, mangia quel che vuole",
+                "O almeno così dovrebbe essere, è ormai una settimana che le mie felci preferite non crescono più",
+                "Sono sparite come per magia...Che mistero! Mi mancano così tanto, erano squisite",
+                "Per caso tu potresti aiutarmi a risolvere il mistero delle felci sparite?",
+                "Per caso tu potresti aiutarmi a risolvere il mistero delle felci sparite?",
+                "Bene per prima cosa ti faccio conoscere i miei amici dinosauri"
+            ],
+            "option" : [
+                ">>",
+                ">>",
+                ">>",
+                ">>",
+                ">>",
+                ">>",
+                "Si!",
+                ">>"
+            ]
         },
         {
             "name": "info",
