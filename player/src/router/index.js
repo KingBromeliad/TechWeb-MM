@@ -27,7 +27,7 @@ const routes = [
     path: '/final',
     name: 'FinalEval',
     component: FinalEval
-  }
+  },
   {
     path: '/about',
     name: 'About',
