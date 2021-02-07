@@ -1,0 +1,16 @@
+{
+    "game": [
+        {
+            "name": "start",
+            "route": "/"
+        },
+        {
+            "name": "info",
+            "route": "info"
+        },
+        {
+            "name": "start",
+            "route": "/"
+        }
+    ]
+}

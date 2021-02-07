@@ -29,7 +29,6 @@
 </template>
 
 <script>
-import router from '../router'
 export default {
   props: {
     quiz: Object,
@@ -70,10 +69,7 @@ export default {
         }
         alert("Bravissim* ce l'hai fatta!");
         this.result = true;
-    },
-    next: function() {
-      router.push('/final');
-    } 
+    }
   }
 };
 </script>

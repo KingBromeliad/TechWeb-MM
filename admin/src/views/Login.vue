@@ -29,9 +29,10 @@
         </div>
 
         <div class="text-sm">
-          <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
-            Forgot your password?
-          </a>
+            Non hai un account?
+          <router-link to="/register" class="font-medium text-indigo-600 hover:text-indigo-500">
+            Registrati.
+          </router-link>
         </div>
       </div>
 
