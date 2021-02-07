@@ -116,7 +116,8 @@ app.post("/creaStoria", (req, res) => {
 //Per aprire la storia dalla parte player da un file json
 app.get("/openStory", (req, res) => {
   console.log(req.body);
-  res.send(storiaDinosauri.json);
+  let story = JSON.parse(fs.readFileSync('storiaDinosauri.json'));
+  res.send(story);
 });
 
 
