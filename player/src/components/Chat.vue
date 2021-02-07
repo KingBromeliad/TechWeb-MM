@@ -126,52 +126,6 @@
                   </div>
                 </div>
 
-<<<<<<< HEAD
-                  <div
-                    id="messages"
-                    class="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
-                  >
-                    <div class="chat-message">
-                      <div class="flex items-end">
-                        <div
-                          class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start"
-                        >
-                          <div>
-                            <span
-                              class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600"
-                              > {{ mes1 }}
-                              </span
-                            >
-                          </div>
-                        </div>
-                        <img
-                          src="https://avatars.dicebear.com/api/bottts/magic.svg"
-                          alt="My profile"
-                          class="w-6 h-6 rounded-full order-1"
-                        />
-                      </div>
-                    </div>
-                    
-                    <div class="chat-message">
-                      <div class="flex items-end justify-end">
-                        <div
-                          class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end"
-                        >
-                          <div>
-                            <span
-                              class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white"
-                              >lol</span
-                            >
-                          </div>
-                        </div>
-                        <img
-                          src="https://avatars.dicebear.com/api/bottts/notmagic.svg"
-                          alt="My profile"
-                          class="w-6 h-6 rounded-full order-2"
-                        />
-                      </div>
-                    </div>
-=======
                 <div
                   id="messages"
                   class="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
@@ -179,7 +133,6 @@
                   <div v-for="(incomingFeed, index) in this.feed" :key="index">
                     <Message v-if="incomingFeed.incomingMessage!=''"  :message="incomingFeed.incomingMessage" :username="incomingFeed.username">
                     </Message>
->>>>>>> 069122cf1a9400d7783f34b9e263dac156a31ea3
                   </div>
                 </div>
                 <div class="border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
