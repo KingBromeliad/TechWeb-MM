@@ -113,7 +113,9 @@ app.post("/api/register", (req, res) => {
 });
 
 //per creare la storia
-app.post("/creaStoria", (req, res) => {
+app.post("/writeStory", (req, res) => {
+  let story = JSON.stringify(req.body);
+  fs.writeFile(story.name, story);
   res.send();
 });
 
