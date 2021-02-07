@@ -4,7 +4,8 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const cookieSession = require('cookie-session');
 const fs = require('fs');
-const app = require("express")();
+const express = require('express')
+const app = express()
 
 const whitelist = ['http://localhost:8081', 'http://localhost:8080'];
 
@@ -24,7 +25,8 @@ app.use(cookieSession({
 app.use(passport.initialize());
 
 app.use(passport.session());
-
+//static files-images
+app.use(express.static('images'));
 
 
 //Middleware
