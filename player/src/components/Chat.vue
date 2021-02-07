@@ -20,13 +20,22 @@
         leave-active-class="ease-in-out duration-500"
         leave-from-class="opacity-100"
         leave-to-class="opacity-0"
-      >
-        <!--
+      > 
         <div
+        v-show="slideOver"
           class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
           aria-hidden="true"
         ></div>
-        -->
+      </transition>
+
+          <transition
+            enter-active-class="transform transition ease-in-out duration-500 sm:duration-700"
+            enter-from-class="translate-x-full"
+            enter-to-class="translate-x-0"
+            leave-active-class="transform transition ease-in-out duration-500 sm:duration-700"
+            leave-from-class="translate-x-0"
+            leave-to-class="translate-x-full"
+          >
         <section
           v-show="slideOver"
           class="absolute inset-y-0 right-0 pl-10 max-w-full flex"
@@ -42,15 +51,8 @@
           From: "translate-x-0"
           To: "translate-x-full"
       -->
-          <transition
-            enter-active-class="transform transition ease-in-out duration-500 sm:duration-700"
-            enter-from-class="translate-x-full"
-            enter-to-class="translate-x-0"
-            leave-active-class="transform transition ease-in-out duration-500 sm:duration-700"
-            leave-from-class="translate-x-0"
-            leave-to-class="translate-x-full"
-          >
-            <div v-show="slideOver" class="relative w-screen max-w-md">
+
+            <div class="relative w-screen max-w-md">
               <!--
           Close button, show/hide based on slide-over state.
     
@@ -202,9 +204,8 @@
                 <!-- /End replace -->
               </div>
             </div>
-          </transition>
         </section>
-      </transition>
+</transition>
     </div>
   </div>
 </template>
