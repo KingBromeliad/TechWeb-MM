@@ -113,7 +113,7 @@ app.post("/creaStoria", (req, res) => {
   res.send();
 });
 
-//Per aprire la storia dalla parte player
+//Per aprire la storia dalla parte player da un file json
 app.get("/openStory", (req, res) => {
   console.log(req.body);
   res.send(storiaDinosauri.json);
