@@ -193,7 +193,6 @@
 <script>
 import Vue from "vue";
 import axios from "axios";
-//import router from './router'
 export default {
   name: "App",
   sockets: {
@@ -210,13 +209,13 @@ export default {
           this.username = response.data.username;
           this.password = response.data.password;
           this.logged = true;
-          console.log(response.headers);
+          //console.log(response.headers);
+          return response;
           //console.log(this.logged);
         })
         .catch((errors) => {
           this.logged = false;
-          //console.log(this.logged);
-          console.log(errors);
+          return errors;
         });
     },
     //Metodo per aggiornare i bottoni della navbar

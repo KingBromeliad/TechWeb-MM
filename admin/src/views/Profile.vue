@@ -24,7 +24,7 @@ export default {
         getUserData: function() {    
             let self = this;
             axios.get("http://localhost:3500/api/user", { withCredentials: true }).then((response) => {    
-                console.log(response);
+                //console.log(response);
                 this.logged = true; 
                 //console.log(this.logged);
                 self.$set(this, "user", response.data.user);
