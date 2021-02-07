@@ -6,7 +6,8 @@ const cookieSession = require('cookie-session');
 const fs = require('fs');
 const app = require("express")();
 
-app.use(cors({credentials: true, origin: 'http://localhost:8081'}));
+app.use(cors())
+//app.use(cors({credentials: true, origin: 'http://localhost:8081'}));
 // Tipologia di autenticazione locale
 const LocalStrategy = require('passport-local').Strategy;
 

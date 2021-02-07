@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import "tailwindcss/tailwind.css"
 import axios from 'axios'
+import VueAxios from 'vue-axios'
 
 /*
 import VueSocketIOExt from 'vue-socket.io-extended'
@@ -16,7 +17,7 @@ const socket = io("http://localhost:3000/", {
 
 Vue.use(VueSocketIOExt, socket)
 */
-Vue.use(axios)
+Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 
 new Vue({

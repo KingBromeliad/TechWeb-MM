@@ -32,7 +32,7 @@
 
 <script>
 import Chat from "./components/Chat.vue";
-import axios from 'axios'
+
 
 export default {
   name: "App",
@@ -41,16 +41,11 @@ export default {
   },
   mounted: function() {
 
-    axios
-      .get("http://localhost:3500/openStory")
-      .then(function(response) {
-        this.game = response.data.game;
-        console.log(response);
-      })
-      .catch(function(error) {
-        // handle error
-        console.log(error);
-      });
+ this.axios.get("http://localhost:3500/openStory").then((response) => {
+  console.log(response.data)
+  this.game = response.data.game;
+})
+
   },
   data: function() {
     return {
