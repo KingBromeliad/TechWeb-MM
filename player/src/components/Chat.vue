@@ -111,7 +111,7 @@
                   />
                   <div class="flex flex-col leading-tight">
                     <div class="text-2xl mt-1 flex items-center">
-                      <span class="text-gray-700 mr-3">Generic Parent</span>
+                      <span class="text-gray-700 mr-3">Chiedi Aiuto</span>
                       <span class="text-green-500">
                         <svg width="10" height="10">
                           <circle
@@ -131,10 +131,22 @@
                   class="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
                 >
                   <div v-for="(incomingFeed, index) in this.feed" :key="index">
-                    <Message v-if="incomingFeed.incomingMessage!='' && incomingFeed.username != this.playerName"  :message="incomingFeed.incomingMessage" :username="incomingFeed.username">
+                    <Message
+                      v-if="
+                        incomingFeed.username != 'You' &&
+                        incomingFeed.incomingMessage != ''
+                      "
+                      :message="incomingFeed.incomingMessage"
+                      :username="incomingFeed.username"
+                    >
                     </Message>
-                    <playerMessage v-if="incomingFeed.incomingMessage!='' && incomingFeed.username == this.playerName"  :message="incomingFeed.incomingMessage" :username="incomingFeed.username">
-                    </playerMessage>
+
+                    <userMessage
+                      v-else
+                      :message="incomingFeed.incomingMessage"
+                      :username="incomingFeed.username"
+                    >
+                    </userMessage>
                   </div>
                 </div>
                 <div class="border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
@@ -202,13 +214,13 @@
 
 <script>
 import Message from "./Message.vue";
-import playerMessage from "./PlayerMessage.vue";
+import userMessage from "./UserMessage";
 
 export default {
   name: "chat",
   components: {
     Message,
-    playerMessage
+    userMessage,
   },
   props: {
     slideOver: Boolean,
@@ -220,22 +232,23 @@ export default {
     welcome_message(data) {
       let incomingData = {
         username: data.username,
-        incomingMessage: data.text
+        incomingMessage: data.text,
       };
-      this.playerName = data.userConnectedName;
+      //console.log(incomingData.username);
       this.feed.push(incomingData);
     },
-    my_message(data) {
-       let incomingData = {
+    send_player(data) {
+      let incomingData = {
         username: data.username,
-        incomingMessage: data.text
+        incomingMessage: data.text,
       };
+      console.log(incomingData.username);
       this.feed.push(incomingData);
     },
-    player_disconnect(data) {
-       let incomingData = {
+    user_disconnect(data) {
+      let incomingData = {
         username: data.username,
-        incomingMessage: data.text
+        incomingMessage: data.text,
       };
       this.feed.push(incomingData);
     },
@@ -243,19 +256,19 @@ export default {
   methods: {
     sendMessage: function () {
       this.$socket.client.emit("player_message", this.userMessage);
+      let sentMessage = {
+        username: "You",
+        incomingMessage: this.userMessage,
+      };
+      this.feed.push(sentMessage);
       this.userMessage = "";
     },
   },
   data: function () {
     return {
-      feed: [
-        {
-          username: "",
-          incomingMessage: "",
-        },
-      ],
+      feed: [],
       userMessage: "",
-      playerName: ""
+      playerName: "",
     };
   },
 };
