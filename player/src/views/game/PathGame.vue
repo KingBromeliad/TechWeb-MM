@@ -1,48 +1,68 @@
 <template>
-  <body
-    class="bg-center bg-cover bg-no-repeat min-h-screen"
-    v-bind:style="{ 'background-image': background }"
-  >
-    <div
-      class="grid place-content-center grid-cols-4 gap-8 min-h-screen md:mr-40 md:ml-40 sm:ml-20 sm:mr-20"
-    >
-      <!-- HYPER GRID -->
-    <div class="object-contain h-80 w-80 object-center">
-        <img src="http://localhost:3000/Rock.png" >
-    </div>
-    <div class="object-contain h-80 w-80 object-center">
-        <img src="http://localhost:3000/Rock.png" >
-    </div>
-        <div class="object-contain h-80 w-80 object-center">
-        <img src="http://localhost:3000/Rock.png" >
-    </div>
-    <div class="object-contain h-80 w-80 object-center">
-        <img src="http://localhost:3000/Rock.png" >
-    </div>
-        <div class="object-contain h-80 w-80 object-center">
-        <img src="http://localhost:3000/Rock.png" >
-    </div>
-    <div class="object-contain h-80 w-80 object-center">
-        <img src="http://localhost:3000/Rock.png" >
-    </div>
-        <div class="object-contain h-80 w-80 object-center">
-        <img src="http://localhost:3000/Rock.png" >
-    </div>
-    <div class="object-contain h-80 w-80 object-center">
-        <img src="http://localhost:3000/Rock.png" >
-    </div>
-        <div class="object-contain h-80 w-80 object-center">
-        <img src="http://localhost:3000/Rock.png" >
-    </div>
-    <div class="object-contain h-80 w-80 object-center">
-        <img src="http://localhost:3000/Rock.png" >
-    </div>
-        <div class="object-contain h-80 w-80 object-center">
-        <img src="http://localhost:3000/Rock.png" >
-    </div>
-    <div class="object-contain h-80 w-80 object-center">
-        <img src="http://localhost:3000/Rock.png" >
-    </div>
+  <body class="bg-blue-400 min-h-screen">
+    <div class="grid place-content-center grid-cols-3 gap-2 min-h-screen">
+      <!-- shore-->
+      <div>
+        <img
+          class="object-fill min-h-full"
+          src="http://localhost:3000/ShoreL.png"
+          alt="shoreL"
+        />
+      </div>
+      <div
+        class="grid place-content-center grid-cols-4 grid-rows-3 gap-2 min-h-screen"
+      >
+        <!-- ROCKS -->
+        <div class="flex items-center justify-items-center">
+          <img src="http://localhost:3000/Rock.png" alt="rock" />
+        </div>
+        <div class="flex items-center justify-items-center">
+          <img src="http://localhost:3000/Rock.png" alt="rock" />
+        </div>
+        <div class="flex items-center justify-items-center">
+          <img src="http://localhost:3000/Rock.png" alt="rock" />
+        </div>
+                <!-- ROCKS -->
+        <div class="flex items-center justify-items-center">
+          <img src="http://localhost:3000/Rock.png" alt="rock" />
+        </div>
+        <div class="flex items-center justify-items-center">
+          <img src="http://localhost:3000/Rock.png" alt="rock" />
+        </div>
+        <div class="flex items-center justify-items-center">
+          <img src="http://localhost:3000/Rock.png" alt="rock" />
+        </div>
+                <!-- ROCKS -->
+        <div class="flex items-center justify-items-center">
+          <img src="http://localhost:3000/Rock.png" alt="rock" />
+        </div>
+        <div class="flex items-center justify-items-center">
+          <img src="http://localhost:3000/Rock.png" alt="rock" />
+        </div>
+        <div class="flex items-center justify-items-center">
+          <img src="http://localhost:3000/Rock.png" alt="rock" />
+        </div>
+                <!-- ROCKS -->
+        <div class="flex items-center justify-items-center">
+          <img src="http://localhost:3000/Rock.png" alt="rock" />
+        </div>
+        <div class="flex items-center justify-items-center">
+          <img src="http://localhost:3000/Rock.png" alt="rock" />
+        </div>
+        <div class="flex items-center justify-items-center">
+          <img src="http://localhost:3000/Rock.png" alt="rock" />
+        </div>
+
+        <!--end-->
+      </div>
+      <!-- shore-->
+      <div>
+        <img
+          class="object-fill min-h-full"
+          src="http://localhost:3000/ShoreR.png"
+          alt="shoreR"
+        />
+      </div>
     </div>
   </body>
 </template>
