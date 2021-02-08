@@ -140,8 +140,48 @@ passport.deserializeUser((id, done) => {
   done(null, user);
 });
 
+//CHAT
+const botName = "Robottino Maggicco";
+const chatServer = require("http").Server(app);
+const io = require("socket.io")(chatServer, {
+  cors: {
+    origin: "http://localhost:8080",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["cors-header"],
+    credentials: true,
+  },
+});
+
+//CHAT - SOCKET
+io.on("connection", (chatSocket) => {
+  console.log("Player client connected, connection id: " + chatSocket.id);
+  chatSocket.emit('welcome_message', {
+    username: botName,
+    text: "Welcome: " + chatSocket.id,
+    userConnectedName: chatSocket.id
+  });
+  
+  chatSocket.on('player_message', (data) => {
+    console.log(data);
+    chatSocket.emit('my_message', {
+      username: chatSocket.id,
+      text: data
+    });
+  });
+
+  chatSocket.on('disconnect', () => {
+    chatSocket.broadcast.emit('player_disconnect', {
+      username: botName,
+      text: chatSocket.id + ' ha lasciato la chat'
+    });
+  });
 
 
+});
+chatServer.listen(3000, () => {
+  console.log("player http server listening on port: 3000");
+});
+/*
 const playerHttp = require("http").Server(app);
 const playerIo = require("socket.io")(playerHttp, {
   cors: {
@@ -152,24 +192,13 @@ const playerIo = require("socket.io")(playerHttp, {
   },
 });
 
-const adminHttp = require("http").Server(app);
-const adminIo = require("socket.io")(adminHttp, {
-  cors: {
-    origin: "http://localhost:8081",
-    methods: ["GET", "POST"],
-    allowedHeaders: ["cors-header"],
-    credentials: true,
-  },
-});
-
-const botName = "Robottino Maggicco";
-
 //PLAYER - SOCKET
 playerIo.on("connection", (playerSocket) => {
   console.log("Player client connected, connection id: " + playerSocket.id);
   playerSocket.emit('welcome_message', {
     username: botName,
-    text: "Welcome: " + playerSocket.id
+    text: "Welcome: " + playerSocket.id,
+    userConnectedName: playerSocket.id
   });
   
   playerSocket.on('player_message', (data) => {
@@ -194,13 +223,27 @@ playerHttp.listen(3000, () => {
 });
 
 //ADMIN - SOCKET
+const adminHttp = require("http").Server(app);
+const adminIo = require("socket.io")(adminHttp, {
+  cors: {
+    origin: "http://localhost:8081",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["cors-header"],
+    credentials: true,
+  },
+});
 adminIo.on("connection", (adminSocket) => {
   console.log("Admin client connected, connection id: " + adminSocket.id);
+  adminSocket.emit('welcome_message', {
+    username: botName,
+    text: "Welcome: " + adminSocket.id
+  });
+
 });
 adminHttp.listen(3001, () => {
   console.log("admin http server listening on port: 3001");
 });
-
+*/
 app.listen(3500, () => {
   console.log("listening on port 3500");
 })

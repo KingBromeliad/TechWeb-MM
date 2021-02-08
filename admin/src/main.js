@@ -5,7 +5,7 @@ import VueSocketIOExt from 'vue-socket.io-extended'
 import { io } from 'socket.io-client'
 import "tailwindcss/tailwind.css"
 
-const socket = io("http://localhost:3001/", {
+const socket = io("http://localhost:3000/", {
     withCredentials: true,
     extraHeaders: {
         "cors-header" : "valid"

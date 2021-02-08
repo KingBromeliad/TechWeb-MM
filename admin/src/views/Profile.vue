@@ -11,8 +11,12 @@
 <script>
 import axios from 'axios'
 import router from '../router'
+import message from '../'
 export default {
     name: 'Profile',
+    sockets: {
+
+    },
     data() {    
         return {    
             user: {    
