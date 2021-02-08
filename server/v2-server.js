@@ -152,10 +152,10 @@ const io = require("socket.io")(chatServer, {
   },
 });
 
-let connectedUsers = [{
-  id: '',
-  name: ''
-}]
+let punteggio = [{
+  gioco: "gioco1",
+  punti: 0
+}];
 
 //CHAT - SOCKET
 io.on("connection", (chatSocket) => {
@@ -163,6 +163,16 @@ io.on("connection", (chatSocket) => {
   io.emit('welcome_message', {
     username: botName,
     text: "Welcome: " + chatSocket.id 
+  });
+
+  chatSocket.on('update_score', (data) => {
+    if(punteggio.some(punteggioGiusto => punteggioGiusto.gioco === data.gioco)) {
+      let i = punteggio.map(x => x.gioco).indexOf(data.gioco);
+      punteggio[i].punti += data.punti;
+    } else {
+      punteggio.push(data);
+    }
+    io.emit('update_score', punteggio);
   });
 
   chatSocket.on('player_message', (data) => {
