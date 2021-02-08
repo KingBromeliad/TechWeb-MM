@@ -56,44 +56,42 @@
             <!--
           Close button, show/hide based on slide-over state.
            -->
-              <transition
-                enter-active-class="ease-in-out duration-500"
-                enter-from-class="opacity-0"
-                enter-to-class="opacity-100"
-                leave-active-class="ease-in-out duration-500"
-                leave-from-class="opacity-100"
-                leave-to-class="opacity-0"
+            <transition
+              enter-active-class="ease-in-out duration-500"
+              enter-from-class="opacity-0"
+              enter-to-class="opacity-100"
+              leave-active-class="ease-in-out duration-500"
+              leave-from-class="opacity-100"
+              leave-to-class="opacity-0"
+            >
+              <div
+                v-show="slideOver"
+                class="absolute top-0 left-0 -ml-8 pt-4 pr-2 flex sm:-ml-10 sm:pr-4"
               >
-                <div
-                  v-show="slideOver"
-                  class="absolute top-0 left-0 -ml-8 pt-4 pr-2 flex sm:-ml-10 sm:pr-4"
-                >
-                  <button
+                <button
                   @click="closeChat(false)"
-                    class="rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+                  class="rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+                >
+                  <span class="sr-only">Close panel</span>
+                  <!-- Heroicon name: x -->
+                  <svg
+                    class="h-6 w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
                   >
-                    <span class="sr-only">Close panel</span>
-                    <!-- Heroicon name: x -->
-                    <svg
-                      class="h-6 w-6"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </transition>
-
-              
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </transition>
 
             <div
               class="h-full flex flex-col py-6 bg-white shadow-xl overflow-scroll"
@@ -111,7 +109,7 @@
                   />
                   <div class="flex flex-col leading-tight">
                     <div class="text-2xl mt-1 flex items-center">
-                      <span class="text-gray-700 mr-3">Generic Parent</span>
+                      <span class="text-gray-700 mr-3">Chat Pubblica</span>
                       <span class="text-green-500">
                         <svg width="10" height="10">
                           <circle
@@ -131,8 +129,19 @@
                   class="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
                 >
                   <div v-for="(incomingFeed, index) in this.feed" :key="index">
-                    <Message v-if="incomingFeed.incomingMessage!=''"  :message="incomingFeed.incomingMessage" :username="incomingFeed.username">
+                    <Message
+                      v-if="incomingFeed.incomingMessage != '' &&
+                      incomingFeed.username != 'You'"
+                      :message="incomingFeed.incomingMessage"
+                      :username="incomingFeed.username"
+                    >
                     </Message>
+                    <userMessage
+                      v-else
+                      :message="incomingFeed.incomingMessage"
+                      :username="incomingFeed.username"
+                    >
+                    </userMessage>
                   </div>
                 </div>
                 <div class="border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
@@ -200,15 +209,17 @@
 
 <script>
 import Message from "./Message.vue";
+import userMessage from "./UserMessage.vue";
 
 export default {
   name: "chat",
   components: {
     Message,
+    userMessage,
   },
   props: {
     slideOver: Boolean,
-    adminName: String
+    adminName: String,
   },
   sockets: {
     connect() {
@@ -217,22 +228,22 @@ export default {
     welcome_message(data) {
       let incomingData = {
         username: data.username,
-        incomingMessage: data.text
+        incomingMessage: data.text,
       };
       this.playerName = data.userConnectedName;
       this.feed.push(incomingData);
     },
-    my_message(data) {
-       let incomingData = {
+    send_admin(data) {
+      let incomingData = {
         username: data.username,
-        incomingMessage: data.text
+        incomingMessage: data.text,
       };
       this.feed.push(incomingData);
     },
-    player_disconnect(data) {
-       let incomingData = {
+    user_disconnect(data) {
+      let incomingData = {
         username: data.username,
-        incomingMessage: data.text
+        incomingMessage: data.text,
       };
       this.feed.push(incomingData);
     },
@@ -241,25 +252,24 @@ export default {
     sendMessage: function () {
       let data = {
         adminName: this.adminName,
-        message: this.userMessage
-      }
-      console.log(data.adminName)
+        message: this.userMessage,
+      };
+      let sentMessage = {
+        username: "You",
+        incomingMessage: this.userMessage,
+      };
+      this.feed.push(sentMessage);
       this.$socket.client.emit("admin_message", data);
       this.userMessage = "";
     },
-    closeChat: function() {
-       this.$emit("hideChat");
-    }
+    closeChat: function () {
+      this.$emit("hideChat");
+    },
   },
   data: function () {
     return {
-      feed: [
-        {
-          username: "",
-          incomingMessage: "",
-        },
-      ],
-      userMessage: ""
+      feed: [],
+      userMessage: "",
     };
   },
 };
