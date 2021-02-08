@@ -72,23 +72,23 @@ export default {
     data: Object,
   },
   computed: {
-    text: function() {
+    text: function () {
       if (this.data != null) {
         return this.data.text[this.line];
       } else return "loading...";
     },
 
-    background: function() {
+    background: function () {
       return (
         "url(http://localhost:3000/" + this.data.images.backgroundPath + ")"
       );
     },
 
-    rock: function() {
+    rock: function () {
       return "http://localhost:3000/" + this.data.images.rock;
     },
   },
-  data: function() {
+  data: function () {
     return {
       line: 0,
     };
