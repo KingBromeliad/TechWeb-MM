@@ -29,8 +29,13 @@
             }
         },
         {
-            "name" : "info",
-            "route": "/"
+            "name" : "PathGame",
+            "route": "/pathgame",
+            "images" : {
+                "backgroundPath" : "backgroundPath.png",
+                "rock" : "Rock.svg"
+            }
+
         },
         {
             "name": "start",

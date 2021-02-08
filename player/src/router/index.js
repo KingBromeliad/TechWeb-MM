@@ -8,6 +8,7 @@ import About from '../views/About.vue'
 //--game pages--//
 import Info from '../views/game/Info.vue'
 import Start from '../views/game/Start.vue'
+import PathGame from '../views/game/PathGame.vue'
 
 Vue.use(VueRouter)
 
@@ -46,6 +47,11 @@ const routes = [
     path: '/start',
     name: 'Start',
     component: Start
+  },
+  {
+    path: '/pathgame',
+    name: 'PathGame',
+    component: PathGame
   }
 ]
 
