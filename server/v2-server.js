@@ -86,9 +86,9 @@ app.get("/api/logout", function(req, res) {
 
 //ricavare i dati dell'utente loggato
 app.get("/api/user", authMiddleware, (req, res) => {
-  console.log("Stai cercando un utente");
+  //console.log("Stai cercando un utente");
   let user = JSON.parse(fs.readFileSync('users.json')).users.find(user => {
-    console.log(user.name);
+    //console.log(user.name);
     return user.id === req.session.passport.user;
   })
   //console.log([user, req.session]);
@@ -145,7 +145,7 @@ const botName = "Robottino Maggicco";
 const chatServer = require("http").Server(app);
 const io = require("socket.io")(chatServer, {
   cors: {
-    origin: "http://localhost:8080",
+    origin: whitelist,
     methods: ["GET", "POST"],
     allowedHeaders: ["cors-header"],
     credentials: true,
@@ -154,8 +154,8 @@ const io = require("socket.io")(chatServer, {
 
 //CHAT - SOCKET
 io.on("connection", (chatSocket) => {
-  console.log("Player client connected, connection id: " + chatSocket.id);
-  chatSocket.emit('welcome_message', {
+  console.log("Client connected, connection id: " + chatSocket.id);
+  chatSocket.broadcast.emit('welcome_message', {
     username: botName,
     text: "Welcome: " + chatSocket.id,
     userConnectedName: chatSocket.id
@@ -169,12 +169,21 @@ io.on("connection", (chatSocket) => {
     });
   });
 
+  chatSocket.on('admin_message', (data) => {
+    console.log(data.adminName);
+    chatSocket.emit('my_message', {
+      username: data.adminName,
+      text: data.message
+    });
+  });
+
   chatSocket.on('disconnect', () => {
     chatSocket.broadcast.emit('player_disconnect', {
       username: botName,
       text: chatSocket.id + ' ha lasciato la chat'
     });
   });
+
 
 
 });

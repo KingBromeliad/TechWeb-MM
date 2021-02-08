@@ -55,7 +55,7 @@
           <div class="relative w-screen max-w-md">
             <!--
           Close button, show/hide based on slide-over state.
-    
+           -->
               <transition
                 enter-active-class="ease-in-out duration-500"
                 enter-from-class="opacity-0"
@@ -69,11 +69,11 @@
                   class="absolute top-0 left-0 -ml-8 pt-4 pr-2 flex sm:-ml-10 sm:pr-4"
                 >
                   <button
-                  @click="slideOver = false"
+                  @click="closeChat(false)"
                     class="rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
                   >
                     <span class="sr-only">Close panel</span>
-                    -- Heroicon name: x 
+                    <!-- Heroicon name: x -->
                     <svg
                       class="h-6 w-6"
                       xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +93,7 @@
                 </div>
               </transition>
 
-              -->
+              
 
             <div
               class="h-full flex flex-col py-6 bg-white shadow-xl overflow-scroll"
@@ -208,6 +208,7 @@ export default {
   },
   props: {
     slideOver: Boolean,
+    adminName: String
   },
   sockets: {
     connect() {
@@ -238,9 +239,17 @@ export default {
   },
   methods: {
     sendMessage: function () {
-      this.$socket.client.emit("player_message", this.userMessage);
+      let data = {
+        adminName: this.adminName,
+        message: this.userMessage
+      }
+      console.log(data.adminName)
+      this.$socket.client.emit("admin_message", data);
       this.userMessage = "";
     },
+    closeChat: function() {
+       this.$emit("hideChat");
+    }
   },
   data: function () {
     return {
@@ -250,8 +259,7 @@ export default {
           incomingMessage: "",
         },
       ],
-      userMessage: "",
-      playerName: ""
+      userMessage: ""
     };
   },
 };

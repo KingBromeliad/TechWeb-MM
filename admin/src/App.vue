@@ -195,11 +195,6 @@ import Vue from "vue";
 import axios from "axios";
 export default {
   name: "App",
-  sockets: {
-    connect() {
-      console.log("socket connected");
-    },
-  },
   methods: {
     //Metodo per ricavare i dati utente e controllare che sia acceduto
     getUserData: function () {

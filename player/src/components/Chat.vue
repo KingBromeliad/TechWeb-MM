@@ -131,8 +131,10 @@
                   class="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
                 >
                   <div v-for="(incomingFeed, index) in this.feed" :key="index">
-                    <Message v-if="incomingFeed.incomingMessage!=''"  :message="incomingFeed.incomingMessage" :username="incomingFeed.username">
+                    <Message v-if="incomingFeed.incomingMessage!='' && incomingFeed.username != this.playerName"  :message="incomingFeed.incomingMessage" :username="incomingFeed.username">
                     </Message>
+                    <playerMessage v-if="incomingFeed.incomingMessage!='' && incomingFeed.username == this.playerName"  :message="incomingFeed.incomingMessage" :username="incomingFeed.username">
+                    </playerMessage>
                   </div>
                 </div>
                 <div class="border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
@@ -200,11 +202,13 @@
 
 <script>
 import Message from "./Message.vue";
+import playerMessage from "./PlayerMessage.vue";
 
 export default {
   name: "chat",
   components: {
     Message,
+    playerMessage
   },
   props: {
     slideOver: Boolean,
