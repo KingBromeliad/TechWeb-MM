@@ -1,6 +1,6 @@
 <template>
   <div>
-    <chat :slideOver="chatActive"></chat>
+    <chat v-show="chatActive" :slideOver="chatActive"></chat>
     <div
       class="flex justify-center fixed left-6 z-10 p-4 h-20 w-1/3 text-gray-800 text-xl font-sans font-extrabold bg-white rounded-b-lg shadow-md"
     >
@@ -26,7 +26,7 @@
         </a>
       </div>
     </div>
-    <router-view :game="this.game" :position="this.progress" />
+    <router-view :data="this.game[this.progress]" />
   </div>
 </template>
 
@@ -50,7 +50,7 @@ export default {
   data: function() {
     return {
       username: "",
-      progress: 0,
+      progress: -1,
       chatActive: false,
       game: [],
     };
@@ -59,7 +59,7 @@ export default {
     //MAIN NAVIGATION: WORK IN PROGRESS
     nextView() {
       if (this.progress < this.game.length - 1) {
-        this.progress++;
+                this.progress++;
         this.$router.push(this.game[this.progress].route);
       }
     },

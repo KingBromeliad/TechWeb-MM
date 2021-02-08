@@ -1,38 +1,51 @@
 <template>
-<body class="flex flex-row justify-end bg-fixed bg-cover bg-no-repeat h-screen w-screen" style="background-image: url(http://localhost:3000/Asset2.svg)">
+<body class="bg-fixed bg-cover bg-no-repeat min-h-screen" v-bind:style="{ 'background-image': background}">
+<div class="grid grid-cols-2 gap-4 min-h-screen">
+    <!-- WELCOME INSIDE THE GRID LAYOUT-->
+<div class="flex items-center justify-center"></div>
 
-  <img class="<div w-1/2 m-10 h-auto bottom-0 left-0 mt-80" src="http://localhost:3000/Dino1.svg" >
+<div class="flex content-center justify-center flex-wrap row-span-2 space-y-8">
+    <div class="bg-white rounded-md text-center md:mr-4">
+        <p class="text-black font-extrabold md:text-4xl md:m-10 sm:m-2">
+            {{text}}</p>
+    </div>
 
-  <div class="w-1/2 h-1/2 flex flex-col bg-white rounded-3xl m-10 text-black text-center text-6xl font-sans font-bold">
-  <p class="m-auto">{{text}}</p>
-  </div>
+    <button 
+    @click="Continue()"
+    class="bg-black hover:bg-gray-700 focus:outline-none rounded-lg font-extrabold text-center text-white md:text-6xl sm:text-2xl md:ml-40 sm:ml-10 p-3">
+        {{option}}</button>
+</div>
 
-  <div class=" bottom-20 mr-20">
-        <button @click="Continue()" class="flex items-center justify-center px-8 py-6 border border-transparent rounded-md shadow-sm text-white text-6xl text-center font-extrabold text-white0 bg-gray-900 hover:bg-gray-800">
- {{option}}
-        </button>
-      </div>
+<div class="flex items-center justify-center m-2">
+    <img src="http://localhost:3000/Dino1.svg">
+</div>    
 
+
+</div>
 </body>
 
 </template>
 <script>
 export default {
     props: {
-        game : Array,
-        position: Number
+        data : Object,
     },
     computed: {
+        
         text : function(){
-            if (this.game[this.position] != null) {
-            return this.game[this.position].text[this.line]
+            if (this.data != null) {
+            return this.data.text[this.line]
             } else return "loading..."
         },
         option : function(){
-            if (this.game[this.position] != null) {
-            return this.game[this.position].option[this.line]
+            if (this.data != null) {
+            return this.data.option[this.line]
             } else return "..."
         },
+        background : function(){
+            return 'url(http://localhost:3000/' + this.data.images.background + ')'
+        }
+        
     },
     data : function(){
         return {
@@ -41,7 +54,7 @@ export default {
     },
     methods : {
  Continue(){
-     if (this.line < (this.game[this.position].text.length -1)) { this.line++ }
+     if (this.line < (this.data.text.length -1)) { this.line++ }
  }
     } 
 }

@@ -2,7 +2,7 @@
     "game": [
         {
             "name": "start",
-            "route": "/",
+            "route": "/start",
             "text" : [
                 "Ciao cucciolo d'uomo, benevenuto nel pianeta dei dinosauri!",
                 "Qui vivono felicemente più di mille dinosauri, siamo tutti amici",
@@ -22,15 +22,24 @@
                 ">>",
                 "Si!",
                 ">>"
-            ]
+            ],
+            "images" : {
+                "character" : "Dino1.svg",
+                "background" : "Asset2.svg"
+            }
         },
         {
-            "name": "info",
-            "route": "info"
+            "name" : "info",
+            "route": "/"
         },
         {
             "name": "start",
-            "route": "/"
+            "route": "/start"
         }
-    ]
+    ],
+
+    "resources" : {
+        "background" : "Asset2.svg"
+    }
+
 }

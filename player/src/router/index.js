@@ -38,12 +38,12 @@ const routes = [
     component: About
   },
   {
-    path: '/info',
+    path: '/',
     name: 'Info',
     component: Info
   },
   {
-    path: '/',
+    path: '/start',
     name: 'Start',
     component: Start
   }
