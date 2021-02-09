@@ -24,6 +24,7 @@
                 ">>"
             ],
             "images" : {
+                "singleCharacter" : true,
                 "character" : "Dino1.svg",
                 "background" : "Asset2.svg"
             }
@@ -36,6 +37,39 @@
                 "rock" : "Rock.svg"
             }
 
+        },
+        {
+            "name": "start",
+            "route": "/start",
+            "text" : [
+                "Ciao sono Doco il Diplodoco!",
+                "Ehilà sono Ally l'Allosauro!",
+                "Io sono Bronto, il Brontosauro",
+                "Sono appena atterrato, mi presento Datto lo Pterodattilo",
+                "Eccomi mi chiamo Tricia sono un Triceratopo",
+                "Raaar! Spero di non averti spaventat*, il mio nome è Anno e come vedi sono un Tirannosauro"
+            ],
+            "option" : [
+                ">>",
+                ">>",
+                ">>",
+                ">>",
+                ">>",
+                ">>"
+            ],
+            "images" : {
+                "singleCharacter" : false,
+                "background" : "BgMountain.png",
+                "characters" : [
+                    "Diplodoco.svg",
+                    "Allosauro.svg",
+                    "Brontosauro.svg",
+                    "Pterodattilo.svg",
+                    "Triceratopo.svg",
+                    "Tirannosauro.svg"
+                ]
+                
+            }
         },
         {
             "name": "start",

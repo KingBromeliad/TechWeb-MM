@@ -24,8 +24,8 @@
         </button>
       </div>
 
-      <div class="flex items-center justify-center m-2">
-        <img src="http://localhost:3000/Dino1.svg" />
+      <div class="flex items-center object-contain md:object-scale-down justify-center m-2">
+        <img :src="character" alt="dinosaur" />
       </div>
     </div>
   </body>
@@ -36,21 +36,26 @@ export default {
     data: Object,
   },
   computed: {
-    text: function () {
+    text: function() {
       if (this.data != null) {
         return this.data.text[this.line];
       } else return "loading...";
     },
-    option: function () {
+    option: function() {
       if (this.data != null) {
         return this.data.option[this.line];
       } else return "...";
     },
-    background: function () {
+    background: function() {
       return "url(http://localhost:3000/" + this.data.images.background + ")";
     },
+    character: function() {
+      if (this.data.images.singleCharacter) {
+        return ("http://localhost:3000/" + this.data.images.character);
+      } else return ("http://localhost:3000/" + this.data.images.characters[this.line])
+    },
   },
-  data: function () {
+  data: function() {
     return {
       line: 0,
     };
@@ -65,12 +70,12 @@ export default {
     updateScore() {
       //punteggio aggiornato via via passandoli un valore
       let data = {
-        gioco: 'intro',
-        punti: 1
-      }; 
-      this.$socket.client.emit('update_score', data);
+        gioco: "intro",
+        punti: 1,
+      };
+      this.$socket.client.emit("update_score", data);
       //console.log(this.score);
-    }
+    },
   },
 };
 </script>
