@@ -250,25 +250,30 @@ export default {
   },
   methods: {
     sendMessage: function () {
+      //dati che invia col socket
       let data = {
         adminName: this.adminName,
         message: this.userMessage,
       };
+      //dati che stampa a video
       let sentMessage = {
         username: "You",
         incomingMessage: this.userMessage,
       };
       this.feed.push(sentMessage);
+
       this.$socket.client.emit("admin_message", data);
+
       this.userMessage = "";
     },
+    //per chiudere il modale della chat
     closeChat: function () {
       this.$emit("hideChat");
     },
   },
   data: function () {
     return {
-      feed: [],
+      feed: [], //array dei messaggi
       userMessage: "",
     };
   },

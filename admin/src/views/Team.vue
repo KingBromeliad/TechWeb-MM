@@ -7,7 +7,7 @@
     >
       <div class="h-1/4"></div>
       <div class="h-3-4 flex flex-col sm:flex-col border overflow-auto">
-        <div v-for="item in oggetto" :key="item" class="p-2">
+        <div v-for="(item, index) in oggetto" :key="index" class="p-2">
           <div
             class="block bg-white px-6 py-6 rounded-lg shadow-lg text-center"
           >
@@ -31,7 +31,7 @@
       <div
         class="h-3/5 flex flex-row flex-wrap justify-center sm:flex-row border overflow-auto"
       >
-        <div v-for="item2 in oggetto2" :key="item2" class="w-1/4 p-4">
+        <div v-for="(item2, index) in oggetto2" :key="index" class="w-1/4 p-4">
           <div
             class="bg-white px-2 py-4 rounded-lg shadow-lg text-center border-2 border-purple-600"
           >
@@ -41,7 +41,7 @@
         </div>
       </div>
     </div>
-    {{ cane }}
+    <!--{{ cane }}-->
   </div>
 </template>
 
