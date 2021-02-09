@@ -25,7 +25,7 @@
       </div>
 
       <div class="flex items-center object-contain md:object-scale-down justify-center m-2">
-        <img :src="character" alt="dinosaur" />
+        <img :src="character" alt="character" />
       </div>
     </div>
   </body>
