@@ -65,7 +65,7 @@ export default {
     updateScore() {
       //punteggio aggiornato via via passandoli un valore
       let data = {
-        gioco: 'gioco2',
+        gioco: 'intro',
         punti: 1
       }; 
       this.$socket.client.emit('update_score', data);

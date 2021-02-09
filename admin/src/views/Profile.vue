@@ -58,7 +58,7 @@ export default {
             axios.get("http://localhost:3500/api/logout", { withCredentials: true }).then((response) => {
                 this.$set(this, "user", "");
                 console.log(response.data);
-                this.logged = false;  
+                this.$emit("logout");  
                 router.push('/');
             }).catch((errors) =>{
                 console.log(errors);

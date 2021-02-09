@@ -7,6 +7,7 @@ const fs = require('fs');
 const express = require('express')
 const app = express()
 
+//per CORS array dei domini dei quali accetta la comunicazione
 const whitelist = ['http://localhost:8081', 'http://localhost:8080'];
 
 app.use(cors({ credentials: true, origin: whitelist }));
@@ -113,20 +114,19 @@ app.post("/api/register", (req, res) => {
   return res.send();
 });
 
-//per creare la storia
+//per creare un file JSON storia con contenuto
 app.post("/writeStory", (req, res) => {
   let story = JSON.stringify(req.body);
   fs.writeFile(story.name, story);
   res.send();
 });
 
-//Per aprire la storia dalla parte player da un file json
+//Per inviare la storia come file JSON
 app.get("/openStory", (req, res) => {
   console.log(req.body);
   let story = JSON.parse(fs.readFileSync('storiaDinosauri.json'));
   res.send(story);
 });
-
 
 //Serializzo e deserializzo l'utente acceduto per mantenerne la sessione
 passport.serializeUser((user, done) => {
@@ -151,7 +151,7 @@ const io = require("socket.io")(chatServer, {
     credentials: true,
   },
 });
-
+//oggetto del punteggio con due valori di esempio
 let punteggio = [{
   gioco: "gioco1",
   punti: 0
@@ -164,7 +164,7 @@ io.on("connection", (chatSocket) => {
     username: botName,
     text: "Welcome: " + chatSocket.id 
   });
-
+  //aggiornamente del punteggio tramite socket
   chatSocket.on('update_score', (data) => {
     if(punteggio.some(punteggioGiusto => punteggioGiusto.gioco === data.gioco)) {
       let i = punteggio.map(x => x.gioco).indexOf(data.gioco);
@@ -174,7 +174,7 @@ io.on("connection", (chatSocket) => {
     }
     io.emit('update_score', punteggio);
   });
-
+  //messaggio inviato da giocatore
   chatSocket.on('player_message', (data) => {
     //console.log(data);
     io.emit('send_admin', {
@@ -183,7 +183,6 @@ io.on("connection", (chatSocket) => {
     });
   });
 
-
   //Messaggio inviato da admin
   chatSocket.on('admin_message', (data) => {
     io.emit('send_player', {
@@ -191,7 +190,7 @@ io.on("connection", (chatSocket) => {
       text: data.message
     });
   });
-
+  //evento disconnessione
   chatSocket.on('disconnect', () => {
     io.emit('user_disconnect', {
       username: botName,
@@ -199,75 +198,13 @@ io.on("connection", (chatSocket) => {
     });
   });
 
-
-
 });
+
+
 chatServer.listen(3000, () => {
   console.log("player http server listening on port: 3000");
 });
-/*
-const playerHttp = require("http").Server(app);
-const playerIo = require("socket.io")(playerHttp, {
-  cors: {
-    origin: "http://localhost:8080",
-    methods: ["GET", "POST"],
-    allowedHeaders: ["cors-header"],
-    credentials: true,
-  },
-});
 
-//PLAYER - SOCKET
-playerIo.on("connection", (playerSocket) => {
-  console.log("Player client connected, connection id: " + playerSocket.id);
-  playerSocket.emit('welcome_message', {
-    username: botName,
-    text: "Welcome: " + playerSocket.id,
-    userConnectedName: playerSocket.id
-  });
-  
-  playerSocket.on('player_message', (data) => {
-    console.log(data);
-    playerSocket.emit('my_message', {
-      username: playerSocket.id,
-      text: data
-    });
-  });
-
-  playerSocket.on('disconnect', () => {
-    playerSocket.broadcast.emit('player_disconnect', {
-      username: botName,
-      text: playerSocket.id + ' ha lasciato la chat'
-    });
-  });
-
-
-});
-playerHttp.listen(3000, () => {
-  console.log("player http server listening on port: 3000");
-});
-
-//ADMIN - SOCKET
-const adminHttp = require("http").Server(app);
-const adminIo = require("socket.io")(adminHttp, {
-  cors: {
-    origin: "http://localhost:8081",
-    methods: ["GET", "POST"],
-    allowedHeaders: ["cors-header"],
-    credentials: true,
-  },
-});
-adminIo.on("connection", (adminSocket) => {
-  console.log("Admin client connected, connection id: " + adminSocket.id);
-  adminSocket.emit('welcome_message', {
-    username: botName,
-    text: "Welcome: " + adminSocket.id
-  });
-
-});
-adminHttp.listen(3001, () => {
-  console.log("admin http server listening on port: 3001");
-});
-*/
 app.listen(3500, () => {
   console.log("listening on port 3500");
 })

@@ -13,6 +13,7 @@
               class="block border border-grey-light w-full p-3 rounded mb-4"
               name="fullname"
               placeholder="Nome"
+              required
             />
             <input
               type="text"
@@ -20,6 +21,7 @@
               class="block border border-grey-light w-full p-3 rounded mb-4"
               name="username"
               placeholder="Username"
+              required
             />
 
             <input
@@ -28,17 +30,20 @@
               class="block border border-grey-light w-full p-3 rounded mb-4"
               name="password"
               placeholder="Password"
+              required
             />
             <input
               type="password"
               class="block border border-grey-light w-full p-3 rounded mb-4"
               name="confirm_password"
+              id="confirm_password"
               placeholder="Confirm Password"
+              required
             />
 
             <button
               type="submit"
-              class="w-full text-center py-3 rounded bg-green hover:bg-green-dark focus:outline-none my-1"
+              class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               Crea Account
             </button>
@@ -68,21 +73,26 @@ export default {
       var name = document.getElementById("name").value;
       var username = document.getElementById("username").value;
       var password = document.getElementById("pass").value;
-      console.log(name + username + password);
-      axios
-        .post("http://localhost:3500/api/register", {
-          name,
-          username,
-          password,
-        })
-        .then(function (response) {
-          console.log(response);
-          console.log("hello");
-          router.push("/login");
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      var confirmPass = document.getElementById("confirm_password").value;
+      //console.log(name + username + password);
+      if(password == confirmPass){
+        axios
+          .post("http://localhost:3500/api/register", {
+            name,
+            username,
+            password,
+          })
+          .then(function (response) {
+            console.log(response);
+            console.log("hello");
+            router.push("/login");
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        } else {
+          alert("Le password devono essere uguali!");
+        }
     },
   },
 };
