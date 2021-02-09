@@ -3,9 +3,10 @@
     class="bg-fixed bg-cover object-center bg-no-repeat min-h-screen"
     v-bind:style="{ 'background-image': background }"
   >
-    <div class="grid place-content-center min-h-screen"> 
-      <div v-for="(q, j) in this.domande" :key="q.domanda">
-        <h1>{{ q.domanda }}</h1>
+    <div class="grid place-content-center min-h-screen grid-cols-2 grid-rows-1"> 
+        <div class="grid place-content-center gap-2">
+      <div class="bg-white rounded-lg p-10" v-for="(q, j) in this.domande" :key="q.domanda">
+        <h1 class="text-6xl text-black font-bold">{{ q.domanda }}</h1>
         <div v-for="(arg, index) in q.argomento" :key="arg">
           <input
             type="radio"
@@ -13,7 +14,7 @@
             :value="index"
             v-model="chosenAnswers.risposta[j]"
           />
-          <label :for="arg"> {{ arg }} </label>
+          <label class="text-2xl text-gray-800 font-bold" :for="arg"> {{ arg }} </label>
         </div>
       </div>
       <button
@@ -29,6 +30,7 @@
       >
         Next
       </button>
+    </div>
     </div>
   </body>
 </template>
