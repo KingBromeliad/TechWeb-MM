@@ -114,7 +114,7 @@ app.post("/api/register", (req, res) => {
   return res.send();
 });
 
-//per creare la storia
+//per creare un file JSON storia con contenuto
 app.post("/writeStory", (req, res) => {
   let story = JSON.stringify(req.body);
   fs.writeFile(story.name, story);
@@ -127,7 +127,6 @@ app.get("/openStory", (req, res) => {
   let story = JSON.parse(fs.readFileSync('storiaDinosauri.json'));
   res.send(story);
 });
-
 
 //Serializzo e deserializzo l'utente acceduto per mantenerne la sessione
 passport.serializeUser((user, done) => {

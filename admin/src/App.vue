@@ -219,6 +219,9 @@ export default {
       //console.log(this.logged);
       return this.logged;
     },
+    logout: function() {
+      this.logged = false;
+    }
   },
   data: function () {
     return {
