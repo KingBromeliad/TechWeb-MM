@@ -13,45 +13,7 @@
         class="grid place-content-center grid-cols-4 grid-rows-3 gap-2 min-h-screen"
       >
         <!-- ROCKS -->
-        <div class="flex items-center justify-items-center">
-          <img src="http://localhost:3000/Rock.png" alt="rock" />
-        </div>
-        <div class="flex items-center justify-items-center">
-          <img src="http://localhost:3000/Rock.png" alt="rock" />
-        </div>
-        <div class="flex items-center justify-items-center">
-          <img src="http://localhost:3000/Rock.png" alt="rock" />
-        </div>
-                <!-- ROCKS -->
-        <div class="flex items-center justify-items-center">
-          <img src="http://localhost:3000/Rock.png" alt="rock" />
-        </div>
-        <div class="flex items-center justify-items-center">
-          <img src="http://localhost:3000/Rock.png" alt="rock" />
-        </div>
-        <div class="flex items-center justify-items-center">
-          <img src="http://localhost:3000/Rock.png" alt="rock" />
-        </div>
-                <!-- ROCKS -->
-        <div class="flex items-center justify-items-center">
-          <img src="http://localhost:3000/Rock.png" alt="rock" />
-        </div>
-        <div class="flex items-center justify-items-center">
-          <img src="http://localhost:3000/Rock.png" alt="rock" />
-        </div>
-        <div class="flex items-center justify-items-center">
-          <img src="http://localhost:3000/Rock.png" alt="rock" />
-        </div>
-                <!-- ROCKS -->
-        <div class="flex items-center justify-items-center">
-          <img src="http://localhost:3000/Rock.png" alt="rock" />
-        </div>
-        <div class="flex items-center justify-items-center">
-          <img src="http://localhost:3000/Rock.png" alt="rock" />
-        </div>
-        <div class="flex items-center justify-items-center">
-          <img src="http://localhost:3000/Rock.png" alt="rock" />
-        </div>
+        <Rock v-for="rock in rocks" v-bind:key="rock.id" :initialAngle="rock.angle"></Rock>
 
         <!--end-->
       </div>
@@ -67,9 +29,14 @@
   </body>
 </template>
 <script>
+import Rock from '../../components/Rock.vue'
 export default {
   props: {
     data: Object,
+
+  },
+  components: {
+    Rock
   },
   computed: {
     text: function () {
@@ -91,6 +58,24 @@ export default {
   data: function () {
     return {
       line: 0,
+      rocks: [
+        {id: 1,angle: 0},
+        {id: 2,angle: 2},
+        {id: 3,angle: 2},
+        {id: 4,angle: 0},
+        {id: 5,angle: 2},
+        {id: 6,angle: 3},
+        {id: 7,angle: 0},
+        {id: 8,angle: 1},
+        {id: 9,angle: 1},
+        {id: 10,angle: 2},
+        {id: 11,angle: 0},
+        {id: 12,angle: 0},
+        {id: 13,angle: 0},
+        {id: 14,angle: 1},
+        {id: 15,angle: 1},
+        {id: 16,angle: 1},
+      ]
     };
   },
   methods: {},
