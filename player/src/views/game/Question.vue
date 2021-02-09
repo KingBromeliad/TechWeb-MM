@@ -77,11 +77,11 @@ export default {
             "OOPS, c'è qualcosa di sbagliato nella domanda: " +
               this.domande[i].domanda
           );
-          this.result = false;
+          return this.result = false;
         }
       }
       alert("Bravissim* ce l'hai fatta!");
-      this.result = true;
+      return this.result = true;
     },
   },
 };
