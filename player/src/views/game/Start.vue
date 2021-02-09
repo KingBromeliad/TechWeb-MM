@@ -5,8 +5,9 @@
   >
     <div class="grid grid-cols-2 gap-4 min-h-screen">
       <!-- WELCOME INSIDE THE GRID LAYOUT-->
-      <div class="flex items-center justify-center"></div>
-
+      <div class="flex items-center object-scale-down justify-center m-2">
+        <img :src="character" alt="character" />
+      </div>
       <div
         class="flex content-center justify-center flex-wrap row-span-2 space-y-8"
       >
@@ -22,10 +23,6 @@
         >
           {{ option }}
         </button>
-      </div>
-
-      <div class="flex items-center object-contain md:object-scale-down justify-center m-2">
-        <img :src="character" alt="character" />
       </div>
     </div>
   </body>
@@ -51,8 +48,11 @@ export default {
     },
     character: function() {
       if (this.data.images.singleCharacter) {
-        return ("http://localhost:3000/" + this.data.images.character);
-      } else return ("http://localhost:3000/" + this.data.images.characters[this.line])
+        return "http://localhost:3000/" + this.data.images.character;
+      } else
+        return (
+          "http://localhost:3000/" + this.data.images.characters[this.line]
+        );
     },
   },
   data: function() {
