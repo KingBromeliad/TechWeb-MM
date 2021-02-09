@@ -1,84 +1,84 @@
 {
-    "game": [
+  "game": [
+    {
+      "name": "start",
+      "route": "/start",
+      "text": [
+        "Ciao cucciolo d'uomo, benevenuto nel pianeta dei dinosauri!",
+        "Qui vivono felicemente più di mille dinosauri, siamo tutti amici",
+        "Ognuno viaggia dove vuole, gioca con chi vuole, mangia quel che vuole",
+        "O almeno così dovrebbe essere, è ormai una settimana che le mie felci preferite non crescono più",
+        "Sono sparite come per magia...Che mistero! Mi mancano così tanto, erano squisite",
+        "Per caso tu potresti aiutarmi a risolvere il mistero delle felci sparite?",
+        "Per caso tu potresti aiutarmi a risolvere il mistero delle felci sparite?",
+        "Bene per prima cosa ti faccio conoscere i miei amici dinosauri"
+      ],
+      "option": [">>", ">>", ">>", ">>", ">>", ">>", "Si!", ">>"],
+      "images": {
+        "singleCharacter": true,
+        "character": "Dino1.svg",
+        "background": "Asset2.svg"
+      }
+    },
+    {
+      "name": "PathGame",
+      "route": "/pathgame",
+      "images": {
+        "backgroundPath": "backgroundPath.png",
+        "rock": "Rock.svg"
+      }
+    },
+    {
+      "name": "start",
+      "route": "/start",
+      "text": [
+        "Ciao sono Doco il Diplodoco!",
+        "Ehilà sono Ally l'Allosauro!",
+        "Io sono Bronto, il Brontosauro",
+        "Sono appena atterrato, mi presento Datto lo Pterodattilo",
+        "Eccomi mi chiamo Tricia sono un Triceratopo",
+        "Raaar! Spero di non averti spaventat*, il mio nome è Anno e come vedi sono un Tirannosauro"
+      ],
+      "option": [">>", ">>", ">>", ">>", ">>", ">>"],
+      "images": {
+        "singleCharacter": false,
+        "background": "BgMountain.png",
+        "characters": [
+          "Diplodoco.svg",
+          "Allosauro.svg",
+          "Brontosauro.svg",
+          "Pterodattilo.svg",
+          "Triceratopo.svg",
+          "Tirannosauro.svg"
+        ]
+      }
+    },
+    {
+      "name": "question",
+      "route": "/question",
+      "domande": [
         {
-            "name": "start",
-            "route": "/start",
-            "text" : [
-                "Ciao cucciolo d'uomo, benevenuto nel pianeta dei dinosauri!",
-                "Qui vivono felicemente più di mille dinosauri, siamo tutti amici",
-                "Ognuno viaggia dove vuole, gioca con chi vuole, mangia quel che vuole",
-                "O almeno così dovrebbe essere, è ormai una settimana che le mie felci preferite non crescono più",
-                "Sono sparite come per magia...Che mistero! Mi mancano così tanto, erano squisite",
-                "Per caso tu potresti aiutarmi a risolvere il mistero delle felci sparite?",
-                "Per caso tu potresti aiutarmi a risolvere il mistero delle felci sparite?",
-                "Bene per prima cosa ti faccio conoscere i miei amici dinosauri"
-            ],
-            "option" : [
-                ">>",
-                ">>",
-                ">>",
-                ">>",
-                ">>",
-                ">>",
-                "Si!",
-                ">>"
-            ],
-            "images" : {
-                "singleCharacter" : true,
-                "character" : "Dino1.svg",
-                "background" : "Asset2.svg"
-            }
+          "domanda": "Quali sono animali?",
+          "argomento": ["pangolino", "rabarbaro", "piatto", "naso"],
+          "soluzione": 0
         },
         {
-            "name" : "PathGame",
-            "route": "/pathgame",
-            "images" : {
-                "backgroundPath" : "backgroundPath.png",
-                "rock" : "Rock.svg"
-            }
-
+          "domanda": "Altra Domanda?",
+          "argomento": ["A", "B", "C", "D"],
+          "soluzione": 2
         },
         {
-            "name": "start",
-            "route": "/start",
-            "text" : [
-                "Ciao sono Doco il Diplodoco!",
-                "Ehilà sono Ally l'Allosauro!",
-                "Io sono Bronto, il Brontosauro",
-                "Sono appena atterrato, mi presento Datto lo Pterodattilo",
-                "Eccomi mi chiamo Tricia sono un Triceratopo",
-                "Raaar! Spero di non averti spaventat*, il mio nome è Anno e come vedi sono un Tirannosauro"
-            ],
-            "option" : [
-                ">>",
-                ">>",
-                ">>",
-                ">>",
-                ">>",
-                ">>"
-            ],
-            "images" : {
-                "singleCharacter" : false,
-                "background" : "BgMountain.png",
-                "characters" : [
-                    "Diplodoco.svg",
-                    "Allosauro.svg",
-                    "Brontosauro.svg",
-                    "Pterodattilo.svg",
-                    "Triceratopo.svg",
-                    "Tirannosauro.svg"
-                ]
-                
-            }
-        },
-        {
-            "name": "start",
-            "route": "/start"
+          "domanda": "Come mi chiamo?",
+          "argomento": ["Bob", "Fred", "Pippo", "Pluto"],
+          "soluzione": 1
         }
-    ],
-
-    "resources" : {
-        "background" : "Asset2.svg"
+      ],
+      "images": {
+          "background": "StoneTablet.svg"
+      }
     }
-
+  ],
+  "resources": {
+    "background": "Asset2.svg"
+  }
 }
