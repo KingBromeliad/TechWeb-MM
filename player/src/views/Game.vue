@@ -1,0 +1,116 @@
+<template>
+  <div class="flex justify-center items-center">
+    <div class="flex flex-col">
+      <div class="flex justify-center items-center mt-0 mr-0 mb-3 ">
+        <img src="../assets/tris.png" alt="Vue" class="my-0 mr-3 -ml-5 w-10" />
+        <h1 class="m-0 text-4xl shadow"> <b>Tris!</b> </h1>
+      </div>
+
+      <board :squares="squares" :winner="winner" @click="click" />
+
+      <div class="game-info bg-white rounded-lg text-xl px-2 py-4 text-center shadow">
+        <p v-if="stepNumber === 0" class="flex items-center justify-center m-0">
+          Cominciamo! Tocca a chi è la&nbsp;<b :class="currentPlayer">{{ currentPlayer }}</b>!
+        </p>
+        <p v-else-if="!!winner">
+          Il vincitore è stato:&nbsp;
+          <b :class="currentPlayer">{{ currentPlayer }}</b>!&nbsp;
+          <button @click="restart" class="bg-white border-white border-solid border-2 cursor-pointer font-semibold text-xs -my-2 mr-0 ml-4 py-2 px-4 uppercase">Gioca nuovamente</button>
+        </p>
+        <p v-else-if="stepNumber > 8">
+          Parità!&nbsp;
+          <button @click="restart" class="bg-white border-white border-solid border-2 cursor-pointer font-semibold text-xs -my-2 mr-0 ml-4 py-2 px-4 uppercase">Gioca nuovamente</button>
+        </p>
+        <p v-else>
+          Ora tocca al giocatore&nbsp;
+          <b :class="currentPlayer">{{ currentPlayer }}</b>!&nbsp;vai.
+        </p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Game',
+  components: {
+    Board: () => import('./Board')
+  },
+  data () {
+    return {
+      squares: Array(9).fill(null),
+      stepNumber: 0,
+      currentPlayer: 'X',
+      winner: null
+    }
+  },
+  methods: {
+    hasWinner() {
+      if (this.winner) return true
+      const squares = this.squares
+      const matches = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7],
+        [2, 5, 8], [0, 4, 8], [2, 4, 6]
+      ]
+      for (let i = 0; i < matches.length; i++) {
+        const [a, b, c] = matches[i]
+        if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+          this.winner = [ a, b, c ]
+          return true
+        }
+      }
+      return false
+    },
+    restart() {
+      this.squares = Array(9).fill(null)
+      this.stepNumber = 0
+      this.winner = null
+    },
+    click (i) {
+      if (this.squares[i] || this.winner) return
+      this.$set(this.squares, i, this.currentPlayer)
+      if (!this.hasWinner()) {
+        this.stepNumber++
+        this.currentPlayer = this.currentPlayer === 'X' ? 'O' : 'X'
+      }
+    }
+  }
+}
+</script>
+
+<style scoped>
+.game-info {
+  backdrop-filter: blur(10px);
+  background-blend-mode: exclusion;
+  color: rgba(17, 17, 17, 1);
+}
+
+.game-info .X,
+.game-info .O {
+  text-shadow: -1px -1px 0 #000b, -1px 1px 0 #000b, 1px -1px 0 #000b, 1px 1px 0 #000b;
+}
+.game-info .X {
+  color: #ff5722;
+}
+.game-info .O {
+  color: #ffeb3b;
+}
+.game-info button {
+  text-shadow: 0 0 1px #fff, 0 2px 5px #fff5;
+  color: #111;
+  cursor: pointer;
+  outline: none;
+  transition: all .25s ease;
+}
+.game-info button:focus,
+.game-info button:hover {
+  background: #1115;
+  border-color: rgba(var(--theme-color));
+  box-shadow: 0 0 10px rgba(var(--theme-color), .75);
+  color: rgba(var(--theme-color));
+  text-shadow: -1px -1px 0 #0007, -1px 1px 0 #0007, 1px -1px 0 #0007, 1px 1px 0 #0007;
+}
+.game-info button:active {
+  background: #1119;
+}
+</style>
