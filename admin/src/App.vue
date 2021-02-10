@@ -115,6 +115,12 @@
                     class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     >Profilo</router-link
                   >
+                  <router-link
+                    href="#"
+                    to="/valutatore"
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >Ambiente Valutatore</router-link
+                  >
                 </div>
               </div>
             </div>
@@ -192,13 +198,12 @@
 
 <script>
 import Vue from "vue";
-import axios from "axios";
 export default {
   name: "App",
   methods: {
     //Metodo per ricavare i dati utente e controllare che sia acceduto
     getUserData: function () {
-      axios
+      this.axios
         .get("http://localhost:3500/api/user", { withCredentials: true })
         .then((response) => {
           this.username = response.data.username;

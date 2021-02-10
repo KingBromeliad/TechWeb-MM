@@ -7,7 +7,7 @@
                 Punteggio corrente: {{ player.punti }}
             </p>
             <div v-if="image != ''">
-                <img class="container" :src=image />
+                <img class="container" :src='image'>
             </div>
       </div>
   </div>

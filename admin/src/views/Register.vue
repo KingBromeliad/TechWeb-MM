@@ -64,7 +64,6 @@
   </div>
 </template>
 <script>
-import axios from "axios";
 import router from "../router";
 export default {
   methods: {
@@ -76,7 +75,7 @@ export default {
       var confirmPass = document.getElementById("confirm_password").value;
       //console.log(name + username + password);
       if(password == confirmPass){
-        axios
+        this.axios
           .post("http://localhost:3500/api/register", {
             name,
             username,
