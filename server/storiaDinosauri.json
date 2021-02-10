@@ -17,7 +17,7 @@
       "images": {
         "singleCharacter": true,
         "character": "Dino1.svg",
-        "characters": ["","",""],
+        "characters": ["", "", ""],
         "background": "Asset2.svg"
       }
     },
@@ -75,10 +75,14 @@
         }
       ],
       "images": {
-          "background": "StoneTablet.svg",
-          "singleQuestionImage": false,
-          "questionImage": "Triceratopo.svg",
-          "questionImages": ["Tirannosauro.svg","Brontosauro.svg","Diplodoco.png"]
+        "background": "StoneTablet.svg",
+        "singleQuestionImage": false,
+        "questionImage": "Triceratopo.svg",
+        "questionImages": [
+          "Tirannosauro.svg",
+          "Brontosauro.svg",
+          "Diplodoco.png"
+        ]
       }
     },
     {
@@ -88,11 +92,11 @@
         "Ora dimostrami le tue abilità! Trova uno sfidante nella foresta e gioca all'antico Tris, se lo batterai almeno una volta, ti darò un indizio...",
         "Quando sei pronto vai pure, il primo turno sarà il tuo"
       ],
-      "option": ["Ok! Ci sto!","Sono Pronto!"],
+      "option": ["Ok! Ci sto!", "Sono Pronto!"],
       "images": {
         "singleCharacter": true,
         "character": "Dino1.svg",
-        "characters": ["","",""],
+        "characters": ["", "", ""],
         "background": "Asset2.svg"
       }
     },
@@ -102,6 +106,46 @@
       "images": {
         "background": "StoneTablet.svg",
         "symbol": "Rock.png"
+      }
+    },
+    {
+      "name": "Draggable",
+      "route": "/drag",
+      "content": {
+        "genericList": [
+          {
+            "name": "Correre a 100km orari",
+            "id": 2
+          },
+          {
+            "name": "Juan",
+            "id": 5
+          },
+          {
+            "name": "Johnson",
+            "id": 7
+          },
+          {
+            "name": "Edgard",
+            "id": 6
+          },
+          {
+            "name": "John",
+            "id": 1
+          },
+          {
+            "name": "Jean",
+            "id": 3
+          },
+          {
+            "name": "Gerard",
+            "id": 4
+          }
+        ],
+        "association": [{
+          "name": "Velociraptor",
+          "correctAssociation": [2,6]
+        }]
       }
     }
   ],
