@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import router from '../router'
 import chat from '../components/Chat.vue'
 export default {
@@ -43,7 +42,7 @@ export default {
     methods: {
         getUserData: function() {    
             let self = this;
-            axios.get("http://localhost:3500/api/user", { withCredentials: true }).then((response) => {    
+            this.axios.get("http://localhost:3500/api/user", { withCredentials: true }).then((response) => {    
                 //console.log(response);
                 this.logged = true; 
                 //console.log(this.logged);
@@ -55,7 +54,7 @@ export default {
             })    
         },
         logout: function(){
-            axios.get("http://localhost:3500/api/logout", { withCredentials: true }).then((response) => {
+            this.axios.get("http://localhost:3500/api/logout", { withCredentials: true }).then((response) => {
                 this.$set(this, "user", "");
                 console.log(response.data);
                 this.$emit("logout");  

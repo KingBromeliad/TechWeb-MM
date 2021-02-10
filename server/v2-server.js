@@ -117,7 +117,7 @@ app.post("/api/register", (req, res) => {
 //per creare un file JSON storia con contenuto
 app.post("/writeStory", (req, res) => {
   let story = JSON.stringify(req.body);
-  fs.writeFile(story.name, story);
+  fs.writeFile("test", story);
   res.send();
 });
 
@@ -126,6 +126,12 @@ app.get("/openStory", (req, res) => {
   console.log(req.body);
   let story = JSON.parse(fs.readFileSync('storiaDinosauri.json'));
   res.send(story);
+});
+
+app.get("/immagineDaValutare", (req, res) => {
+  console.log(req.body);
+  let urlImg = '/images/allosauro.svg';
+  res.send(urlImg);
 });
 
 //Serializzo e deserializzo l'utente acceduto per mantenerne la sessione
@@ -159,13 +165,20 @@ io.on("connection", (chatSocket) => {
   console.log("Client connected, connection id: " + chatSocket.id);
   io.emit('welcome_message', {
     username: botName,
-    text: "Welcome: " + chatSocket.id 
+    text: "Welcome: " + chatSocket.id
   });
   //aggiornamente del punteggio tramite socket
   chatSocket.on('update_score', (data) => {
-    if(punteggio.some(punteggioGiusto => punteggioGiusto.gioco === data.gioco && punteggioGiusto.playerId === chatSocket.id)) {
-      let i = punteggio.map(x => x.gioco).indexOf(data.gioco);
+    if (punteggio.some(punteggioGiusto => punteggioGiusto.gioco === data.gioco && punteggioGiusto.playerId === chatSocket.id)) {
+      let i = 0;
+      while (i < punteggio.length) {
+        if (punteggio[i].gioco == data.gioco && punteggio[i].playerId == chatSocket.id) {
+          break;
+        }
+        i += 1;
+      }
       punteggio[i].punti += data.punti;
+      //console.log(punteggio[i]);
     } else {
       let punteggioNuovoGioco = {
         playerId: chatSocket.id,
@@ -180,6 +193,12 @@ io.on("connection", (chatSocket) => {
   });
 
   io.emit('player_points', punteggio);
+
+  chatSocket.on('needs_help', (data) => {
+    io.emit('needs_help', {
+      playerId: data.playerId
+    })
+  }),
 
 
   //messaggio inviato da giocatore

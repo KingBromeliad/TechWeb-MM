@@ -32,7 +32,7 @@ export default {
   data: function () {
     return {
       players: [],
-      shownPlayerIndex: 0,
+      shownPlayerIndex: 1,
     };
   },
   methods: {
@@ -45,7 +45,12 @@ export default {
     },
     getImage: function () {
       //chiamata all'API per prendere un immagine e ritorna l'URL come stringa
-      return "";
+      this.axios.get("http://localhost:3500/immagineDaValutare").then((response) => {
+          console.log(response.status);
+          let imageUrl = "http://localhost:3000" + response.data;
+          console.log(imageUrl);
+          return imageUrl;
+      });
     },
     updateIndex: function (index) {
       this.shownPlayerIndex = index;
@@ -54,11 +59,8 @@ export default {
   sockets: {
     player_points(data) {
       this.players = data;
-      console.log(this.players);
+      //console.log(this.players);
     },
-  },
-  mounted() {
-    this.getPlayerPoints();
   },
 };
 </script>
