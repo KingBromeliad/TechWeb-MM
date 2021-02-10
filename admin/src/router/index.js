@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Profile from '../views/Profile.vue'
 import Register from '../views/Register.vue'
+import SchermataValutazione from '../views/SchermataValutazione.vue'
 
 Vue.use(VueRouter)
 
@@ -29,15 +30,15 @@ const routes = [
     component: () => import('../views/Games.vue'),
   },
   {
-  path: '/gamequiz',
-  name: 'Gamequiz',
-  component: () => import('../views/Gamequiz.vue'),
-},
-{
-path: '/team',
-name: 'Team',
-component: () => import('../views/Team.vue'),
-},
+    path: '/gamequiz',
+    name: 'Gamequiz',
+    component: () => import('../views/Gamequiz.vue'),
+  },
+  {
+    path: '/team',
+    name: 'Team',
+    component: () => import('../views/Team.vue'),
+  },
   {
     path: '/creationquiz',
     name: 'Creationquiz',
@@ -62,6 +63,11 @@ component: () => import('../views/Team.vue'),
     path: '/register',
     name: 'Register',
     component: Register
+  },
+  {
+    path: '/valutatore',
+    name: 'SchermataValutazione',
+    component: SchermataValutazione
   },
   {
     path: '/about',
