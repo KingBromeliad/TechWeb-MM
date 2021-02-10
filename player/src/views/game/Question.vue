@@ -9,8 +9,8 @@
       >
         <img
           class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"
-          alt="hero"
-          src="https://dummyimage.com/720x600"
+          alt="QuestionImage"
+          :src="questionImage"
         />
         <div class="text-center lg:w-2/3 w-full">
           <h1
@@ -20,9 +20,11 @@
           </h1>
 
           <div class="container flex flex-row items-center justify-center">
-            <div 
-            v-for="(option, index) in domande[currentQuestion].argomento" :key="index"
-            class="p-4 bg-white rounded-xl shadow-md h-14 flex m-4">
+            <div
+              v-for="(option, index) in domande[currentQuestion].argomento"
+              :key="index"
+              class="p-4 bg-white rounded-xl shadow-md h-14 flex m-4"
+            >
               <label class="flex items-center space-x-3" :for="index">
                 <input
                   type="radio"
@@ -31,7 +33,9 @@
                   v-model="answers[currentQuestion]"
                   class="form-tick h-6 w-6 border border-gray-300 rounded-md checked:bg-blue-600 checked:border-transparent focus:outline-none"
                 />
-                <span class="text-gray-900 text-2xl font-medium">{{option}}</span>
+                <span class="text-gray-900 text-2xl font-medium">{{
+                  option
+                }}</span>
               </label>
             </div>
           </div>
@@ -42,7 +46,7 @@
               Button
             </button>
             <button
-            @click="nextQuestion()"
+              @click="nextQuestion()"
               class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"
             >
               Button
@@ -60,6 +64,11 @@ export default {
     data: Object,
   },
   computed: {
+    questionImage: function () {
+      if (this.data.images.singleQuestionImage)
+        return ("http://localhost:3000/" + this.data.images.questionImage);
+      else return ("http://localhost:3000/" + this.data.images.questionImages[this.currentQuestion]);
+    },
     domande: function () {
       return this.data.domande;
     },
@@ -70,7 +79,7 @@ export default {
   data: function () {
     return {
       currentQuestion: 0,
-      answers: []
+      answers: [],
     };
   },
   methods: {
@@ -83,9 +92,10 @@ export default {
       this.$socket.client.emit("update_score", data);
       //console.log(this.score);
     },
-    nextQuestion(){
-      this.currentQuestion++
-    }
+    nextQuestion() {
+      if (this.currentQuestion < this.data.domande.length)
+      this.currentQuestion++;
+    },
   },
 };
 </script>

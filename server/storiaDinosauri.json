@@ -74,7 +74,10 @@
         }
       ],
       "images": {
-          "background": "StoneTablet.svg"
+          "background": "StoneTablet.svg",
+          "singleQuestionImage": false,
+          "questionImage": "Triceratopo.svg",
+          "questionImages": ["Tirannosauro.svg","Brontosauro.svg","Diplodoco.png"]
       }
     }
   ],
