@@ -1,16 +1,20 @@
 <template>
-  <div class="flex justify-center items-center">
+  <body
+    class="bg-fixed bg-cover bg-center bg-no-repeat min-h-screen"
+    v-bind:style="{ 'background-image': background }"
+  >
+  <div class="flex justify-center items-center min-h-screen">
     <div class="flex flex-col">
       <div class="flex justify-center items-center mt-0 mr-0 mb-3 ">
-        <img src="../assets/tris.png" alt="Vue" class="my-0 mr-3 -ml-5 w-10" />
-        <h1 class="m-0 text-4xl shadow"> <b>Tris!</b> </h1>
+        <img :src="symbol" alt="Vue" class="my-0 mr-3 -ml-5 w-20" />
+        <h1 class="text-8xl font-bold text-white"> <b>Tris!</b> </h1>
       </div>
 
       <board :squares="squares" :winner="winner" @click="click" />
 
       <div class="game-info bg-white rounded-lg text-xl px-2 py-4 text-center shadow">
         <p v-if="stepNumber === 0" class="flex items-center justify-center m-0">
-          Cominciamo! Tocca a chi è la&nbsp;<b :class="currentPlayer">{{ currentPlayer }}</b>!
+          Cominciamo! Cucciolo d'uomo inizia, sei la&nbsp;<b :class="currentPlayer">{{ currentPlayer }}</b>!
         </p>
         <p v-else-if="!!winner">
           Il vincitore è stato:&nbsp;
@@ -28,6 +32,7 @@
       </div>
     </div>
   </div>
+  </body>
 </template>
 
 <script>
@@ -36,12 +41,23 @@ export default {
   components: {
     Board: () => import('./Board')
   },
+    props: {
+    data: Object,
+  },
   data () {
     return {
       squares: Array(9).fill(null),
       stepNumber: 0,
       currentPlayer: 'X',
       winner: null
+    }
+  },
+  computed: {
+        background: function () {
+      return "url(http://localhost:3000/" + this.data.images.background + ")";
+    },
+            symbol: function () {
+      return ("http://localhost:3000/" + this.data.images.symbol);
     }
   },
   methods: {
@@ -90,10 +106,10 @@ export default {
   text-shadow: -1px -1px 0 #000b, -1px 1px 0 #000b, 1px -1px 0 #000b, 1px 1px 0 #000b;
 }
 .game-info .X {
-  color: #ff5722;
+  color: #258367;
 }
 .game-info .O {
-  color: #ffeb3b;
+  color: #ca3d33;
 }
 .game-info button {
   text-shadow: 0 0 1px #fff, 0 2px 5px #fff5;

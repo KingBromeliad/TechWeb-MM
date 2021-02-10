@@ -17,6 +17,7 @@
       "images": {
         "singleCharacter": true,
         "character": "Dino1.svg",
+        "characters": ["","",""],
         "background": "Asset2.svg"
       }
     },
@@ -78,6 +79,29 @@
           "singleQuestionImage": false,
           "questionImage": "Triceratopo.svg",
           "questionImages": ["Tirannosauro.svg","Brontosauro.svg","Diplodoco.png"]
+      }
+    },
+    {
+      "name": "start",
+      "route": "/start",
+      "text": [
+        "Ora dimostrami le tue abilità! Trova uno sfidante nella foresta e gioca all'antico Tris, se lo batterai almeno una volta, ti darò un indizio...",
+        "Quando sei pronto vai pure, il primo turno sarà il tuo"
+      ],
+      "option": ["Ok! Ci sto!","Sono Pronto!"],
+      "images": {
+        "singleCharacter": true,
+        "character": "Dino1.svg",
+        "characters": ["","",""],
+        "background": "Asset2.svg"
+      }
+    },
+    {
+      "name": "Tris",
+      "route": "/game",
+      "images": {
+        "background": "StoneTablet.svg",
+        "symbol": "Rock.png"
       }
     }
   ],
