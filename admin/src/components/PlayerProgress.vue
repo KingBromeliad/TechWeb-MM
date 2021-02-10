@@ -1,10 +1,10 @@
 <template>
   <div>
       <div class="text-center">
-          <h1 class="text-2xl text-black font-bold">{{ player.id }}</h1>
+          <h1 class="text-2xl text-black font-bold">{{ player.playerId }}</h1>
             <p class="text-base text-gray-500"> 
                <!-- {{ player.text }} -->
-                Punteggio corrente: {{ player.points }}
+                Punteggio corrente: {{ player.punti }}
             </p>
             <div v-if="image != ''">
                 <img class="container" :src=image />

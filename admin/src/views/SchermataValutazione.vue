@@ -2,9 +2,10 @@
   <div>
     <div v-for="(player, index) in this.players" :key="index">
       <div
+        v-if="index != 0"
         class="py-8 px-8 max-w-sm mx-auto bg-gray-100 rounded-xl shadow-md space-y-2 sm:py-4 sm:space-y-0 sm:space-x-6 m-1 text-center"
       >
-        <p class="text-xl text-black align-top">{{ player.id }}</p>
+        <p class="text-xl text-black align-top">{{ player.playerId }}</p>
 
         <button
           class="align-bottom px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
@@ -30,26 +31,7 @@ export default {
   },
   data: function () {
     return {
-      players: [
-        {
-          //nome: '',
-          id: "123",
-          game: "a",
-          points: 0,
-        },
-        {
-          //nome: '',
-          id: "asdasd",
-          game: "a",
-          points: 10,
-        },
-        {
-          //nome: '',
-          id: "hjhjjh",
-          game: "a",
-          points: 15,
-        },
-      ],
+      players: [],
       shownPlayerIndex: 0,
     };
   },
@@ -71,12 +53,12 @@ export default {
   },
   sockets: {
     player_points(data) {
-      //this.players = data;
-      console.log(data);
+      this.players = data;
+      console.log(this.players);
     },
   },
   mounted() {
-    //this.getPlayerPoints();
+    this.getPlayerPoints();
   },
 };
 </script>
