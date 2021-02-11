@@ -128,10 +128,20 @@ app.get("/openStory", (req, res) => {
   res.send(story);
 });
 
+let toEval = {
+  playerId: "",
+  url: "" 
+} 
+
+app.post("/immagineRicevuta", (req, res) => {
+  toEval.playerId = req.data.playerId;
+  toEval.url = req.url;
+  res.send();
+});
+
 app.get("/immagineDaValutare", (req, res) => {
   console.log(req.body);
-  let urlImg = '/patente.jpg';
-  res.send(urlImg);
+  res.send(toEval);
 });
 
 //Serializzo e deserializzo l'utente acceduto per mantenerne la sessione
@@ -204,19 +214,25 @@ io.on("connection", (chatSocket) => {
 
   io.emit('player_points', giocatori);
 
+  chatSocket.on('image_eval', (data) => {
+    io.emit('image_eval', data);
+  }),
+
   chatSocket.on('input_da_valutare', (data) => {
     io.emit('input_da_valutare', {
       playerId: data.playerId,
       tipo: data.tipo
     })
   }),
+    chatSocket.on('needs_help', (data) => {
+      io.emit('needs_help', {
+        playerId: data.playerId
+      });
+    }),
 
-  chatSocket.on('needs_help', (data) => {
-    io.emit('needs_help', {
-      playerId: chatSocket.id
+    chatSocket.on('immagine_da_valutare', (data) => {
+      io.emit('image_present');
     });
-  }),
-
 
     //messaggio inviato da giocatore
     chatSocket.on('player_message', (data) => {

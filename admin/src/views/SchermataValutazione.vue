@@ -16,21 +16,29 @@
     <p class="text-xl text-black align-top font-bold text-center">
       Giocatore: {{ giocatori[shownPlayerIndex].playerId }}
     </p>
-    <div
-      v-for="punteggio in giocatori[shownPlayerIndex].punteggi"
-      :key="punteggio.nomeGioco"
-    >
-      <div class="text-center">
-        <p class="text-lg text-gray-500">
-          {{ punteggio.nomeGioco }} -> {{ punteggio.punti }}
-        </p>
+    <div class="content-center max-w-sm bg-gray-100 mx-auto">
+      <div
+        v-for="punteggio in giocatori[shownPlayerIndex].punteggi"
+        :key="punteggio.nomeGioco"
+      >
+        <div class="border-2">
+          <p class="text-lg text-gray-500 text-center">
+            Gioco: {{ punteggio.nomeGioco }} <br />
+            Punteggio: {{ punteggio.punti }}
+          </p>
+          <div v-if="imagePresent == true">
+            <img :src="imageUrl" />
+            <button @click="evalImagePositive()">Giusta</button>
+            <button @click="evalImageNegative()">Sbagliata</button>
+          </div>
+        </div>
       </div>
     </div>
-    <img v-bind:src="getImage()" />
-
-    <modal name="playerNeedsHelp"> 
+    <modal name="playerNeedsHelp">
       <div class="text-xl text-center text-black font-bold py-5">
-        Il giocatore: <br> {{ giocatoreDaAiutare }} <br> ha bisogno di aiuto!
+        Il giocatore: <br />
+        {{ giocatoreDaAiutare }} <br />
+        ha bisogno di aiuto!
       </div>
     </modal>
   </div>
@@ -43,7 +51,12 @@ export default {
     return {
       giocatori: [],
       shownPlayerIndex: 0,
-      giocatoreDaAiutare: ''
+      giocatoreDaAiutare: "",
+      immagineDaValutare: {
+        imageUrl: "",
+        playerIdSendingImage: "",
+      },
+      imagePresent: false,
     };
   },
   methods: {
@@ -57,9 +70,14 @@ export default {
         .get("http://localhost:3500/immagineDaValutare")
         .then((response) => {
           console.log(response.data);
-          let imageUrl = "http://localhost:3000" + response.data;
-          console.log(imageUrl);
-          return imageUrl;
+          this.immagineDaValutare.imageUrl =
+            "http://localhost:3500" + response.data.url;
+          this.immagineDaValutare.playerIdSendingImage = response.data.playerId;
+          this.imagePresent = true;
+        })
+        .catch((err) => {
+          console.log(err);
+          this.imagePresent = false;
         });
     },
     updateIndex: function (index) {
@@ -71,6 +89,12 @@ export default {
     hideModal: function () {
       this.$modal.hide("playerNeedsHelp");
     },
+    evelImagePositive: function () {
+      this.$socket.emit("image_eval", true);
+    },
+    evelImageNegative: function () {
+      this.$socket.emit("image_eval", false);
+    },
   },
   sockets: {
     player_points(data) {
@@ -79,7 +103,13 @@ export default {
     needs_help(data) {
       this.giocatoreDaAiutare = data.playerId;
       this.showModal();
-    }
+    },
+    image_present() {
+      this.getImage();
+    },
+  },
+  mounted: function () {
+    //this.getImage();
   },
 };
 </script>
