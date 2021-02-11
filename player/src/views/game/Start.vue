@@ -64,8 +64,13 @@ export default {
     Continue() {
       if (this.line < this.data.text.length - 1) {
         this.line++;
+      } else if (this.line == this.data.text.length - 1) {
+        this.ContinueToNext();
       }
       this.updateScore();
+    },
+    ContinueToNext() {
+      this.$emit("gameCompleted");
     },
     updateScore() {
       //punteggio aggiornato via via passandoli un valore

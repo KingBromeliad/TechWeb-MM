@@ -26,7 +26,7 @@
         </a>
       </div>
     </div>
-    <router-view :data="this.game[this.progress]" />
+    <router-view :data="this.game[this.progress]" @gameCompleted="nextView()"/>
   </div>
 </template>
 
