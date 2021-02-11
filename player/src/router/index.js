@@ -11,6 +11,7 @@ import Start from '../views/game/Start.vue'
 import PathGame from '../views/game/PathGame.vue'
 import Question from '../views/game/Question.vue'
 import Game from '../views/Game.vue'
+import Video from '../views/game/Video.vue'
 
 Vue.use(VueRouter)
 
@@ -64,6 +65,11 @@ const routes = [
     path: '/game',
     name: 'Tris',
     component: Game
+  },
+  {
+    path: '/video',
+    name: 'Video',
+    component: Video
   }
 ]
 
