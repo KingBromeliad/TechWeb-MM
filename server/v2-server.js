@@ -130,7 +130,7 @@ app.get("/openStory", (req, res) => {
 
 app.get("/immagineDaValutare", (req, res) => {
   console.log(req.body);
-  let urlImg = '/images/allosauro.svg';
+  let urlImg = '/patente.jpg';
   res.send(urlImg);
 });
 
@@ -142,7 +142,6 @@ passport.deserializeUser((id, done) => {
   let user = JSON.parse(fs.readFileSync('users.json')).users.find((user) => {
     return user.id === id;
   })
-
   done(null, user);
 });
 
@@ -157,8 +156,8 @@ const io = require("socket.io")(chatServer, {
     credentials: true,
   },
 });
-//oggetto del punteggio con due valori di esempio
-let punteggio = [{}];
+//oggetto contenente i giocatori 
+let giocatori = [];
 
 //CHAT - SOCKET
 io.on("connection", (chatSocket) => {
@@ -167,48 +166,66 @@ io.on("connection", (chatSocket) => {
     username: botName,
     text: "Welcome: " + chatSocket.id
   });
+
   //aggiornamente del punteggio tramite socket
   chatSocket.on('update_score', (data) => {
-    if (punteggio.some(punteggioGiusto => punteggioGiusto.gioco === data.gioco && punteggioGiusto.playerId === chatSocket.id)) {
-      let i = 0;
-      while (i < punteggio.length) {
-        if (punteggio[i].gioco == data.gioco && punteggio[i].playerId == chatSocket.id) {
-          break;
+    if (giocatori.some(giocatoreGiusto => giocatoreGiusto.playerId === chatSocket.id)) {
+      giocatori.forEach((giocatore) => {
+        if (giocatore.playerId == chatSocket.id /*Se ha beccato il giocatore*/) {
+          //Allora deve controllare se il giocatore contiene il gioco
+          if (giocatore.punteggi[giocatore.punteggi.length - 1].nomeGioco == data.nomeGioco) {
+            giocatore.punteggi[giocatore.punteggi.length - 1].punti += data.punti;
+          } else {
+            let newGame = {
+              nomeGioco: data.nomeGioco,
+              punteggio: data.punteggio
+            }
+            giocatore.punteggi.push(newGame);
+          }
         }
-        i += 1;
-      }
-      punteggio[i].punti += data.punti;
-      //console.log(punteggio[i]);
+      });
     } else {
-      let punteggioNuovoGioco = {
+      let nuovoGiocatore = {
         playerId: chatSocket.id,
-        gioco: data.gioco,
-        punti: data.punti,
+        punteggi: [
+          {
+            nomeGioco: data.nomeGioco,
+            punti: data.punti,
+          }
+        ]
       };
       //console.log(punteggioNuovoGioco);
-      punteggio.push(punteggioNuovoGioco);
+      giocatori.push(nuovoGiocatore);
+      //console.log(giocatori[0].punteggi);
     }
-    io.emit('update_score', punteggio);
-    io.emit('player_points', punteggio);
+    io.emit('update_score', giocatori);
+    io.emit('player_points', giocatori);
   });
 
-  io.emit('player_points', punteggio);
+  io.emit('player_points', giocatori);
 
-  chatSocket.on('needs_help', (data) => {
-    io.emit('needs_help', {
-      playerId: data.playerId
+  chatSocket.on('input_da_valutare', (data) => {
+    io.emit('input_da_valutare', {
+      playerId: data.playerId,
+      tipo: data.tipo
     })
   }),
 
-
-  //messaggio inviato da giocatore
-  chatSocket.on('player_message', (data) => {
-    //console.log(data);
-    io.emit('send_admin', {
-      username: chatSocket.id,
-      text: data
+  chatSocket.on('needs_help', (data) => {
+    io.emit('needs_help', {
+      playerId: chatSocket.id
     });
-  });
+  }),
+
+
+    //messaggio inviato da giocatore
+    chatSocket.on('player_message', (data) => {
+      //console.log(data);
+      io.emit('send_admin', {
+        username: chatSocket.id,
+        text: data
+      });
+    });
 
   //Messaggio inviato da admin
   chatSocket.on('admin_message', (data) => {

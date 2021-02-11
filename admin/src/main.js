@@ -6,6 +6,7 @@ import { io } from 'socket.io-client'
 import "tailwindcss/tailwind.css"
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import VModal from 'vue-js-modal'
 
 const socket = io("http://localhost:3000/", {
     extraHeaders: {
@@ -15,6 +16,7 @@ const socket = io("http://localhost:3000/", {
 
 Vue.use(VueSocketIOExt, socket)
 Vue.use(VueAxios, axios)
+Vue.use(VModal)
 
 Vue.config.productionTip = false
 

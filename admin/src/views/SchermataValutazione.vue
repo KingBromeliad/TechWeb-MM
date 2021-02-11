@@ -1,12 +1,10 @@
 <template>
   <div>
-    <div v-for="(player, index) in this.players" :key="index">
+    <div v-for="(giocatore, index) in this.giocatori" :key="index">
       <div
-        v-if="index != 0"
         class="py-8 px-8 max-w-sm mx-auto bg-gray-100 rounded-xl shadow-md space-y-2 sm:py-4 sm:space-y-0 sm:space-x-6 m-1 text-center"
       >
-        <p class="text-xl text-black align-top">{{ player.playerId }}</p>
-
+        <p class="text-xl text-black align-top">{{ giocatore.playerId }}</p>
         <button
           class="align-bottom px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
           @click="updateIndex(index)"
@@ -15,55 +13,75 @@
         </button>
       </div>
     </div>
-    <div>
-      <PlayerProgress :image="getImage()" :player="players[shownPlayerIndex]">
-      </PlayerProgress>
+    <p class="text-xl text-black align-top font-bold text-center">
+      Giocatore: {{ giocatori[shownPlayerIndex].playerId }}
+    </p>
+    <div
+      v-for="punteggio in giocatori[shownPlayerIndex].punteggi"
+      :key="punteggio.nomeGioco"
+    >
+      <div class="text-center">
+        <p class="text-lg text-gray-500">
+          {{ punteggio.nomeGioco }} -> {{ punteggio.punti }}
+        </p>
+      </div>
     </div>
+    <img v-bind:src="getImage()" />
+
+    <modal name="playerNeedsHelp"> 
+      <div class="text-xl text-center text-black font-bold py-5">
+        Il giocatore: <br> {{ giocatoreDaAiutare }} <br> ha bisogno di aiuto!
+      </div>
+    </modal>
   </div>
 </template>
 
 <script>
-import PlayerProgress from "../components/PlayerProgress.vue";
 export default {
   name: "SchermataValutazione",
-  components: {
-    PlayerProgress,
-  },
   data: function () {
     return {
-      players: [],
-      shownPlayerIndex: 1,
+      giocatori: [],
+      shownPlayerIndex: 0,
+      giocatoreDaAiutare: ''
     };
   },
   methods: {
-    getConnectedPlayers: function () {
-      //chiamata all'API per prendere il numero di giocatori
-    },
     getPlayerPoints: function () {
       //chiamata al socket al momento del mounted per prendere i progressi
       this.player_points;
     },
     getImage: function () {
       //chiamata all'API per prendere un immagine e ritorna l'URL come stringa
-      this.axios.get("http://localhost:3500/immagineDaValutare").then((response) => {
-          console.log(response.status);
+      this.axios
+        .get("http://localhost:3500/immagineDaValutare")
+        .then((response) => {
+          console.log(response.data);
           let imageUrl = "http://localhost:3000" + response.data;
           console.log(imageUrl);
           return imageUrl;
-      });
+        });
     },
     updateIndex: function (index) {
       this.shownPlayerIndex = index;
     },
+    showModal: function () {
+      this.$modal.show("playerNeedsHelp");
+    },
+    hideModal: function () {
+      this.$modal.hide("playerNeedsHelp");
+    },
   },
   sockets: {
     player_points(data) {
-      this.players = data;
-      //console.log(this.players);
+      this.giocatori = data;
     },
+    needs_help(data) {
+      this.giocatoreDaAiutare = data.playerId;
+      this.showModal();
+    }
   },
 };
 </script>
-
 <style>
 </style>
