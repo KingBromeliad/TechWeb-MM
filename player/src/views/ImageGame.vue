@@ -1,18 +1,22 @@
 <template>
-  <div class="flex justify-center">
-    <form enctype="multipart/form-data">
-      <input
-        type="file"
-        name="image"
-        accept="image/*"
-        capture="camera"
-        @change="sendFile($event)"
-      />
-    </form>
-    <div v-show="esitoValutazione">
-      <h1 class="text-2xl text-black font-semibold">
-        L'immagine inviata è corretta! E vale ben {{ punti }} punti!
-      </h1>
+  <div class="grid place-items-center w-screen h-screen">
+    <div class="flex-col place-content-center h-4/5 w-2/5">
+      <div class="flex place-content-center text-center">
+        <form enctype="multipart/form-data">
+          <input
+            type="file"
+            name="image"
+            accept="image/*"
+            capture="camera"
+            @change="sendFile($event)"
+          />
+        </form>
+        <div v-show="esitoValutazione">
+          <h1 class="text-2xl text-black font-semibold">
+            L'immagine inviata è corretta! E vale ben {{ punti }} punti!
+          </h1>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -53,11 +57,11 @@ export default {
       this.esitoValutazione = data.eval;
       this.punti = data.punti;
       if (data.eval == true) {
-        console.log(this.punti = data.punti)
+        console.log((this.punti = data.punti));
         let gioco = {
           playerId: this.playerId,
           punteggi: [{ nomeGioco: "imageGame", punti: this.punti }],
-        }
+        };
         this.$socket.client.emit("update_score", gioco);
       }
     },

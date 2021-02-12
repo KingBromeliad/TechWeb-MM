@@ -70,6 +70,11 @@ const routes = [
     component: SchermataValutazione
   },
   {
+    path: '/creationQrGame',
+    name: 'CreationQrGame',
+    component: () => import('../views/CreationQrGame.vue')
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting

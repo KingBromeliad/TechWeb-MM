@@ -249,8 +249,9 @@ io.on("connection", (chatSocket) => {
   chatSocket.on('image_sent', (data) => {
     io.emit('image_sent', data);
   });
+
   let stringsToDecode = [];
-  chatSocket.on('string_to_decode', (data) => {
+  chatSocket.on('strings_to_decode', (data) => {
     stringsToDecode = data;
     io.emit('qr_code_game', stringsToDecode);
   });
