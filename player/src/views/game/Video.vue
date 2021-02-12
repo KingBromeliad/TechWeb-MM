@@ -19,7 +19,7 @@ export default {
   },
   computed: {
     source: function() {
-      return ('http:localhost:3500/' + this.data.resource);
+      return ('http:localhost:3500/' + this.data.resource[0]);
     },
     background: function() {
       return "url(http://localhost:3500/" + this.data.images.background + ")";
