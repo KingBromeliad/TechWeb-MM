@@ -1,15 +1,15 @@
 <template>
-  <body
-    class="bg-fixed bg-cover bg-no-repeat min-h-screen"
+  <div
+    class="bg-fixed bg-center bg-cover bg-no-repeat min-h-screen m-0 p-0"
     v-bind:style="{ 'background-image': background }"
   >
-    <div class="grid grid-cols-2 gap-4 min-h-screen">
+    <div class="grid grid-cols-2 gap-4 place-content-center h-screen">
       <!-- WELCOME INSIDE THE GRID LAYOUT-->
-      <div class="flex items-center object-scale-down justify-center m-2">
-        <img :src="character" alt="character" />
+      <div class="flex flex-wrap content-end justify-center pb-2 h-screen">
+        <img :src="character" alt="character" style="height: 70vh"/>
       </div>
       <div
-        class="flex content-center justify-center flex-wrap row-span-2 space-y-8"
+        class="flex content-center justify-center flex-wrap space-y-8"
       >
         <div class="bg-white rounded-md text-center md:mr-4">
           <p class="text-black font-extrabold md:text-4xl md:m-10 sm:m-2">
@@ -25,7 +25,7 @@
         </button>
       </div>
     </div>
-  </body>
+  </div>
 </template>
 <script>
 export default {
@@ -44,7 +44,9 @@ export default {
       } else return "...";
     },
     background: function() {
-      return "url(http://localhost:3000/" + this.data.images.background + ")";
+      if (this.data.images.background.length == 1)
+      return "url(http://localhost:3000/" + this.data.images.background[0] + ")";
+      else return "url(http://localhost:3000/" + this.data.images.background[this.line] + ")";
     },
     character: function() {
       if (this.data.images.singleCharacter) {
