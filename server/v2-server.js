@@ -241,11 +241,10 @@ io.on("connection", (chatSocket) => {
     io.emit('image_eval', data);
   });
   
-  let stringsToDecode = ['ciao', 'addio', 'tvb'];
 
-  //chatSocket.on('string_to_decode', (data) => {
+  chatSocket.on('string_to_decode', (data) => {
     io.emit('qr_code_game', stringsToDecode);
-  //});
+  });
 
     chatSocket.on('input_da_valutare', (data) => {
       io.emit('input_da_valutare', {
