@@ -12,7 +12,7 @@ import PathGame from '../views/game/PathGame.vue'
 import Question from '../views/game/Question.vue'
 import Game from '../views/Game.vue'
 import Video from '../views/game/Video.vue'
-import ImageGame from '../views/ImageGame.vue'
+import ImageGame from '../views//game/ImageGame.vue'
 import QrCodeGame from '../views/game/QrCodeGame.vue'
 
 

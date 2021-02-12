@@ -3,7 +3,7 @@
     <div class="flex-col place-content-center h-4/5 w-3/5">
       <div class="flex place-content-center text-center">
         <p class="text-4xl font-semibold">
-          Inserisci Nella Casella di testo le parole da decodificare
+          Inserisci nella casella di testo le parole da decodificare
         </p>
       </div>
       <div

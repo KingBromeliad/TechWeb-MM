@@ -1,5 +1,12 @@
 <template>
   <div id="app">
+    <chat
+      @hideChat="chatActive = !chatActive"
+      v-show="chatActive"
+      :slideOver="chatActive"
+      :adminName="adminName"
+    ></chat>
+
     <nav class="bg-gray-800">
       <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
@@ -121,6 +128,13 @@
                     class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     >Ambiente Valutatore</router-link
                   >
+                  <a
+                    href="#"
+                    @click="chatActive = !chatActive"
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Chat
+                  </a>
                 </div>
               </div>
             </div>
@@ -198,8 +212,12 @@
 
 <script>
 import Vue from "vue";
+import chat from "./components/Chat.vue";
 export default {
   name: "App",
+  components: {
+    chat,
+  },
   methods: {
     //Metodo per ricavare i dati utente e controllare che sia acceduto
     getUserData: function () {
@@ -224,9 +242,9 @@ export default {
       //console.log(this.logged);
       return this.logged;
     },
-    logout: function() {
+    logout: function () {
       this.logged = false;
-    }
+    },
   },
   data: function () {
     return {
@@ -235,6 +253,8 @@ export default {
       dropdown_state: false,
       componentToRerender: 0,
       logged: false,
+      chatActive: false,
+      adminName: "",
     };
   },
   mounted() {

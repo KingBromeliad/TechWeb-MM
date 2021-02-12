@@ -253,8 +253,10 @@ io.on("connection", (chatSocket) => {
   let stringsToDecode = [];
   chatSocket.on('strings_to_decode', (data) => {
     stringsToDecode = data;
-    io.emit('qr_code_game', stringsToDecode);
+    console.log(data)
   });
+
+  io.emit('qr_code_game', stringsToDecode);
 
   chatSocket.on('input_da_valutare', (data) => {
     io.emit('input_da_valutare', {

@@ -40,16 +40,23 @@
             </div>
           </div>
           <div class="flex justify-center">
-            <button
+            <!--<button
               class="inline-flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg"
             >
               Button
-            </button>
+            </button>-->
             <button
               @click="nextQuestion()"
               class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"
             >
-              Button
+              Successiva
+            </button>
+            <button
+              v-if="currentQuestion == data.domande.length - 1"
+              @click="checkAnswers()"
+              class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"
+            >
+              Completa
             </button>
           </div>
         </div>
@@ -66,8 +73,12 @@ export default {
   computed: {
     questionImage: function () {
       if (this.data.images.singleQuestionImage)
-        return ("http://localhost:3000/" + this.data.images.questionImage);
-      else return ("http://localhost:3000/" + this.data.images.questionImages[this.currentQuestion]);
+        return "http://localhost:3000/" + this.data.images.questionImage;
+      else
+        return (
+          "http://localhost:3000/" +
+          this.data.images.questionImages[this.currentQuestion]
+        );
     },
     domande: function () {
       return this.data.domande;
@@ -80,21 +91,48 @@ export default {
     return {
       currentQuestion: 0,
       answers: [],
+      punti: 0,
+      playerId: "",
     };
   },
   methods: {
     updateScore() {
       //punteggio aggiornato via via passandoli un valore
       let data = {
-        gioco: "intro",
-        punti: 1,
+        playerId: this.playerId,
+        punteggi: [
+          {
+            nomeGioco: "Quiz",
+            punti: this.punti,
+          },
+        ],
       };
       this.$socket.client.emit("update_score", data);
-      //console.log(this.score);
     },
     nextQuestion() {
       if (this.currentQuestion < this.data.domande.length)
-      this.currentQuestion++;
+        this.currentQuestion++;
+    },
+    checkAnswers: function () {
+      console.log(this.data.domande);
+      for (var i = 0; i < this.data.domande.length; i++) {
+        if (this.data.domande[i].soluzione != this.answers[i]) {
+          console.log(
+            this.data.domande[i].soluzione,
+            "  ",
+            this.answers.risposta[i]
+          );
+          this.punti += 5;
+        } else {
+          this.punti += 25;
+        }
+      }
+      this.updateScore();
+    },
+  },
+  sockets: {
+    req_player_id(data) {
+      this.playerId = data;
     },
   },
 };
