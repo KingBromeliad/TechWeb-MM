@@ -10,10 +10,10 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-      cb(null, './images/uploads');
+    cb(null, './images/uploads');
   },
   filename: (req, file, cb) => {
-      cb(null, file.originalname);
+    cb(null, file.originalname);
   }
 })
 
@@ -139,7 +139,7 @@ app.post("/writeStory", (req, res) => {
 //Per inviare la storia come file JSON
 app.get("/openStory", (req, res) => {
   console.log(req.body);
-  let story = JSON.parse(fs.readFileSync('storiaSpazio.json'));
+  let story = JSON.parse(fs.readFileSync('storiaDinosauri.json'));
   res.send(story);
 });
 
@@ -152,7 +152,7 @@ app.post("/immagineRicevuta", upload.single('image'), (req, res) => {
   //console.log(req.file);
   toEval.url = "/uploads/" + req.file.filename;
   toEval.playerId = req.body.playerId;
-  //console.log(toEval);
+  console.log(req.body.playerId);
   res.json({
     file: req.file
   });
@@ -202,14 +202,16 @@ io.on("connection", (chatSocket) => {
       giocatori.forEach((giocatore) => {
         if (giocatore.playerId == chatSocket.id /*Se ha beccato il giocatore*/) {
           //Allora deve controllare se il giocatore contiene il gioco
-          if (giocatore.punteggi[giocatore.punteggi.length - 1].nomeGioco == data.nomeGioco) {
-            giocatore.punteggi[giocatore.punteggi.length - 1].punti += data.punti;
+          if (giocatore.punteggi[giocatore.punteggi.length - 1].nomeGioco == data.punteggi[0].nomeGioco) {
+            giocatore.punteggi[giocatore.punteggi.length - 1].punti += data.punteggi[0].punti;
           } else {
             let newGame = {
-              nomeGioco: data.nomeGioco,
-              punteggio: data.punteggio
+              nomeGioco: data.punteggi[0].nomeGioco,
+              punti: parseInt(data.punteggi[0].punti, 10)
             }
-            giocatore.punteggi.push(newGame);
+            //console.log(newGame);
+            if (newGame.nomeGioco != '') giocatore.punteggi.push(newGame);
+            //console.log(giocatore);
           }
         }
       });
@@ -218,20 +220,24 @@ io.on("connection", (chatSocket) => {
         playerId: chatSocket.id,
         punteggi: [
           {
-            nomeGioco: data.nomeGioco,
-            punti: data.punti,
+            nomeGioco: data.punteggi[0].nomeGioco,
+            punti: data.punteggi[0].punti,
           }
         ]
       };
       //console.log(punteggioNuovoGioco);
       giocatori.push(nuovoGiocatore);
-      //console.log(giocatori[0].punteggi);
+      console.log(giocatori[0].punteggi);
     }
     io.emit('update_score', giocatori);
     io.emit('player_points', giocatori);
   });
 
-  io.emit('get_player_Id', chatSocket.id);
+  chatSocket.on('req_player_id', () => {
+    chatSocket.emit('get_player_Id', chatSocket.id);
+  });
+
+  chatSocket.emit('get_player_Id', chatSocket.id);
 
 
   io.emit('player_points', giocatori);
@@ -239,26 +245,27 @@ io.on("connection", (chatSocket) => {
   chatSocket.on('image_eval', (data) => {
     io.emit('image_eval', data);
   });
-  
+
   chatSocket.on('image_sent', (data) => {
     io.emit('image_sent', data);
   });
-
+  let stringsToDecode = [];
   chatSocket.on('string_to_decode', (data) => {
+    stringsToDecode = data;
     io.emit('qr_code_game', stringsToDecode);
   });
 
-    chatSocket.on('input_da_valutare', (data) => {
-      io.emit('input_da_valutare', {
-        playerId: data.playerId,
-        tipo: data.tipo
-      })
+  chatSocket.on('input_da_valutare', (data) => {
+    io.emit('input_da_valutare', {
+      playerId: data.playerId,
+      tipo: data.tipo
+    })
+  });
+  chatSocket.on('needs_help', (data) => {
+    io.emit('needs_help', {
+      playerId: data.playerId
     });
-    chatSocket.on('needs_help', (data) => {
-      io.emit('needs_help', {
-        playerId: data.playerId
-      });
-    });
+  });
 
   //messaggio inviato da giocatore
   chatSocket.on('player_message', (data) => {

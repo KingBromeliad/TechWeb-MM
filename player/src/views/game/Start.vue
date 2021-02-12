@@ -33,12 +33,12 @@ export default {
     data: Object,
   },
   computed: {
-    text: function() {
+    text: function () {
       if (this.data != null) {
         return this.data.text[this.line];
       } else return "loading...";
     },
-    option: function() {
+    option: function () {
       if (this.data != null) {
         return this.data.option[this.line];
       } else return "...";
@@ -48,7 +48,7 @@ export default {
       return "url(http://localhost:3000/" + this.data.images.background[0] + ")";
       else return "url(http://localhost:3000/" + this.data.images.background[this.line] + ")";
     },
-    character: function() {
+    character: function () {
       if (this.data.images.singleCharacter) {
         return "http://localhost:3000/" + this.data.images.character;
       } else
@@ -57,9 +57,10 @@ export default {
         );
     },
   },
-  data: function() {
+  data: function () {
     return {
       line: 0,
+      playerId: "",
     };
   },
   methods: {
@@ -77,11 +78,19 @@ export default {
     updateScore() {
       //punteggio aggiornato via via passandoli un valore
       let data = {
-        nomeGioco: "intro",
-        punti: 1,
+        playerId: this.playerId,
+        punteggi: [
+          {
+            nomeGioco: "intro",
+            punti: 1,
+          },
+        ],
       };
       this.$socket.client.emit("update_score", data);
       //console.log(this.score);
+    },
+    get_player_Id(data) {
+      this.playerId = data;
     },
   },
 };
