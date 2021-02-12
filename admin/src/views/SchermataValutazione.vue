@@ -85,7 +85,7 @@ export default {
           this.immagineDaValutare.imageUrl =
             "http://localhost:3500" + response.data.url;
           this.immagineDaValutare.playerIdSendingImage = response.data.playerId;
-          console.log(this.immagineDaValutare.imageUrl);
+          console.log(this.immagineDaValutare.playerIdSendingImage);
           this.imagePresent = true;
         })
         .catch((err) => {
@@ -108,6 +108,7 @@ export default {
         punti: this.punteggioEval
       }
       this.$socket.client.emit("image_eval", data);
+      this.imagePresent = false;
     },
     evalImageNegative: function () {
       let data = {
@@ -120,6 +121,7 @@ export default {
   sockets: {
     player_points(data) {
       this.giocatori = data;
+      console.log(data);
     },
     needs_help(data) {
       this.giocatoreDaAiutare = data.playerId;
@@ -128,7 +130,7 @@ export default {
     image_sent(data) {
       this.imagePresent = data;
       this.getImage();
-    },
+    }
   },
   mounted: function () {
     //this.getImage();

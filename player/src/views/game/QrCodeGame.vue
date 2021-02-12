@@ -36,15 +36,25 @@ export default {
   data: function () {
     return {
       stringsToDecode: [],
-      numberOfStrings: 0,
+      numberOfStrings: 2,
+      points: 0,
+      playerId: "",
     };
   },
   methods: {
     onDecode: function (decodedString) {
+      console.log(this.stringsToDecode);
       this.stringsToDecode.forEach((string) => {
         if (string.text == decodedString) {
           string.decoded = true;
           this.numberOfStrings--;
+          this.points += 50;
+          if (this.numberOfStrings == 0) {
+            this.$socket.client.emit("update_score", {
+              playerId: this.playerId,
+              punteggi: [{ nomeGioco: "qrCodeGame", punti: this.points }]
+            });
+          }
         }
       });
     },
@@ -54,12 +64,16 @@ export default {
       data.forEach((string) => {
         let newString = {
           text: string,
-          decoded: false
+          decoded: false,
         };
         this.stringsToDecode.push(newString);
       });
       this.numberOfStrings = this.stringsToDecode.length;
-    }
+    },
+    get_player_Id(data) {
+      this.playerId = data;
+      console.log(this.playerId);
+    },
   },
 };
 </script>
@@ -67,21 +81,21 @@ export default {
 <style>
 .qrcode-stream__camera,
 .qrcode-stream__pause-frame {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    background-size: cover;
-    max-width: inherit !important;
-    max-height: inherit !important;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  background-size: cover;
+  max-width: inherit !important;
+  max-height: inherit !important;
 }
 .qrcode-stream__inner-wrapper {
-    position: inherit !important;
-    max-width: inherit !important;
-    max-height: inherit !important;
-    z-index: inherit !important;
+  position: inherit !important;
+  max-width: inherit !important;
+  max-height: inherit !important;
+  z-index: inherit !important;
 }
 </style>
