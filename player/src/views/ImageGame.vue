@@ -3,6 +3,11 @@
     <form enctype="multipart/form-data">
       <input type="file" name="image" accept="image/*" capture="camera" @change="sendFile($event)" />
     </form>
+    <div v-show="esitoValutazione">
+      <h1 class="text-2xl text-black font-semibold">L'immagine inviata è corretta!
+        E vale ben {{ punti }} punti!
+      </h1>
+    </div>
   </div>
 </template>
 
@@ -12,6 +17,8 @@ export default {
   data: function () {
     return {
       playerId: "",
+      esitoValutazione: false,
+      punti: 0
     };
   },
   methods: {
@@ -35,7 +42,10 @@ export default {
       this.playerId = data;
       console.log(this.playerId);
     },
-
+    image_eval(data) {
+      this.esitoValutazione = data.eval;
+      this.punti = data.punti;
+    }
   },
   mounted: function () {},
 };

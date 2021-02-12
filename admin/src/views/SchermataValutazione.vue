@@ -26,10 +26,22 @@
             Gioco: {{ punteggio.nomeGioco }} <br />
             Punteggio: {{ punteggio.punti }}
           </p>
-          <div v-if="imagePresent == true">
+          <div v-if="imagePresent == true && immagineDaValutare.playerIdSendingImage == giocatori[shownPlayerIndex].playerId" class="grid">
             <img :src="immagineDaValutare.imageUrl" />
-            <button @click="evalImagePositive()">Giusta</button>
-            <button @click="evalImageNegative()">Sbagliata</button>
+            <p>Punteggio:</p>
+            <input type="number" v-model="punteggioEval" />
+            <button
+              @click="evalImagePositive()"
+              class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline"
+            >
+              Giusta
+            </button>
+            <button
+              @click="evalImageNegative()"
+              class="border border-red-500 bg-red-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline"
+            >
+              Sbagliata
+            </button>
           </div>
         </div>
       </div>
@@ -57,6 +69,7 @@ export default {
         playerIdSendingImage: "",
       },
       imagePresent: false,
+      punteggioEval: 0,
     };
   },
   methods: {
@@ -90,10 +103,18 @@ export default {
       this.$modal.hide("playerNeedsHelp");
     },
     evalImagePositive: function () {
-      this.$socket.client.emit("image_eval", true);
+      let data = {
+        eval: true,
+        punti: this.punteggioEval
+      }
+      this.$socket.client.emit("image_eval", data);
     },
     evalImageNegative: function () {
-      this.$socket.client.emit("image_eval", false);
+      let data = {
+        eval: false,
+        punti: this.punteggioEval
+      }
+      this.$socket.client.emit("image_eval", data);
     },
   },
   sockets: {
