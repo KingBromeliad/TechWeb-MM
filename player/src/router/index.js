@@ -13,6 +13,8 @@ import Question from '../views/game/Question.vue'
 import Game from '../views/Game.vue'
 import Video from '../views/game/Video.vue'
 import ImageGame from '../views/ImageGame.vue'
+import QrCodeGame from '../views/game/QrCodeGame.vue'
+
 
 Vue.use(VueRouter)
 
@@ -76,6 +78,11 @@ const routes = [
     path: '/imageGame',
     name: 'ImageGame',
     component: ImageGame
+  },
+  {
+    path: '/qrCodeGame',
+    name: 'QrCodeGame',
+    component: QrCodeGame
   }
 ]
 
