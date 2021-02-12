@@ -12,6 +12,7 @@ import PathGame from '../views/game/PathGame.vue'
 import Question from '../views/game/Question.vue'
 import Game from '../views/Game.vue'
 import Video from '../views/game/Video.vue'
+import ImageGame from '../views/ImageGame.vue'
 
 Vue.use(VueRouter)
 
@@ -70,6 +71,11 @@ const routes = [
     path: '/video',
     name: 'Video',
     component: Video
+  },
+  {
+    path: '/imageGame',
+    name: 'ImageGame',
+    component: ImageGame
   }
 ]
 

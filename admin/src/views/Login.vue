@@ -81,6 +81,7 @@
 
 <script>
 import router from "../router";
+import axios from "axios";
 export default {
   name: "Login",
   methods: {
@@ -93,7 +94,7 @@ export default {
           username: username,
           password: password,
         };
-        this.axios
+        axios
           .post("http://localhost:3500/api/login", data, {
             withCredentials: true,
           })

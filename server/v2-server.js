@@ -4,8 +4,24 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const cookieSession = require('cookie-session');
 const fs = require('fs');
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
+const multer = require('multer');
+app.use(express.static('uploads'));
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, './uploads');
+  },
+  filename: (req, file, cb) => {
+      cb(null, file.originalname);
+  }
+})
+
+
+const upload = multer({ storage });
+
+
 
 //per CORS array dei domini dei quali accetta la comunicazione
 const whitelist = ['http://localhost:8081', 'http://localhost:8080'];
@@ -130,13 +146,17 @@ app.get("/openStory", (req, res) => {
 
 let toEval = {
   playerId: "",
-  url: "" 
-} 
+  url: ""
+}
 
-app.post("/immagineRicevuta", (req, res) => {
-  toEval.playerId = req.data.playerId;
-  toEval.url = req.url;
-  res.send();
+app.post("/immagineRicevuta", upload.single('image'), (req, res) => {
+  //console.log(req.file);
+  toEval.url = "/uploads/" + req.file.filename;
+  toEval.playerId = req.body.playerId;
+  //console.log(toEval);
+  res.json({
+    file: req.file
+  });
 });
 
 app.get("/immagineDaValutare", (req, res) => {
@@ -156,7 +176,7 @@ passport.deserializeUser((id, done) => {
 });
 
 //CHAT
-const botName = "Robottino Maggicco";
+const botName = "Robottino";
 const chatServer = require("http").Server(app);
 const io = require("socket.io")(chatServer, {
   cors: {
@@ -212,36 +232,39 @@ io.on("connection", (chatSocket) => {
     io.emit('player_points', giocatori);
   });
 
+  io.emit('get_player_Id', chatSocket.id);
+
+
   io.emit('player_points', giocatori);
 
   chatSocket.on('image_eval', (data) => {
     io.emit('image_eval', data);
-  }),
+  });
 
-  chatSocket.on('input_da_valutare', (data) => {
-    io.emit('input_da_valutare', {
-      playerId: data.playerId,
-      tipo: data.tipo
-    })
-  }),
+    chatSocket.on('input_da_valutare', (data) => {
+      io.emit('input_da_valutare', {
+        playerId: data.playerId,
+        tipo: data.tipo
+      })
+    });
     chatSocket.on('needs_help', (data) => {
       io.emit('needs_help', {
         playerId: data.playerId
       });
-    }),
+    });
 
     chatSocket.on('immagine_da_valutare', (data) => {
       io.emit('image_present');
     });
 
-    //messaggio inviato da giocatore
-    chatSocket.on('player_message', (data) => {
-      //console.log(data);
-      io.emit('send_admin', {
-        username: chatSocket.id,
-        text: data
-      });
+  //messaggio inviato da giocatore
+  chatSocket.on('player_message', (data) => {
+    //console.log(data);
+    io.emit('send_admin', {
+      username: chatSocket.id,
+      text: data
     });
+  });
 
   //Messaggio inviato da admin
   chatSocket.on('admin_message', (data) => {
