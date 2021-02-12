@@ -18,7 +18,7 @@
         "singleCharacter": true,
         "character": "Dino1.svg",
         "characters": ["", "", ""],
-        "background": "Asset2.svg"
+        "background": ["Asset2.svg"]
       }
     },
     {
@@ -43,7 +43,7 @@
       "option": [">>", ">>", ">>", ">>", ">>", ">>"],
       "images": {
         "singleCharacter": false,
-        "background": "BgMountain.png",
+        "background": ["BgMountain.png"],
         "characters": [
           "Diplodoco.svg",
           "Allosauro.svg",
@@ -97,7 +97,7 @@
         "singleCharacter": true,
         "character": "Dino1.svg",
         "characters": ["", "", ""],
-        "background": "Asset2.svg"
+        "background": ["Asset2.svg"]
       }
     },
     {

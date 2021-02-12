@@ -3,9 +3,13 @@
     class="bg-fixed bg-cover bg-no-repeat min-h-screen"
     v-bind:style="{ 'background-image': background }"
   >
-    <div class="grid place-content-center">
-      <iframe :src="video" frameborder="0"></iframe>
+
+    <div v-show="resourceType" class="grid place-content-center">
+      <iframe :src="source" frameborder="0"></iframe>
     </div>
+  <div v-show="!resourceType" class="grid place-content-center">
+      <img :src="source"/>
+  </div>
   </body>
 </template>
 <script>
@@ -14,12 +18,15 @@ export default {
     data: Object,
   },
   computed: {
-    video: function() {
-      return this.data.resource;
+    source: function() {
+      return ('http:localhost:3500/' + this.data.resource);
     },
     background: function() {
-      return "url(http://localhost:3000/" + this.data.images.background + ")";
+      return "url(http://localhost:3500/" + this.data.images.background + ")";
     },
+    resourceType: function(){
+      return this.data.resourceType
+    }
   },
   methods: {
     ContinueToNext() {
