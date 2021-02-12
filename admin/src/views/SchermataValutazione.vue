@@ -27,7 +27,7 @@
             Punteggio: {{ punteggio.punti }}
           </p>
           <div v-if="imagePresent == true">
-            <img :src="imageUrl" />
+            <img :src="immagineDaValutare.imageUrl" />
             <button @click="evalImagePositive()">Giusta</button>
             <button @click="evalImageNegative()">Sbagliata</button>
           </div>
@@ -69,10 +69,10 @@ export default {
       this.axios
         .get("http://localhost:3500/immagineDaValutare")
         .then((response) => {
-          console.log(response.data);
           this.immagineDaValutare.imageUrl =
             "http://localhost:3500" + response.data.url;
           this.immagineDaValutare.playerIdSendingImage = response.data.playerId;
+          console.log(this.immagineDaValutare.imageUrl);
           this.imagePresent = true;
         })
         .catch((err) => {
@@ -89,11 +89,11 @@ export default {
     hideModal: function () {
       this.$modal.hide("playerNeedsHelp");
     },
-    evelImagePositive: function () {
-      this.$socket.emit("image_eval", true);
+    evalImagePositive: function () {
+      this.$socket.client.emit("image_eval", true);
     },
-    evelImageNegative: function () {
-      this.$socket.emit("image_eval", false);
+    evalImageNegative: function () {
+      this.$socket.client.emit("image_eval", false);
     },
   },
   sockets: {
@@ -104,7 +104,8 @@ export default {
       this.giocatoreDaAiutare = data.playerId;
       this.showModal();
     },
-    image_present() {
+    image_sent(data) {
+      this.imagePresent = data;
       this.getImage();
     },
   },

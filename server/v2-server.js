@@ -7,11 +7,10 @@ const fs = require('fs');
 const express = require('express');
 const app = express();
 const multer = require('multer');
-app.use(express.static('uploads'));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-      cb(null, './uploads');
+      cb(null, './images/uploads');
   },
   filename: (req, file, cb) => {
       cb(null, file.originalname);
@@ -140,7 +139,7 @@ app.post("/writeStory", (req, res) => {
 //Per inviare la storia come file JSON
 app.get("/openStory", (req, res) => {
   console.log(req.body);
-  let story = JSON.parse(fs.readFileSync('storiaDinosauri.json'));
+  let story = JSON.parse(fs.readFileSync('storiaSpazio.json'));
   res.send(story);
 });
 
@@ -241,6 +240,9 @@ io.on("connection", (chatSocket) => {
     io.emit('image_eval', data);
   });
   
+  chatSocket.on('image_sent', (data) => {
+    io.emit('image_sent', data);
+  });
 
   chatSocket.on('string_to_decode', (data) => {
     io.emit('qr_code_game', stringsToDecode);
@@ -256,10 +258,6 @@ io.on("connection", (chatSocket) => {
       io.emit('needs_help', {
         playerId: data.playerId
       });
-    });
-
-    chatSocket.on('immagine_da_valutare', (data) => {
-      io.emit('image_present');
     });
 
   //messaggio inviato da giocatore
