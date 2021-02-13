@@ -77,13 +77,13 @@
             }
           ],
           "images": {
-            "background": "musicStory/MusicQuiz.svg",
+            "background": "MusicQuiz.svg",
             "singleQuestionImage": false,
-            "questionImage": "musicStory/MusicQuiz.png",
+            "questionImage": "MusicQuiz.svg",
             "questionImages": [
-              "",
-              "",
-              "",
+              "Tirannosauro.svg",
+              "Brontosauro.svg",
+              "Diplodoco.png",
               ""
             ]
           }

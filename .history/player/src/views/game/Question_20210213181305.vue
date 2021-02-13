@@ -10,7 +10,7 @@
         <img
           class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"
           alt=""
-          :src="questionImage"
+          :src="background"
         />
         <div class="text-center lg:w-2/3 w-full">
           <h1
@@ -35,7 +35,7 @@
                   v-model="answers[currentQuestion]"
                   class="form-tick h-6 w-6 border border-gray-300 rounded-md checked:bg-blue-600 checked:border-transparent focus:outline-none"
                 />
-                <span class="text-gray-900 text-s font-medium">{{
+                <span class="text-gray-900 text-2xl font-medium">{{
                   option
                 }}</span>
               </label>

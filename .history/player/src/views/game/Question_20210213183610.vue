@@ -35,7 +35,7 @@
                   v-model="answers[currentQuestion]"
                   class="form-tick h-6 w-6 border border-gray-300 rounded-md checked:bg-blue-600 checked:border-transparent focus:outline-none"
                 />
-                <span class="text-gray-900 text-s font-medium">{{
+                <span class="text-gray-900 text-xl font-medium">{{
                   option
                 }}</span>
               </label>
