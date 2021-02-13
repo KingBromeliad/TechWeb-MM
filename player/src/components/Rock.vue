@@ -1,26 +1,32 @@
 <template>
   <div 
     :class="rotation"
-    @click="Rotate()"
+    @click="Selected()"
     class="flex items-center justify-items-center transform"
   >
-    <img src="http://localhost:3000/Rock.png" alt="rock" />
+    <img :class="highlight" class="object-contain rounded-xl" src="http://localhost:3000/Rock.png" alt="rock" />
   </div>
 </template>
 <script>
 export default {
   name: "rock",
   props: {
-      initialAngle : Number
+      initialAngle : Number,
+      rotates: Boolean
   },
   data: function() {
     return {
       clicked: true,
-      angle: 0
+      angle: 0,
+      rotated: false,
+      high_light: false,
     };
   },
   computed: {
-    
+    highlight: function(){
+      if (this.high_light) return 'bg-green-300';
+      else return '';
+    },
     rotation: function() {
       let x;
       let y;
@@ -46,10 +52,17 @@ export default {
   },
 
   methods: {
+    Selected(){
+      this.Rotate();
+      this.high_light = !this.high_light
+    },
     Rotate() {
+      if (this.rotates && !this.rotated){
       if (this.clicked) this.angle -= 1;
       else this.angle += 1;
       this.clicked = !this.clicked;
+      this.rotated = true;
+      }
     },
   },
 };
