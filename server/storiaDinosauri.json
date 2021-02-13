@@ -219,7 +219,11 @@
       }
     },
     {
-
+      "name": "ImageUpload",
+      "route": "/imageGame",
+      "images": {
+        "background": "StoneTablet.svg"
+      }
     }
   ]
 }

@@ -1,30 +1,91 @@
 <template>
-  <div class="grid place-items-center w-screen h-screen">
-    <div class="flex-col place-content-center h-4/5 w-2/5">
-      <div class="flex place-content-center text-center">
-        <form enctype="multipart/form-data">
-          <input
-            type="file"
-            name="image"
-            accept="image/*"
-            capture="camera"
-            @change="sendFile($event)"
-          />
-        </form>
-        <div v-show="esitoValutazione">
-          <h1 class="text-2xl text-black font-semibold">
-            L'immagine inviata è corretta! E vale ben {{ punti }} punti!
-          </h1>
-        </div>
+  <body
+    class="bg-fixed bg-cover bg-no-repeat bg-center min-h-screen"
+    v-bind:style="{ 'background-image': background }"
+  >
+    <div
+      v-show="!esitoValutazione"
+      class="grid place-content-center min-h-screen"
+    >
+      <div
+        class="flex place-content-center text-center bg-gradient-to-r from-green-400 to-blue-500 rounded-2xl lg:p-6 p-2 m-1 shadow-md"
+      >
+        <p class="lg:text-6xl text-2xl font-bold text-white">
+          Carica la tua immagine o fotografala
+        </p>
+      </div>
+      <div
+        class="flex items-center justify-center bg-grey-lighter lg:pt-20 pt-10"
+      >
+        <label
+          class="w-64 flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue-500 hover:text-white"
+        >
+          <svg
+            class="w-8 h-8"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
+            />
+          </svg>
+          <span class="mt-2 text-xl leading-normal">Scegli un file</span>
+          <form enctype="multipart/form-data" class="hidden">
+            <input
+              type="file"
+              name="image"
+              accept="image/*"
+              capture="camera"
+              @change="sendFile($event)"
+            />
+          </form>
+        </label>
       </div>
     </div>
-  </div>
+
+    <div
+      v-show="esitoValutazione"
+      class="grid place-content-center min-h-screen"
+    >
+      <div
+        class="flex place-content-center text-center bg-gradient-to-r from-green-400 to-blue-500 rounded-2xl lg:p-4 p-2 m-1"
+      >
+        <p class="lg:text-6xl text-2xl font-bold">
+          Ottimo lavoro la tua immagine è stata valutata!
+        </p>
+      </div>
+      <div class="text-center mt-10 mb-10">
+        <h1 class="lg:text-6xl text-4xl text-black font-semibold">
+          Ti sono stati assegnati: <br />
+          {{ punti + " " }} punti!
+        </h1>
+      </div>
+
+      <div class="flex justify-center">
+        <button
+          @click="ContinueToNext()"
+          class="bg-black hover:bg-gray-700 focus:outline-none rounded-lg font-bold text-center text-white md:text-2xl sm:text-xl p-2 mt-4"
+        >
+          Continue
+        </button>
+      </div>
+    </div>
+  </body>
 </template>
 
 <script>
 export default {
   name: "imageGame",
-  data: function () {
+  props: {
+    data: Object,
+  },
+  computed: {
+    background: function() {
+      return "url(http://localhost:3500/" + this.data.images.background + ")";
+    },
+  },
+  data: function() {
     return {
       playerId: "",
       esitoValutazione: false,
@@ -32,7 +93,7 @@ export default {
     };
   },
   methods: {
-    sendFile: function (event) {
+    sendFile: function(event) {
       let formData = new FormData();
       formData.append("image", event.target.files[0]);
       console.log(this.playerId);
@@ -46,6 +107,9 @@ export default {
         .catch((errors) => {
           console.log("Invalid Data", errors);
         });
+    },
+    ContinueToNext() {
+      this.$emit("gameCompleted");
     },
   },
   sockets: {
@@ -66,7 +130,7 @@ export default {
       }
     },
   },
-  mounted: function () {
+  mounted: function() {
     this.$socket.client.emit("req_player_id");
   },
 };
