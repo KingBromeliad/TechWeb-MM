@@ -3,14 +3,15 @@
     class="bg-fixed bg-cover bg-center bg-no-repeat min-h-screen"
     v-bind:style="{ 'background-image': background }"
   >
-    <section class="text-gray-600 body-font">
+    <section v-show="!quizCompleted" class="text-gray-600 body-font">
       <div
         class="container mx-auto flex px-5 py-24 items-center justify-center flex-col"
       >
         <img
-          class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"
+          class="object-contain object-center rounded"
           alt=""
           :src="questionImage"
+          style="height: 50vh"
         />
         <div class="text-center lg:w-2/3 w-full">
           <h1
@@ -51,7 +52,8 @@
               @click="nextQuestion()"
               role="button"
               aria-label="Passa alla domanda successiva"
-              class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"
+              v-if="currentQuestion < data.domande.length - 1"
+              class="ml-4 inline-flex text-black bg-blue-300 border-0 py-2 px-8 focus:outline-none hover:bg-blue-500 rounded-md text-2xl font-bold"
             >
               Successiva
             </button>
@@ -60,13 +62,16 @@
               aria-label="Completa il Quiz"
               v-if="currentQuestion == data.domande.length - 1"
               @click="checkAnswers()"
-              class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"
+              class="ml-4 inline-flex text-black bg-green-300 border-0 py-2 px-8 focus:outline-none hover:bg-green-500 rounded-md text-2xl font-bold"
             >
               Completa
             </button>
           </div>
         </div>
       </div>
+    </section>
+    <section v-show="quizCompleted">
+
     </section>
   </body>
 </template>
@@ -99,6 +104,7 @@ export default {
       answers: [],
       punti: 0,
       playerId: "",
+      quizCompleted: false
     };
   },
   methods: {
@@ -120,7 +126,6 @@ export default {
         this.currentQuestion++;
     },
     checkAnswers: function () {
-      console.log(this.data.domande);
       for (var i = 0; i < this.data.domande.length; i++) {
         if (this.data.domande[i].soluzione != this.answers[i]) {
           console.log(
@@ -133,6 +138,7 @@ export default {
           this.punti += 25;
         }
       }
+      this.quizCompleted = true;
       this.updateScore();
     },
   },
