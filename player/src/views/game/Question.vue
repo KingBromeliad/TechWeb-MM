@@ -3,7 +3,7 @@
     class="bg-fixed bg-cover bg-center bg-no-repeat min-h-screen"
     v-bind:style="{ 'background-image': background }"
   >
-    <section class="text-gray-600 body-font">
+    <section v-show="!quizCompleted" class="text-gray-600 body-font">
       <div
         class="container mx-auto flex px-5 py-24 items-center justify-center flex-col"
       >
@@ -70,6 +70,9 @@
         </div>
       </div>
     </section>
+    <section v-show="quizCompleted">
+
+    </section>
   </body>
 </template>
 <script>
@@ -101,6 +104,7 @@ export default {
       answers: [],
       punti: 0,
       playerId: "",
+      quizCompleted: false
     };
   },
   methods: {
@@ -122,7 +126,6 @@ export default {
         this.currentQuestion++;
     },
     checkAnswers: function () {
-      console.log(this.data.domande);
       for (var i = 0; i < this.data.domande.length; i++) {
         if (this.data.domande[i].soluzione != this.answers[i]) {
           console.log(
@@ -135,6 +138,7 @@ export default {
           this.punti += 25;
         }
       }
+      this.quizCompleted = true;
       this.updateScore();
     },
   },

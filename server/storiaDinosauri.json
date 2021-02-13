@@ -11,9 +11,12 @@
         "Sono sparite come per magia...Che mistero! Mi mancano così tanto, erano squisite",
         "Per caso tu potresti aiutarmi a risolvere il mistero delle felci sparite?",
         "Per caso tu potresti aiutarmi a risolvere il mistero delle felci sparite?",
-        "Bene per prima cosa ti faccio conoscere i miei amici dinosauri"
+        "Bene per prima cosa ti faccio conoscere i miei amici dinosauri",
+        "Prima però dovremo oltrepassare il fiume, per me non è un problema... Ma forse per te si",
+        "Oh no, non vedi che sono ricoperto di ossa sulla schiena?",
+        "Mi sembri abbastanza agile, trova un percorso saltando sulle rocce!"
       ],
-      "option": [">>", ">>", ">>", ">>", ">>", ">>", "Si!", ">>"],
+      "option": [">>", ">>", ">>", ">>", ">>", ">>", "Si!", ">>", "Posso salire su di te?","Oh vero","Ce la farò!"],
       "images": {
         "singleCharacter": true,
         "character": "Dino1.svg",
@@ -33,6 +36,7 @@
       "name": "start",
       "route": "/start",
       "text": [
+        "Complimenti! Ecco qui i miei amici, su non essere timido",
         "Ciao sono Doco il Diplodoco!",
         "Sono uno dei dinosauri più alti mai esistiti",
         "Adoro mangiare cespugli, foglie di conifere e felci",
@@ -55,11 +59,12 @@
         "Bene ragazzo, vediamo cosa hai imparato! Tieni questa tavoletta roccia per prendere appunti",
         "Rispondi a qualche domanda sui miei amici per essere sicuro di averli inquadrati bene"
       ],
-      "option": [">>", ">>", ">>", ">>", ">>", ">>",">>", ">>", ">>", ">>", ">>", ">>",">>", ">>", ">>", ">>","Piacere di conoscervi",">>",">>","Grazie","Va Bene!"],
+      "option": ["Certo che no!",">>", ">>", ">>", ">>", ">>", ">>",">>", ">>", ">>", ">>", ">>", ">>",">>", ">>", ">>", ">>","Piacere di conoscervi",">>",">>","Grazie","Va Bene!"],
       "images": {
         "singleCharacter": false,
         "background": ["BgMountain.png"],
         "characters": [
+          "Dino1.svg",
           "Diplodoco.svg",
           "Diplodoco.svg",
           "Diplodoco.svg",
@@ -137,10 +142,13 @@
       "name": "start",
       "route": "/start",
       "text": [
-        "Ora dimostrami le tue abilità! Trova uno sfidante nella foresta e gioca all'antico Tris, se lo batterai almeno una volta, ti darò un indizio...",
+        "Ben fatto! Sei davvero acuto, ora però dobbiamo investigare per davvero nella foresta",
+        "Credi di farcela? Bisogna essere molto agili per muoversi lì",
+        "Ah si? Bene bene, noi dinosauri abbiamo un'antica prova per capire le abilità di qualcuno",
+        "Ecco la prova! Trova uno sfidante nella foresta e gioca all'antico Tris, se lo batterai almeno una volta, ti darò un indizio...",
         "Quando sei pronto vai pure, il primo turno sarà il tuo"
       ],
-      "option": ["Ok! Ci sto!", "Sono Pronto!"],
+      "option": ["Non vedo l'ora","Certo",">>","Voglio farla!","Ok! Ci sto!", "Sono Pronto!"],
       "images": {
         "singleCharacter": true,
         "character": "Dino1.svg",
@@ -155,7 +163,30 @@
         "background": "StoneTablet.svg",
         "symbol": "Rock.png"
       }
+    },
+    {
+      "name": "start",
+      "route": "/start",
+      "text": [
+        "Pronto a scannerizzare Qr Codes?"
+
+      ],
+      "option": ["Non vedo l'ora"],
+      "images": {
+        "singleCharacter": true,
+        "character": "Dino1.svg",
+        "characters": ["", "", ""],
+        "background": ["Asset2.svg"]
+      } 
+    },
+    {
+      "name": "QrScanner",
+      "route": "/qrCodeGame",
+      "images": {
+        "background": "Lens.png"
+      }
     }
+
   ],
   "resources": {
     "background": "Asset2.svg"
