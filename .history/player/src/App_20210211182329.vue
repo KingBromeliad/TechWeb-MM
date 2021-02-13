@@ -60,7 +60,6 @@ export default {
     nextView() {
       if (this.progress < this.game.length - 1) {
                 this.progress++;
-                console.log(this.game[this.progress]);
         this.$router.push(this.game[this.progress].route);
       }
     },
