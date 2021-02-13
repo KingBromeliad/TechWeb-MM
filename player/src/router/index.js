@@ -14,6 +14,7 @@ import Game from '../views/Game.vue'
 import Video from '../views/game/Video.vue'
 import ImageGame from '../views//game/ImageGame.vue'
 import QrCodeGame from '../views/game/QrCodeGame.vue'
+import StartAccessible from '../views/game/StartAccessible.vue'
 
 
 Vue.use(VueRouter)
@@ -28,6 +29,11 @@ const routes = [
     path: '/storia',
     name: 'Storia',
     component: Storia
+  },
+  {
+    path: '/startAccessible',
+    name: 'StartAccessible',
+    component: StartAccessible
   },
   {
     path: '/quiz',

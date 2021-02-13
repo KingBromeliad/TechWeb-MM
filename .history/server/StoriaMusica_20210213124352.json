@@ -1,0 +1,88 @@
+{
+    "game": [
+      {
+        "name": "start",
+        "route": "/startAccessible",
+        "text": [
+          "C’era una volta, un mondo dove c’erano pentagrammi musicali con le rispettive note e chiavi che suonavano tutte in modo armonioso. Ma un giorno da un pentagramma, si cominciò a sentire un certo trambusto, erano le note acute di un pentagramma la cui guida(la chiave di violino detta chiave di SOL) scomparve. Le note e la chiave di un pentagramma vicino, calmarono le note del pentagramma senza chiave e si fecero dire cosa stesse succedendo, allora le note raccontarono che la loro chiave di SOL si rattristò in seguito a ripetute prese in giro da un'altra chiave musicale di un pentagramma vicino. Era la chiave di Basso! Sosteneva di essere migliore in quanto poteva far suonare facilmente le sue note per un accompagnamento musicale(melodia musicale ad esempio gli strumenti che accompagnano la voce di una canzone). La chiave di Basso sul pentagramma sta sulla quarta riga partendo dal basso che corrisponde al FA e per questo viene detta anche chiave del FA {immagine di un pentagramma con chiave del FA} ."
+        ],
+        "images": {
+          "singleCharacter": true,
+          "character": "/musicStory/MusicAtmosphere.png",
+          "characters": ["", "", ""],
+          "background": [" "]
+        }
+      },
+      {
+          "name": "Video",
+          "route": "/video",
+          "resourceType": true,
+          "title": [" "],
+          "source": ["https://mars.nasa.gov/embed/20029/"],
+          "images": {
+          "background": "spaceStory/Tablet.png" 
+          }
+      },
+      {
+          "name": "start",
+          "route": "/startAccessible",
+          "text": [
+            " La chiave di violino viene detta invece chiave del SOL in quanto nel pentagramma, spostato più in alto per rappresentare le note più alte, la chiave di violino nasce dal SOL{immagine di un pentagramma con chiave di SOL}. Tornando alla storia, le note della chiave di  SOL andarono a cercare la loro chiave smarrita e la trovarono solo grazie alla scia di trambusto che la chiave di SOL aveva lasciato. Le note della chiave di SOL non sapevano che erano state seguite dalla chiave di FA insieme alle proprie note se non per una nota  della chiave di SOL che avvertì tutti quanti. Inaspettatamente, la chiave di FA si fece avanti e propose di collaborare perché durante questo trambusto, la chiave di SOL  e le sue note non si erano accorte che il maestro di musica aspettava che loro si rimettessero al loro posto e che nel frattempo il pianoforte si era fermato e così anche il loro mondo armonioso. Infine grazie alla parte di note e di pentagramma che le due chiavi di questa storia dimenticavano di avere in comune{immagine di due pentagrammi con le due chiavi dove viene mostrata la “parte di note in comune”}, la chiave di SOL e le sue note si rimisero tutti al loro posto e insieme avviarono il concerto musicale di pianoforte e così anche il loro mondo armonioso."
+          ],
+          "images": {
+            "singleCharacter": false,
+            "character": " .. .png",
+            "characters": ["spaceStory/Astronaut.png", "spaceStory/Astronaut.png", "spaceStory/Scientist.svg", "spaceStory/Scientist.svg","spaceStory/Astronaut.png","spaceStory/Manager.svg","spaceStory/Scientist.svg","spaceStory/Manager.svg","spaceStory/Manager.svg","spaceStory/Scientist.svg"],
+            "background": ["spaceStory/BgLab.svg"]
+          }
+        },
+        {
+          "name": "Video",
+          "route": "/video",
+          "resourceType": true,
+          "title": ["How Do You Get to Mars?","How Hard Is It to Land a Rover on Mars?","Phoning Home: Communicating from Mars"],
+          "source": ["https://mars.nasa.gov/embed/20032/","https://mars.nasa.gov/embed/20048/","https://mars.nasa.gov/embed/20055/"],
+          "images": {
+          "background": "spaceStory/Tablet.png" 
+          }
+      },
+        {
+          "name": "question",
+          "route": "/question",
+          "domande": [
+            {
+              "domanda": "Marte è rosso perchè?",
+              "argomento": ["pangolino", "rabarbaro", "piatto", "naso"],
+              "soluzione": 0
+            },
+            {
+              "domanda": "Quando è possibile partire per Marte?",
+              "argomento": ["A", "B", "C", "D"],
+              "soluzione": 2
+            },
+            {
+              "domanda": "Quanto dura la discesa verso la superficie?",
+              "argomento": ["Bob", "Fred", "Pippo", "Pluto"],
+              "soluzione": 1
+            },
+            {
+              "domanda": "Per quanto tempo possono comunicare il rover e il suo orbiter?",
+              "argomento": ["Bob", "Fred", "Pippo", "Pluto"],
+              "soluzione": 1
+            }
+          ],
+          "images": {
+            "background": "StoneTablet.svg",
+            "singleQuestionImage": false,
+            "questionImage": "Triceratopo.svg",
+            "questionImages": [
+              "Tirannosauro.svg",
+              "Brontosauro.svg",
+              "Diplodoco.png",
+              ""
+            ]
+          }
+        }
+    ]
+  }
+  
