@@ -89,19 +89,34 @@
       "route": "/question",
       "domande": [
         {
-          "domanda": "Quali sono animali?",
-          "argomento": ["pangolino", "rabarbaro", "piatto", "naso"],
+          "domanda": "Il diplodoco è...",
+          "argomento": ["molto alto", "carnivoro", "cornuto"],
           "soluzione": 0
         },
         {
-          "domanda": "Altra Domanda?",
-          "argomento": ["A", "B", "C", "D"],
+          "domanda": "L'Allosauro si nutre di?",
+          "argomento": ["Sassi", "Erba", "Carne"],
           "soluzione": 2
         },
         {
-          "domanda": "Come mi chiamo?",
-          "argomento": ["Bob", "Fred", "Pippo", "Pluto"],
+          "domanda": "Il collo del brontosauro è...",
+          "argomento": ["Corto", "Lungo", "Di pietra"],
           "soluzione": 1
+        },
+        {
+          "domanda": "I denti dello pterodattilo sono per mangiare?",
+          "argomento": ["Dinosauri", "Legno", "Pesci"],
+          "soluzione": 2
+        },
+        {
+          "domanda": "Il triceratopo ha 3?",
+          "argomento": ["Code", "Corni", "Occhi"],
+          "soluzione": 1
+        },
+        {
+          "domanda": "Il tirannosauro è un?",
+          "argomento": ["Predatore", "Pescatore", "Rettile"],
+          "soluzione": 0
         }
       ],
       "images": {
@@ -109,9 +124,12 @@
         "singleQuestionImage": false,
         "questionImage": "Triceratopo.svg",
         "questionImages": [
-          "Tirannosauro.svg",
+          "Diplodoco.png",
+          "Allosauro.svg",
           "Brontosauro.svg",
-          "Diplodoco.png"
+          "Pterodattilo.svg",
+          "Triceratopo.svg",
+          "Tirannosauro.svg"
         ]
       }
     },
