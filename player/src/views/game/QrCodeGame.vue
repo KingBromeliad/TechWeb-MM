@@ -4,19 +4,18 @@
     v-bind:style="{ 'background-image': background }"
   >
     <div class="grid place-content-center h-screen">
-      <div class="space-y-2 flex-col place-content-center">
         <div
-          class="flex place-content-center text-center bg-gradient-to-r from-green-400 to-blue-500 rounded-2xl p-4"
+          class="flex place-content-center text-center bg-gradient-to-r from-green-400 to-blue-500 rounded-2xl lg:p-4 p-2 m-1"
         >
-          <p class="md:text-6xl text-4xl font-bold">
+          <p class="lg:text-4xl text-2xl font-bold">
             Inquadra un codice per decodificare
           </p>
         </div>
-        <div class="pt-10 text-center">
+        <div class="h-full w-1/2 mx-auto">
           <qrcode-stream @decode="onDecode"></qrcode-stream>
         </div>
-        <div class="flex place-content-center">
-          <p class="text-black text-4xl font-medium  bg-white rounded-2xl text-center p-4">
+        <div class="flex place-content-center m-1">
+          <p class="text-black lg:text-4xl font-2xl font-medium  bg-white rounded-2xl text-center lg:p-4 p-2">
             Mancano {{ this.numberOfStrings }} da decodificare
           </p>
           <p
@@ -27,7 +26,6 @@
           </p>
         </div>
       </div>
-    </div>
   </body>
 </template>
 
