@@ -145,7 +145,7 @@
         "Ben fatto! Sei davvero acuto, ora però dobbiamo investigare per davvero nella foresta",
         "Credi di farcela? Bisogna essere molto agili per muoversi lì",
         "Ah si? Bene bene, noi dinosauri abbiamo un'antica prova per capire le abilità di qualcuno",
-        "Ecco la prova! Trova uno sfidante nella foresta e gioca all'antico Tris, se lo batterai almeno una volta, ti darò un indizio...",
+        "Ecco la prova! Trova uno sfidante nella foresta e gioca all'antico Tris, se lo batterai almeno una volta, ti darò qualcosa che ti aiuterà a risolvere il mistero...",
         "Quando sei pronto vai pure, il primo turno sarà il tuo"
       ],
       "option": ["Non vedo l'ora","Certo",">>","Voglio farla!","Ok! Ci sto!", "Sono Pronto!"],
@@ -168,15 +168,19 @@
       "name": "start",
       "route": "/start",
       "text": [
-        "Pronto a scannerizzare Qr Codes?"
-
+        "Sapevo che te la saresti cavata alla grande! Ora potremo esplorare la foresta!",
+        "Dove vedi quelle foglie calpestate è il punto dove crescevano le mie felci succulente",
+        "Eh si sono tutte schiacciate, chissà cosa è successo...",
+        "Come? In effetti io vedo proprio poco... E sono pure smemorato!!! Mi sono dimenticato del tuo regalo!",
+        "Si tratta di una lente d'ingrandimento speciale, usala per inquadrare le impronte che trovi sparse per la foresta",
+        "Trovane il più possibile qui intorno così capiremo chi è passato!"
       ],
-      "option": ["Non vedo l'ora"],
+      "option": ["Evviva!","Oh no","Ci sono delle impronte!","Vero!",">>","Mi metto subito al lavoro!"],
       "images": {
         "singleCharacter": true,
         "character": "Dino1.svg",
         "characters": ["", "", ""],
-        "background": ["Asset2.svg"]
+        "background": ["Forest.png"]
       } 
     },
     {
@@ -185,10 +189,37 @@
       "images": {
         "background": "Lens.png"
       }
-    }
+    },
+    {
+      "name": "start",
+      "route": "/start",
+      "text": [
+        "Sei stato bravissimo! Le hai trovate tutte! Ora ci resta da capire a chi appartengono",
+        "Dovrei avere inciso da qualche parte le impronte di noi dinosauri",
+        "Fammi un disegno del dinosauro che ha lasciato più impronte! Così lo incastreremo",
+        "Ecco le impronte, raffiguralo per bene... eh eh lo abbiamo nel sacco"
+      ],
+      "option": ["Eh si",">>",">>","Si!"],
+      "images": {
+        "singleCharacter": true,
+        "character": "Dino1.svg",
+        "characters": ["", "", ""],
+        "background": ["Forest.png"]
+      } 
+    },
+    {
+      "name": "Video",
+      "route": "/video",
+      "resourceType": false,
+      "title": ["Impronte Dinosauri"],
+      "source": [""],
+      "images": {
+        "background": "StoneTablet.svg",
+        "image": "Footprints.png"
+      }
+    },
+    {
 
-  ],
-  "resources": {
-    "background": "Asset2.svg"
-  }
+    }
+  ]
 }

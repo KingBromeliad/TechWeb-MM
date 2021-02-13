@@ -1,21 +1,24 @@
 <template>
   <body
-    class="bg-fixed bg-cover bg-no-repeat min-h-screen"
+    class="bg-fixed bg-cover bg-no-repeat bg-center min-h-screen"
     v-bind:style="{ 'background-image': background }"
   >
- 
-    <div class="grid place-content-center h-screen">
-       <div class="flex justify-center align-center text-center mb-4">
-    <h1 class="text-black md:text-6xl text-2xl font-extrabold">{{title}}</h1>
-  </div>
-      <iframe
-        width="720"
-        height="400"
-        :src="source"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-      ></iframe>
+    <div v-show="resourceType" class="grid place-content-center h-screen">
+      <div class="flex justify-center align-center text-center mb-4">
+        <h1 class="text-black md:text-6xl text-2xl font-extrabold">
+          {{ title }}
+        </h1>
+      </div>
+      <div>
+        <iframe
+          width="720"
+          height="400"
+          :src="source"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
       <div class="flex justify-center">
         <button
           @click="Continue()"
@@ -27,8 +30,22 @@
     </div>
 
     <div v-show="!resourceType" class="grid place-content-center h-screen">
-      <img :src="source" />
+      <div class="flex justify-center align-center text-center mb-4">
+        <h1 class="text-white lg:text-6xl text-2xl font-extrabold">
+          {{ title }}
+        </h1>
+      </div>
+      <img style="height: 70vh" :src="source" />
+      <div class="flex justify-center">
+        <button
+          @click="Continue()"
+          class="bg-black hover:bg-gray-700 focus:outline-none rounded-lg font-bold text-center text-white md:text-2xl sm:text-xl p-2 mt-4"
+        >
+          Continue
+        </button>
+      </div>
     </div>
+
   </body>
 </template>
 <script>
@@ -37,11 +54,12 @@ export default {
     data: Object,
   },
   computed: {
-    title: function(){
-      return this.data.title[this.line]
+    title: function() {
+      return this.data.title[this.line];
     },
     source: function() {
-      return this.data.source[this.line];
+      if (this.data.resourceType) return this.data.source[this.line];
+      else return "http://localhost:3500/" + this.data.images.image;
     },
     background: function() {
       return "url(http://localhost:3500/" + this.data.images.background + ")";
@@ -50,10 +68,10 @@ export default {
       return this.data.resourceType;
     },
   },
-  data: function(){
-    return{
-      line: 0
-    }
+  data: function() {
+    return {
+      line: 0,
+    };
   },
   methods: {
     Continue() {
