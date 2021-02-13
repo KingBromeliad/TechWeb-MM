@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="bg-fixed bg-center bg-cover bg-no-repeat min-h-screen m-0 p-0" 
+         v-bind:style="{ 'background-image': background }">
         <div class="grid place-content-center h-screen">
             <!-- WELCOME INSIDE THE GRID LAYOUT-->
             <div class="flex content-center justify-center flex-wrap space-y-8">

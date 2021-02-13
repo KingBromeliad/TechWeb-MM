@@ -8,9 +8,9 @@
         ],
         "images": {
           "singleCharacter": true,
-          "character": "spaceStory/MusicStory/ .. .png",
+          "character": "musicStory/MusicAtmosphere.png",
           "characters": ["", "", ""],
-          "background": [" "]
+          "background": ["musicStory/MusicAtmosphere.svg"]
         }
       },
       {
