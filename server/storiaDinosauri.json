@@ -16,7 +16,19 @@
         "Oh no, non vedi che sono ricoperto di ossa sulla schiena?",
         "Mi sembri abbastanza agile, trova un percorso saltando sulle rocce!"
       ],
-      "option": [">>", ">>", ">>", ">>", ">>", ">>", "Si!", ">>", "Posso salire su di te?","Oh vero","Ce la farò!"],
+      "option": [
+        ">>",
+        ">>",
+        ">>",
+        ">>",
+        ">>",
+        ">>",
+        "Si!",
+        ">>",
+        "Posso salire su di te?",
+        "Oh vero",
+        "Ce la farò!"
+      ],
       "images": {
         "singleCharacter": true,
         "character": "Dino1.svg",
@@ -59,7 +71,30 @@
         "Bene ragazzo, vediamo cosa hai imparato! Tieni questa tavoletta roccia per prendere appunti",
         "Rispondi a qualche domanda sui miei amici per essere sicuro di averli inquadrati bene"
       ],
-      "option": ["Certo che no!",">>", ">>", ">>", ">>", ">>", ">>",">>", ">>", ">>", ">>", ">>", ">>",">>", ">>", ">>", ">>","Piacere di conoscervi",">>",">>","Grazie","Va Bene!"],
+      "option": [
+        "Certo che no!",
+        ">>",
+        ">>",
+        ">>",
+        ">>",
+        ">>",
+        ">>",
+        ">>",
+        ">>",
+        ">>",
+        ">>",
+        ">>",
+        ">>",
+        ">>",
+        ">>",
+        ">>",
+        ">>",
+        "Piacere di conoscervi",
+        ">>",
+        ">>",
+        "Grazie",
+        "Va Bene!"
+      ],
       "images": {
         "singleCharacter": false,
         "background": ["BgMountain.png"],
@@ -148,7 +183,14 @@
         "Ecco la prova! Trova uno sfidante nella foresta e gioca all'antico Tris, se lo batterai almeno una volta, ti darò qualcosa che ti aiuterà a risolvere il mistero...",
         "Quando sei pronto vai pure, il primo turno sarà il tuo"
       ],
-      "option": ["Non vedo l'ora","Certo",">>","Voglio farla!","Ok! Ci sto!", "Sono Pronto!"],
+      "option": [
+        "Non vedo l'ora",
+        "Certo",
+        ">>",
+        "Voglio farla!",
+        "Ok! Ci sto!",
+        "Sono Pronto!"
+      ],
       "images": {
         "singleCharacter": true,
         "character": "Dino1.svg",
@@ -175,13 +217,20 @@
         "Si tratta di una lente d'ingrandimento speciale, usala per inquadrare le impronte che trovi sparse per la foresta",
         "Trovane il più possibile qui intorno così capiremo chi è passato!"
       ],
-      "option": ["Evviva!","Oh no","Ci sono delle impronte!","Vero!",">>","Mi metto subito al lavoro!"],
+      "option": [
+        "Evviva!",
+        "Oh no",
+        "Ci sono delle impronte!",
+        "Vero!",
+        ">>",
+        "Mi metto subito al lavoro!"
+      ],
       "images": {
         "singleCharacter": true,
         "character": "Dino1.svg",
         "characters": ["", "", ""],
         "background": ["Forest.png"]
-      } 
+      }
     },
     {
       "name": "QrScanner",
@@ -199,13 +248,13 @@
         "Fammi un disegno del dinosauro che ha lasciato più impronte! Così lo incastreremo",
         "Ecco le impronte, raffiguralo per bene... eh eh lo abbiamo nel sacco"
       ],
-      "option": ["Eh si",">>",">>","Si!"],
+      "option": ["Eh si", ">>", ">>", "Si!"],
       "images": {
         "singleCharacter": true,
         "character": "Dino1.svg",
         "characters": ["", "", ""],
         "background": ["Forest.png"]
-      } 
+      }
     },
     {
       "name": "Video",
@@ -223,6 +272,77 @@
       "route": "/imageGame",
       "images": {
         "background": "StoneTablet.svg"
+      }
+    },
+    {
+      "name": "start",
+      "route": "/start",
+      "text": [
+        "Disegno perfetto! Quello è chiaramente Anno il tirannosauro!",
+        "Non me lo aspettavo proprio da lui, ma le prove sono chiare, chiamiamolo..",
+        "Anno! Anno! Dove sei? Vieni qui!",
+        "Oh eccomi, che succede? Ti serve qualcosa?",
+        "Anno! Guarda che sappiamo che sei stato tu a mangiare le felci!",
+        "Questo ragazzo ti ha scoperto! Ma ora ci chiediamo: perche?? Tu sei carnivoro!",
+        "Ma.. ma.. Uffa.. Mi avete beccato",
+        "Ecco allora. A me non piace essere carnivoro!",
+        "Già è così, volevo provare la dieta vegetariana, ma mi vergogno",
+        "Ma io ho tanta fame e quindi per riempirmi le ho dovute mangiare tutte... Mi dispiace...",
+        "Ti perdono Anno, non c'è nulla di cui vergognarti, potevi dirmelo",
+        "Facciamo così, mi aiuterai a piantare altre felci così ce ne saranno abbastanza per tutti!",
+        "Grazie mille per avermi perdonato e capito, non me lo aspettavo proprio!",
+        "Ma figurati Anno! Facciamo pace",
+        "Siiii grazie mille anche a te cucciolo d'uomo",
+        "Grazie mille davvero! E ora... Festa!!"
+      ],
+      "option": [
+        "Già",
+        "Chissà perchè lo ha fatto",
+        ">>",
+        "Eccoti",
+        ">>",
+        ">>",
+        "Spiegaci",
+        "Cosa?",
+        ">>",
+        ">>",
+        "Già",
+        ">>",
+        ">>",
+        "Si evviva!",
+        "Di nulla Anno",
+        "Evvai!"
+      ],
+      "images": {
+        "singleCharacter": false,
+        "character": "Dino1.svg",
+        "characters": [
+          "Dino1.svg",
+          "Dino1.svg",
+          "Dino1.svg",
+          "Tirannosauro.svg",
+          "Dino1.svg",
+          "Dino1.svg",
+          "TirannosauroSad.svg",
+          "TirannosauroSad.svg",
+          "TirannosauroSad.svg",
+          "TirannosauroSad.svg",
+          "Dino1.svg",
+          "Dino1.svg",
+          "Tirannosauro.svg",
+          "Dino1.svg",
+          "Tirannosauro.svg",
+          "Dino1.svg"
+        ],
+        "background": ["Forest.png"]
+      }
+    },
+    {
+      "name": "EndScene",
+      "route": "/end",
+      "text": "Complimenti cucciolo d'Uomo! Hai risolto il mistero!",
+      "images": {
+        "background": "FinalScene.png"
       }
     }
   ]

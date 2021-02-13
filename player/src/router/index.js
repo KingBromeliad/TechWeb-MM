@@ -6,6 +6,7 @@ import Quiz from '../views/Quiz.vue'
 import FinalEval from '../views/FinalEval.vue'
 //--game pages--//
 import Start from '../views/game/Start.vue'
+import End from '../views/game/End.vue'
 import PathGame from '../views/game/PathGame.vue'
 import Question from '../views/game/Question.vue'
 import Game from '../views/Game.vue'
@@ -77,6 +78,11 @@ const routes = [
     path: '/qrCodeGame',
     name: 'QrCodeGame',
     component: QrCodeGame
+  },
+  {
+    path: '/end',
+    name: 'End',
+    component: End
   }
 ]
 
