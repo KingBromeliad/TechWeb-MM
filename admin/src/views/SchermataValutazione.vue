@@ -1,58 +1,71 @@
 <template>
   <div>
-    <div v-for="(giocatore, index) in this.giocatori" :key="index">
-      <div
-        class="py-8 px-8 max-w-sm mx-auto bg-gray-100 rounded-xl shadow-md space-y-2 sm:py-4 sm:space-y-0 sm:space-x-6 m-1 text-center"
-      >
-        <p class="text-xl text-black align-top">{{ giocatore.playerId }}</p>
-        <button
-          class="align-bottom px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-          @click="updateIndex(index)"
+    <div v-if="isNotEmpty()">
+      <h1 class="text-center text-2xl font-semibold">Giocatori Connessi:</h1>
+      <div v-for="(giocatore, index) in this.giocatori" :key="index">
+        <div
+          class="py-8 px-8 max-w-sm mx-auto bg-gray-100 rounded-xl shadow-md space-y-2 sm:py-4 sm:space-y-0 sm:space-x-6 m-1 text-center"
         >
-          Visualizza il progresso del Giocatore
-        </button>
+          <p class="text-xl text-black align-top">{{ giocatore.playerId }}</p>
+          <button
+            class="align-bottom px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+            @click="updateIndex(index)"
+          >
+            Visualizza il progresso del Giocatore
+          </button>
+        </div>
       </div>
-    </div>
-    <p class="text-xl text-black align-top font-bold text-center">
-      Giocatore: {{ giocatori[shownPlayerIndex].playerId }}
-    </p>
-    <div class="content-center max-w-sm bg-gray-100 mx-auto">
-      <div
-        v-for="punteggio in giocatori[shownPlayerIndex].punteggi"
-        :key="punteggio.nomeGioco"
-      >
-        <div class="border-2">
-          <p class="text-lg text-gray-500 text-center">
-            Gioco: {{ punteggio.nomeGioco }} <br />
-            Punteggio: {{ punteggio.punti }}
-          </p>
-          <div v-if="imagePresent == true && immagineDaValutare.playerIdSendingImage == giocatori[shownPlayerIndex].playerId" class="grid">
-            <img :src="immagineDaValutare.imageUrl" />
-            <p>Punteggio:</p>
-            <input type="number" v-model="punteggioEval" />
-            <button
-              @click="evalImagePositive()"
-              class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline"
+      <p class="text-xl text-black align-top font-bold text-center">
+        Giocatore: {{ giocatori[shownPlayerIndex].playerId }}
+      </p>
+      <div class="content-center max-w-sm bg-gray-100 mx-auto">
+        <div
+          v-for="punteggio in giocatori[shownPlayerIndex].punteggi"
+          :key="punteggio.nomeGioco"
+        >
+          <div class="border-2">
+            <p class="text-lg text-gray-500 text-center">
+              Gioco: {{ punteggio.nomeGioco }} <br />
+              Punteggio: {{ punteggio.punti }}
+            </p>
+            <div
+              v-if="
+                imagePresent == true &&
+                immagineDaValutare.playerIdSendingImage ==
+                  giocatori[shownPlayerIndex].playerId
+              "
+              class="grid"
             >
-              Giusta
-            </button>
-            <button
-              @click="evalImageNegative()"
-              class="border border-red-500 bg-red-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline"
-            >
-              Sbagliata
-            </button>
+              <img :src="immagineDaValutare.imageUrl" />
+              <p>Valuta l'immagine con un punteggio:</p>
+              <input type="number" v-model="punteggioEval" />
+              <button
+                @click="evalImagePositive()"
+                class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline"
+              >
+                Giusta
+              </button>
+              <button
+                @click="evalImageNegative()"
+                class="border border-red-500 bg-red-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline"
+              >
+                Sbagliata
+              </button>
+            </div>
           </div>
         </div>
       </div>
+      <modal name="playerNeedsHelp">
+        <div class="text-xl text-center text-black font-bold py-5">
+          Il giocatore: <br />
+          {{ giocatoreDaAiutare }} <br />
+          ha bisogno di aiuto!
+        </div>
+      </modal>
     </div>
-    <modal name="playerNeedsHelp">
-      <div class="text-xl text-center text-black font-bold py-5">
-        Il giocatore: <br />
-        {{ giocatoreDaAiutare }} <br />
-        ha bisogno di aiuto!
-      </div>
-    </modal>
+    <div v-else>
+      <h1 class="text-4xl text-center font-bold">Non c'è una storia attiva al momento</h1>
+    </div>
   </div>
 </template>
 
@@ -87,6 +100,7 @@ export default {
           this.immagineDaValutare.playerIdSendingImage = response.data.playerId;
           console.log(this.immagineDaValutare.playerIdSendingImage);
           this.imagePresent = true;
+          alert("Il giocatore: " + response.data.playerId + " ha inviato un'immagine da valutare");
         })
         .catch((err) => {
           console.log(err);
@@ -105,17 +119,21 @@ export default {
     evalImagePositive: function () {
       let data = {
         eval: true,
-        punti: this.punteggioEval
-      }
+        punti: this.punteggioEval,
+      };
       this.$socket.client.emit("image_eval", data);
       this.imagePresent = false;
     },
     evalImageNegative: function () {
       let data = {
         eval: false,
-        punti: this.punteggioEval
-      }
+        punti: this.punteggioEval,
+      };
       this.$socket.client.emit("image_eval", data);
+    },
+    isNotEmpty: function () {
+      if(this.giocatori && this.giocatori.length) return true;
+      else return false
     },
   },
   sockets: {
@@ -130,7 +148,7 @@ export default {
     image_sent(data) {
       this.imagePresent = data;
       this.getImage();
-    }
+    },
   },
   mounted: function () {
     //this.getImage();

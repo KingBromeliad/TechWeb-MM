@@ -19,148 +19,260 @@
       }
     },
     {
-        "name": "Video",
-        "route": "/video",
-        "resourceType": true,
-        "title": ["Is Mars Really Red?"],
-        "source": ["https://mars.nasa.gov/embed/20029/"],
-        "images": {
-        "background": "spaceStory/Tablet.png" 
-        }
-    },
-    {
-        "name": "start",
-        "route": "/start",
-        "text": [
-          "Molto bene spero l'abbiate trovato interessante, l'atterraggio avverrà in t minus 55...",
-          "Che è questo trambusto? Che succede?",
-          "Terribili notizie!! Abbiamo perso segnale con il modulo del rover Inspiration!",
-          "Come faremo? Qualcuno dovrebbe partire immediatamente e andare a controllare il satellite sul quale rimbalza il segnale",
-          "Ma qui alla base sono rimasto solo io e questi ragazzi! Non posso farcela da solo...",
-          "Mi permetta austronauta Jonas! Sono sicuro che tra questi ragazzi ci sia qualcuno con le capacità necessarie",
-          "Sarebbe impossibile, questi ragazzi non dispongono delle conoscenze necessarie!",
-          "E allora terremo una sfida! Chi realizzerà il punteggio maggiore verrà selezionato...",
-          "Che ne dite? Siete pronti a diventare astronauti ed Eroi?!",
-          "Ehm, molto bene allora, il Mars-ablet vi istruirà riguardo tutto quello che dovete sapere"
-        ],
-        "option": [">>", "??", ">>", ">>", ">>",">>",">>",">>","Si! Ci sto!","Pronti!"],
-        "images": {
-          "singleCharacter": false,
-          "character": "spaceStory/Astronaut.png",
-          "characters": ["spaceStory/Astronaut.png", "spaceStory/Astronaut.png", "spaceStory/Scientist.svg", "spaceStory/Scientist.svg","spaceStory/Astronaut.png","spaceStory/Manager.svg","spaceStory/Scientist.svg","spaceStory/Manager.svg","spaceStory/Manager.svg","spaceStory/Scientist.svg"],
-          "background": ["spaceStory/BgLab.svg"]
-        }
-      },
-      {
-        "name": "Video",
-        "route": "/video",
-        "resourceType": true,
-        "title": ["How Do You Get to Mars?","How Hard Is It to Land a Rover on Mars?","Phoning Home: Communicating from Mars"],
-        "source": ["https://mars.nasa.gov/embed/20032/","https://mars.nasa.gov/embed/20048/","https://mars.nasa.gov/embed/20055/"],
-        "images": {
-        "background": "spaceStory/Tablet.png" 
-        }
-    },
-    {
-        "name": "start",
-        "route": "/start",
-        "text": [
-          "Bene ora che sapete tutto è il momento del test attitudinale! Chi vincerà?"
-        ],
-        "option": [">>"],
-        "images": {
-          "singleCharacter": true,
-          "character": "spaceStory/Manager.svg",
-          "characters": ["", "", ""],
-          "background": ["spaceStory/BgLab.svg"]
-        }
-      },
-      {
-        "name": "question",
-        "route": "/question",
-        "domande": [
-          {
-            "domanda": "Marte è rosso perchè?",
-            "argomento": ["pangolino", "rabarbaro", "piatto", "naso"],
-            "soluzione": 0
-          },
-          {
-            "domanda": "Quando è possibile partire per Marte?",
-            "argomento": ["A", "B", "C", "D"],
-            "soluzione": 2
-          },
-          {
-            "domanda": "Quanto dura la discesa verso la superficie?",
-            "argomento": ["Bob", "Fred", "Pippo", "Pluto"],
-            "soluzione": 1
-          },
-          {
-            "domanda": "Per quanto tempo possono comunicare il rover e il suo orbiter?",
-            "argomento": ["Bob", "Fred", "Pippo", "Pluto"],
-            "soluzione": 1
-          }
-        ],
-        "images": {
-          "background": "StoneTablet.svg",
-          "singleQuestionImage": false,
-          "questionImage": "Triceratopo.svg",
-          "questionImages": [
-            "Tirannosauro.svg",
-            "Brontosauro.svg",
-            "Diplodoco.png",
-            ""
-          ]
-        }
-      },
-      {
-        "name": "start",
-        "route": "/start",
-        "text": [
-          "Eccellente sapevo che saresti riuscito a superare il test con un ottimo punteggio!",
-          "Vieni con me ragazzo prepariamoci al lancio!",
-          "In tre! Due! Uno! Lancio!",
-          "Qui base, riuscite ad identificare il problema?",
-          "Purtroppo a causa dei danni al satellite non riceviamo il vostro feed video",
-          "Ragazzo riusciresti ad disegnare il danno al satellite osservando dalle ottiche della navicella?",
-          "Ottimo! Poi utilizza lo scanner del Mars-ablet per inviare il disegno, cerca di essere il più accurato possibile!",
-          "Inizia pure!"
-        ],
-        "option": ["Grazie","Evvai!",">>","Non vedete?", "Capisco","Credo di si",">>","Subito"],
-        "images": {
-          "singleCharacter": false,
-          "character": "spaceStory/Manager.svg",
-          "characters": ["spaceStory/Manager.svg", "spaceStory/Astronaut.png"],
-          "background": ["spaceStory/BgLab.svg","spaceStory/BgLab.svg","spaceStory/Launch.svg","spaceStory/BrokenSatellite.svg","spaceStory/BrokenSatellite.svg","spaceStory/BrokenSatellite.svg","spaceStory/BrokenSatellite.svg","spaceStory/BrokenSatellite.svg"]
-        }
-      },
-      {
-          "name": "Upload",
-          "route": "/upload",
-          "images": {
-              "background": "spaceStory/BgLab.svg"
-          }
-      },
-      {
-        "name": "start",
-        "route": "/start",
-        "text": [
-          "Ecco il problema senza pannelli il satellite è rimasto a corto di energia",
-          "Fortunatamente nella navicella sono presenti i ricambi necessari",
-          "Dopo aver agganciato i pannelli dovrete sostituire i fusibili correttamente",
-          "Qui base, riuscite ad identificare il problema?",
-          "Purtroppo a causa dei danni al satellite non riceviamo il vostro feed video",
-          "Ragazzo riusciresti ad disegnare il danno al satellite osservando dalle ottiche della navicella?",
-          "Ottimo! Poi utilizza lo scanner del Mars-ablet per inviare il disegno, cerca di essere il più accurato possibile!",
-          "Inizia pure!"
-        ],
-        "option": ["Grazie","Evvai!",">>","Non vedete?", "Capisco","Credo di si",">>","Subito"],
-        "images": {
-          "singleCharacter": false,
-          "character": "spaceStory/Manager.svg",
-          "characters": ["spaceStory/Manager.svg", "spaceStory/Astronaut.png"],
-          "background": ["spaceStory/BgLab.svg","spaceStory/BgLab.svg","spaceStory/Launch.svg","spaceStory/BrokenSatellite.svg","spaceStory/BrokenSatellite.svg","spaceStory/BrokenSatellite.svg","spaceStory/BrokenSatellite.svg","spaceStory/BrokenSatellite.svg"]
-        }
+      "name": "Video",
+      "route": "/video",
+      "resourceType": true,
+      "title": ["Is Mars Really Red?"],
+      "source": ["https://mars.nasa.gov/embed/20029/"],
+      "images": {
+        "background": "spaceStory/Tablet.png"
       }
-
+    },
+    {
+      "name": "start",
+      "route": "/start",
+      "text": [
+        "Molto bene spero l'abbiate trovato interessante, l'atterraggio avverrà in t minus 55...",
+        "Che è questo trambusto? Che succede?",
+        "Terribili notizie!! Abbiamo perso segnale con il modulo del rover Inspiration!",
+        "Come faremo? Qualcuno dovrebbe partire immediatamente e andare a controllare il satellite sul quale rimbalza il segnale",
+        "Ma qui alla base sono rimasto solo io e questi ragazzi! Non posso farcela da solo...",
+        "Mi permetta austronauta Jonas! Sono sicuro che tra questi ragazzi ci sia qualcuno con le capacità necessarie",
+        "Sarebbe impossibile, questi ragazzi non dispongono delle conoscenze necessarie!",
+        "E allora terremo una sfida! Chi realizzerà il punteggio maggiore verrà selezionato...",
+        "Che ne dite? Siete pronti a diventare astronauti ed Eroi?!",
+        "Ehm, molto bene allora, il Mars-ablet vi istruirà riguardo tutto quello che dovete sapere"
+      ],
+      "option": [
+        ">>",
+        "??",
+        ">>",
+        ">>",
+        ">>",
+        ">>",
+        ">>",
+        ">>",
+        "Si! Ci sto!",
+        "Pronti!"
+      ],
+      "images": {
+        "singleCharacter": false,
+        "character": "spaceStory/Astronaut.png",
+        "characters": [
+          "spaceStory/Astronaut.png",
+          "spaceStory/Astronaut.png",
+          "spaceStory/Scientist.svg",
+          "spaceStory/Scientist.svg",
+          "spaceStory/Astronaut.png",
+          "spaceStory/Manager.svg",
+          "spaceStory/Scientist.svg",
+          "spaceStory/Manager.svg",
+          "spaceStory/Manager.svg",
+          "spaceStory/Scientist.svg"
+        ],
+        "background": ["spaceStory/BgLab.svg"]
+      }
+    },
+    {
+      "name": "Video",
+      "route": "/video",
+      "resourceType": true,
+      "title": [
+        "How Do You Get to Mars?",
+        "How Hard Is It to Land a Rover on Mars?",
+        "Phoning Home: Communicating from Mars"
+      ],
+      "source": [
+        "https://mars.nasa.gov/embed/20032/",
+        "https://mars.nasa.gov/embed/20048/",
+        "https://mars.nasa.gov/embed/20055/"
+      ],
+      "images": {
+        "background": "spaceStory/Tablet.png"
+      }
+    },
+    {
+      "name": "start",
+      "route": "/start",
+      "text": [
+        "Bene ora che sapete tutto è il momento del test attitudinale! Chi vincerà?"
+      ],
+      "option": [">>"],
+      "images": {
+        "singleCharacter": true,
+        "character": "spaceStory/Manager.svg",
+        "characters": ["", "", ""],
+        "background": ["spaceStory/BgLab.svg"]
+      }
+    },
+    {
+      "name": "question",
+      "route": "/question",
+      "domande": [
+        {
+          "domanda": "Marte è rosso perchè?",
+          "argomento": ["pangolino", "rabarbaro", "piatto", "naso"],
+          "soluzione": 0
+        },
+        {
+          "domanda": "Quando è possibile partire per Marte?",
+          "argomento": ["A", "B", "C", "D"],
+          "soluzione": 2
+        },
+        {
+          "domanda": "Quanto dura la discesa verso la superficie?",
+          "argomento": ["Bob", "Fred", "Pippo", "Pluto"],
+          "soluzione": 1
+        },
+        {
+          "domanda": "Per quanto tempo possono comunicare il rover e il suo orbiter?",
+          "argomento": ["Bob", "Fred", "Pippo", "Pluto"],
+          "soluzione": 1
+        }
+      ],
+      "images": {
+        "background": "StoneTablet.svg",
+        "singleQuestionImage": false,
+        "questionImage": "Triceratopo.svg",
+        "questionImages": [
+          "Tirannosauro.svg",
+          "Brontosauro.svg",
+          "Diplodoco.png",
+          ""
+        ]
+      }
+    },
+    {
+      "name": "start",
+      "route": "/start",
+      "text": [
+        "Eccellente sapevo che saresti riuscito a superare il test con un ottimo punteggio!",
+        "Vieni con me ragazzo prepariamoci al lancio!",
+        "In tre! Due! Uno! Lancio!",
+        "Qui base, riuscite ad identificare il problema?",
+        "Purtroppo a causa dei danni al satellite non riceviamo il vostro feed video",
+        "Ragazzo riusciresti ad disegnare il danno al satellite osservando dalle ottiche della navicella?",
+        "Ottimo! Poi utilizza lo scanner del Mars-ablet per inviare il disegno, cerca di essere il più accurato possibile!",
+        "Inizia pure!"
+      ],
+      "option": [
+        "Grazie",
+        "Evvai!",
+        ">>",
+        "Non vedete?",
+        "Capisco",
+        "Credo di si",
+        ">>",
+        "Subito"
+      ],
+      "images": {
+        "singleCharacter": false,
+        "character": "spaceStory/Manager.svg",
+        "characters": ["spaceStory/Manager.svg", "spaceStory/Astronaut.png"],
+        "background": [
+          "spaceStory/BgLab.svg",
+          "spaceStory/BgLab.svg",
+          "spaceStory/Launch.svg",
+          "spaceStory/BrokenSatellite.svg",
+          "spaceStory/BrokenSatellite.svg",
+          "spaceStory/BrokenSatellite.svg",
+          "spaceStory/BrokenSatellite.svg",
+          "spaceStory/BrokenSatellite.svg"
+        ]
+      }
+    },
+    {
+      "name": "Upload",
+      "route": "/upload",
+      "images": {
+        "background": "spaceStory/BgLab.svg"
+      }
+    },
+    {
+      "name": "start",
+      "route": "/start",
+      "text": [
+        "Ecco il problema senza pannelli il satellite è rimasto a corto di energia",
+        "Fortunatamente nella navicella sono presenti i ricambi necessari",
+        "Dopo aver agganciato i pannelli dovrete sostituire i fusibili correttamente",
+        "Qui base, riuscite ad identificare il problema?",
+        "Purtroppo a causa dei danni al satellite non riceviamo il vostro feed video",
+        "Ragazzo riusciresti ad disegnare il danno al satellite osservando dalle ottiche della navicella?",
+        "Ottimo! Poi utilizza lo scanner del Mars-ablet per inviare il disegno, cerca di essere il più accurato possibile!",
+        "Inizia pure!"
+      ],
+      "option": [
+        "Grazie",
+        "Evvai!",
+        ">>",
+        "Non vedete?",
+        "Capisco",
+        "Credo di si",
+        ">>",
+        "Subito"
+      ],
+      "images": {
+        "singleCharacter": false,
+        "character": "spaceStory/Manager.svg",
+        "characters": ["spaceStory/Manager.svg", "spaceStory/Astronaut.png"],
+        "background": [
+          "spaceStory/BgLab.svg",
+          "spaceStory/BgLab.svg",
+          "spaceStory/Launch.svg",
+          "spaceStory/BrokenSatellite.svg",
+          "spaceStory/BrokenSatellite.svg",
+          "spaceStory/BrokenSatellite.svg",
+          "spaceStory/BrokenSatellite.svg",
+          "spaceStory/BrokenSatellite.svg"
+        ]
+      }
+    },
+    {
+      "name": "PathGame",
+      "route": "/pathgame",
+      "images": {
+        "backgroundPath": "backgroundPath.png",
+        "rock": "Rock.svg"
+      }
+    },
+    {
+      "name": "start",
+      "route": "/start",
+      "text": [
+        "Ecco il problema senza pannelli il satellite è rimasto a corto di energia",
+        "Fortunatamente nella navicella sono presenti i ricambi necessari",
+        "Dopo aver agganciato i pannelli dovrete sostituire i fusibili correttamente",
+        "Qui base, riuscite ad identificare il problema?",
+        "Purtroppo a causa dei danni al satellite non riceviamo il vostro feed video",
+        "Ragazzo riusciresti ad disegnare il danno al satellite osservando dalle ottiche della navicella?",
+        "Ottimo! Poi utilizza lo scanner del Mars-ablet per inviare il disegno, cerca di essere il più accurato possibile!",
+        "Inizia pure!"
+      ],
+      "option": [
+        "Grazie",
+        "Evvai!",
+        ">>",
+        "Non vedete?",
+        "Capisco",
+        "Credo di si",
+        ">>",
+        "Subito"
+      ],
+      "images": {
+        "singleCharacter": false,
+        "character": "spaceStory/Manager.svg",
+        "characters": ["spaceStory/Manager.svg", "spaceStory/Astronaut.png"],
+        "background": [
+          "spaceStory/BgLab.svg",
+          "spaceStory/BgLab.svg",
+          "spaceStory/Launch.svg",
+          "spaceStory/BrokenSatellite.svg",
+          "spaceStory/BrokenSatellite.svg",
+          "spaceStory/BrokenSatellite.svg",
+          "spaceStory/BrokenSatellite.svg",
+          "spaceStory/BrokenSatellite.svg"
+        ]
+      }
+    }
   ]
 }
