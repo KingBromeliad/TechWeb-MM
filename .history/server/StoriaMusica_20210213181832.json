@@ -81,9 +81,9 @@
             "singleQuestionImage": false,
             "questionImage": "musicStory/MusicQuiz.png",
             "questionImages": [
-              "",
-              "",
-              "",
+              "Tirannosauro.svg",
+              "Brontosauro.svg",
+              "Diplodoco.png",
               ""
             ]
           }

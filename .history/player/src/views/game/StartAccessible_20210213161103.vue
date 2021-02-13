@@ -11,7 +11,7 @@
 
                 <button
                     @click="ContinueToNext()"
-                    class="hover:bg-gray-700 focus:outline-none rounded-lg font-extrabold text-center text-black md:text-6xl sm:text-2xl md:ml-40 sm:ml-10 p-3"
+                    class="shadow hover:bg-gray-700 focus:outline-none rounded-lg font-extrabold text-center text-black md:text-6xl sm:text-2xl md:ml-40 sm:ml-10 p-3"
                     role="button"
                     aria-label="Prosegui con la storia"
                 >

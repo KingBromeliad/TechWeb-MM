@@ -17,7 +17,7 @@
           "name": "Video",
           "route": "/video",
           "resourceType": true,
-          "title": ["Principali note - Chiave di Violino"],
+          "title": ["Principali note - Chiave di SOL"],
           "source": ["https://www.youtube.com/embed/2jFy9DIn-Y0"],
           "images": {
           "background": "musicStory/MusicBg.svg" 
@@ -31,7 +31,7 @@
           ],
           "images": {
             "singleCharacter": false,
-            "character": "musicStory/MusicAtmosphere.png",
+            "character": " .. .png",
             "characters": [" ", " ", " ", " "," "," "," "," "," "," "],
             "background": ["musicStory/MusicAtmosphere.svg"]
           }
@@ -40,10 +40,10 @@
           "name": "Video",
           "route": "/video",
           "resourceType": true,
-          "title": ["Principali note - Chiave di Basso"],
-          "source": ["https://www.youtube.com/embed/YpVcf-Q5AlU"],
+          "title": ["How Do You Get to Mars?","How Hard Is It to Land a Rover on Mars?","Phoning Home: Communicating from Mars"],
+          "source": ["https://mars.nasa.gov/embed/20032/","https://mars.nasa.gov/embed/20048/","https://mars.nasa.gov/embed/20055/"],
           "images": {
-          "background": "musicStory/MusicBg.svg"
+          "background": "spaceStory/Tablet.png" 
           }
       },
         {
@@ -51,39 +51,34 @@
           "route": "/question",
           "domande": [
             {
-              "domanda": "Quante righe ha il pentagramma?",
-              "argomento": ["tre", "quattro", "cinque", "sei"],
+              "domanda": "Marte è rosso perchè?",
+              "argomento": ["pangolino", "rabarbaro", "piatto", "naso"],
+              "soluzione": 0
+            },
+            {
+              "domanda": "Quando è possibile partire per Marte?",
+              "argomento": ["A", "B", "C", "D"],
               "soluzione": 2
             },
             {
-              "domanda": "Come si distinguono le note sul Pentagramma?",
-              "argomento": ["note sulle righe e negli spazi tra le righe", "note sulle righe", "note negli spazi", "dipende dal pentagramma"],
-              "soluzione": 0
-            },
-            {
-              "domanda": "Con la chiave di Violino posso creare un accompagnamento musicale?",
-              "argomento": ["no", "si"],
+              "domanda": "Quanto dura la discesa verso la superficie?",
+              "argomento": ["Bob", "Fred", "Pippo", "Pluto"],
               "soluzione": 1
             },
             {
-              "domanda": "Perchè la chiave di Basso viene detta 'Chiave di FA' ?",
-              "argomento": ["Perchè il simbolo sta sulla prima riga", "Perchè il simbolo sta sulla seconda riga", "Perchè il simbolo sta sulla terza riga", "Perchè il simbolo sta sulla quarta riga"],
-              "soluzione": 3
-            },
-            {
-              "domanda": "Quali sono le note nelle righe della chiave di Basso?",
-              "argomento": ["LA DO MI SOL", "SOL LA DO MI", "MI SOL LA DO", "DO MI SOL LA"],
-              "soluzione": 0
+              "domanda": "Per quanto tempo possono comunicare il rover e il suo orbiter?",
+              "argomento": ["Bob", "Fred", "Pippo", "Pluto"],
+              "soluzione": 1
             }
           ],
           "images": {
-            "background": "musicStory/MusicQuiz.svg",
+            "background": "StoneTablet.svg",
             "singleQuestionImage": false,
-            "questionImage": "musicStory/MusicQuiz.png",
+            "questionImage": "Triceratopo.svg",
             "questionImages": [
-              "",
-              "",
-              "",
+              "Tirannosauro.svg",
+              "Brontosauro.svg",
+              "Diplodoco.png",
               ""
             ]
           }

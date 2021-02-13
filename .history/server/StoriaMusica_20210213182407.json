@@ -77,9 +77,9 @@
             }
           ],
           "images": {
-            "background": "musicStory/MusicQuiz.svg",
+            "background": "musicStory/71.svg",
             "singleQuestionImage": false,
-            "questionImage": "musicStory/MusicQuiz.png",
+            "questionImage": "musicStory/71.png",
             "questionImages": [
               "",
               "",

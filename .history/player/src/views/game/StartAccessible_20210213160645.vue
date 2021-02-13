@@ -4,14 +4,14 @@
             <!-- WELCOME INSIDE THE GRID LAYOUT-->
             <div class="flex content-center justify-center flex-wrap space-y-8">
                 <div class="rounded-md text-center md:mr-4">
-                    <p class="text-black font-extrabold md:text-xl md:m-10 sm:m-2">
+                    <p class="text-white font-extrabold md:text-xl md:m-10 sm:m-2">
                         {{ text }}
                     </p>
                 </div>
 
                 <button
                     @click="ContinueToNext()"
-                    class="hover:bg-gray-700 focus:outline-none rounded-lg font-extrabold text-center text-black md:text-6xl sm:text-2xl md:ml-40 sm:ml-10 p-3"
+                    class="bg-black hover:bg-gray-700 focus:outline-none rounded-lg font-extrabold text-center text-white md:text-6xl sm:text-2xl md:ml-40 sm:ml-10 p-3"
                     role="button"
                     aria-label="Prosegui con la storia"
                 >
