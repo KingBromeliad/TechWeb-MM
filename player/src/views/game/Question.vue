@@ -33,7 +33,7 @@
                   type="radio"
                   :id="index"
                   :value="index"
-                  v-model="answers[currentQuestion]"
+                  v-model="answer"
                   class="form-tick h-6 w-6 border border-gray-300 rounded-md checked:bg-blue-600 checked:border-transparent focus:outline-none"
                 />
                 <span class="text-gray-900 text-s font-medium">{{
@@ -71,7 +71,24 @@
       </div>
     </section>
     <section v-show="quizCompleted">
-
+      <div class="grid place-content-center text-center h-screen">
+        <h1
+          class="text-white lg:text-8xl text-4xl font-bold text-center bg-gradient-to-r from-green-400 to-blue-500 rounded-2xl lg:p-4 p-2 m-1"
+        >
+          COMPLIMENTI!
+        </h1>
+        <p class="text-black lg:text-8xl text-4xl font-medium lg:p-4 p-2">
+          Hai ottenuto: <br />{{ this.punti + "" }} Punti
+        </p>
+        <div class="flex justify-center">
+          <button
+            @click="ContinueToNext()"
+            class="bg-black hover:bg-gray-700 focus:outline-none rounded-lg font-bold text-center text-white md:text-2xl sm:text-xl p-2 mt-4"
+          >
+            Continue
+          </button>
+        </div>
+      </div>
     </section>
   </body>
 </template>
@@ -82,7 +99,7 @@ export default {
     data: Object,
   },
   computed: {
-    questionImage: function () {
+    questionImage: function() {
       if (this.data.images.singleQuestionImage)
         return "http://localhost:3000/" + this.data.images.questionImage;
       else
@@ -91,23 +108,27 @@ export default {
           this.data.images.questionImages[this.currentQuestion]
         );
     },
-    domande: function () {
+    domande: function() {
       return this.data.domande;
     },
-    background: function () {
+    background: function() {
       return "url(http://localhost:3000/" + this.data.images.background + ")";
     },
   },
-  data: function () {
+  data: function() {
     return {
       currentQuestion: 0,
       answers: [],
+      answer: "",
       punti: 0,
       playerId: "",
-      quizCompleted: false
+      quizCompleted: false,
     };
   },
   methods: {
+    ContinueToNext() {
+      this.$emit("gameCompleted");
+    },
     updateScore() {
       //punteggio aggiornato via via passandoli un valore
       let data = {
@@ -122,22 +143,14 @@ export default {
       this.$socket.client.emit("update_score", data);
     },
     nextQuestion() {
-      if (this.currentQuestion < this.data.domande.length)
-        this.currentQuestion++;
-    },
-    checkAnswers: function () {
-      for (var i = 0; i < this.data.domande.length; i++) {
-        if (this.data.domande[i].soluzione != this.answers[i]) {
-          console.log(
-            this.data.domande[i].soluzione,
-            "  ",
-            this.answers.risposta[i]
-          );
-          this.punti += 5;
-        } else {
+      if (this.currentQuestion < this.data.domande.length) {
+        if (this.answer == this.domande[this.currentQuestion].soluzione)
           this.punti += 25;
-        }
+        else this.punti += 5;
+        this.currentQuestion++;
       }
+    },
+    checkAnswers: function() {
       this.quizCompleted = true;
       this.updateScore();
     },

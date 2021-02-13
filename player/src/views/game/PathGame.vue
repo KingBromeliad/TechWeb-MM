@@ -10,7 +10,7 @@
         />
       </div>
       <div
-        class="grid place-content-center grid-cols-4 grid-rows-4 gap-x-2 min-h-screen md:pt-20 md:pb-20 pt-4 pb-4"
+        class="grid place-content-center grid-cols-4 grid-rows-4 gap-x-2 min-h-screen md:pt-20 md:pb-20"
       >
         <!-- ROCKS -->
         <Rock v-for="rock in rocks" v-bind:key="rock.id" :initialAngle="rock.angle" :rotates="rock.rotates"></Rock>
