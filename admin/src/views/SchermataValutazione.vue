@@ -59,8 +59,8 @@
         >
           <img :src="immagineDaValutare.imageUrl" />
           <p>Valuta l'immagine con un punteggio ed un commento:</p>
-          <input type="number" v-model="punteggioEvalImg" />
-          <input type="text" v-model="commentoImmagine" />
+          <input type="number" v-model="punteggioEvalImg" class="border-2" />
+          <input type="text" v-model="commentoImmagine" placeholder="Inserisci qua un commento" class="border-2"/>
           <button
             @click="evalImage()"
             class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline"
@@ -71,15 +71,14 @@
         <div
           v-if="
             textPresent == true &&
-            textToEval.playerId ==
-              giocatori[shownPlayerIndex].playerId
+            textToEval.playerId == giocatori[shownPlayerIndex].playerId
           "
           class="grid"
         >
-        <p class="text-sm"> {{ textToEval.text }} </p>
+          <p class="font-semibold">{{ textToEval.text }}</p>
           <p>Valuta il testo con un punteggio ed un commento:</p>
-          <input type="number" v-model="punteggioEvalText" />
-          <input type="text" v-model="commentoTesto" />
+          <input type="number" v-model="punteggioEvalText" class="border-2"/>
+          <input type="text" v-model="commentoTesto" placeholder="Inserisci qua un commento" class="border-2" />
           <button
             @click="evalText()"
             class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline"
@@ -88,7 +87,7 @@
           </button>
         </div>
       </div>
-      
+
       <modal name="playerNeedsHelp">
         <div class="text-xl text-center text-black font-bold py-5">
           Il giocatore: <br />
@@ -148,10 +147,10 @@ export default {
       textPresent: false,
       textToEval: {
         playerId: "",
-        text: ""
+        text: "",
       },
       commentoTesto: "",
-      commentoImmagine: ""
+      commentoImmagine: "",
     };
   },
   methods: {
@@ -164,7 +163,6 @@ export default {
       this.axios
         .get("http://localhost:3500/immagineDaValutare")
         .then((response) => {
-          
           this.immagineDaValutare.imageUrl =
             "http://localhost:3500/" + response.data.url;
           console.log(this.immagineDaValutare.imageUrl);
@@ -202,7 +200,7 @@ export default {
       console.log(this.punteggioEvalImg);
       let data = {
         punti: this.punteggioEvalImg,
-        commento: this.commentoImmagine
+        commento: this.commentoImmagine,
       };
       this.$socket.client.emit("image_eval", data);
       this.imagePresent = false;
@@ -210,7 +208,7 @@ export default {
     evalText: function () {
       let data = {
         punti: this.punteggioEvalText,
-        commento: this.commentoTesto
+        commento: this.commentoTesto,
       };
       this.$socket.client.emit("text_eval", data);
       this.textPresent = false;
@@ -233,7 +231,7 @@ export default {
       console.log(data);
     },
     needs_help(data) {
-      this.giocatoreDaAiutare = data.playerId;
+      this.giocatoreDaAiutare = data;
       this.showModal();
     },
     image_sent(data) {
@@ -241,7 +239,9 @@ export default {
       this.getImage();
     },
     testo_da_valutare(data) {
+      console.log(data);
       this.textToEval = data;
+      this.textPresent = true;
     },
   },
   mounted: function () {
