@@ -19,6 +19,7 @@ export default {
     initialAngle: Number,
     rotates: Boolean,
     id: Number,
+    url_address: String
   },
   data: function() {
     return {
@@ -31,8 +32,8 @@ export default {
   computed: {
     image: function() {
       if (this.id == 1 || (this.id == 16))
-        return "http://localhost:3000/RockArrow.svg";
-      else return "http://localhost:3000/Rock.png";
+        return this.url_address + "RockArrow.svg";
+      else return this.url_address + "Rock.png";
     },
     highlight: function() {
       if (this.high_light) return "bg-green-300";

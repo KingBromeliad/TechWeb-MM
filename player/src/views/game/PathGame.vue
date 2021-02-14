@@ -20,6 +20,7 @@
           :initialAngle="rock.angle"
           :rotates="rock.rotates"
           :id="rock.id"
+          :url_address="address"
           @rockClick="rockClick"
         ></Rock>
 
@@ -117,6 +118,7 @@ export default {
       path: [],
       attempts: 0,
       punti: 0,
+      address: "http://localhost:3000/"
     };
   },
   methods: {

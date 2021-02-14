@@ -143,7 +143,7 @@
       "name": "MusGame",
       "route": "/musGame",
       "images": {
-        "background": "MusicStory/mini.svg"
+        "background": "musicStory/mini.svg"
       }
     },
     {
@@ -151,7 +151,7 @@
       "route": "/end",
       "text": "Complimenti hai imparato qualcosa sulla notazione del pentagramma!",
       "images": {
-        "background": "MusicStory/LastScene.png"
+        "background": "musicStory/LastScene.png"
       }
     }
   ]
