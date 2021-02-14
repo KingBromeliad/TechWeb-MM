@@ -1,27 +1,47 @@
 <template>
   <div>
     <chat v-show="chatActive" :slideOver="chatActive"></chat>
-    <div
-      class="flex justify-center fixed left-6 z-10 p-4 h-20 w-1/3 text-gray-800 text-xl font-sans font-extrabold bg-white rounded-b-lg shadow-md"
+    <nav
+      class="fixed bg-white shadow lg:w-56 w-20 ml-10 rounded-b-lg z-10"
+      role="navigation"
     >
-      <router-link class="mr-10 mt-auto mb-auto text-center" to="/"
-        >Home</router-link
+      <div
+        class="lg:p-3 p-1 flex flex-wrap justify-center md:flex-no-wrap text-center"
       >
-
-      <a @click="nextView()">o</a>
-
-      <div class="inline-flex rounded-md shadow ml-1">
-        <a
-          href="#"
-          @click="chatActive = !chatActive"
-          class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+        <div class="flex justify-center">
+          <button @click="chatActive = !chatActive" class="focus:outline-none">
+            <svg
+              class="lg:w-10 lg:h-10 w-7 h-7 text-gray-800"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"
+              />
+              <path
+                d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div
+          class="flex justify-center align-middle text-center bg-gray-200 rounded-lg shadow-inner mr-1 lg:ml-3 ml-1"
         >
-          Chat
-        </a>
+          <p
+            class="text-gray-800 leading-tight lg:text-xl text-lg text-medium font-mono font-medium lg:p-2 p-0"
+          >
+            PUNTI {{ " " + score }}
+          </p>
+        </div>
       </div>
-      {{score}}
-    </div>
-    <router-view :data="this.game[this.progress]" @gameCompleted="nextView()" :time="this.formattedElapsedTime" @updatePoints="updateScore"/>
+    </nav>
+    <router-view
+      :data="this.game[this.progress]"
+      @gameCompleted="nextView()"
+      :time="this.formattedElapsedTime"
+      @updatePoints="updateScore"
+    />
   </div>
 </template>
 
@@ -70,7 +90,7 @@ export default {
         this.$router.push(this.game[this.progress].route);
       }
     },
-    updateScore(points){
+    updateScore(points) {
       this.score += points;
     },
     start() {
@@ -95,12 +115,11 @@ export default {
   },
   sockets: {
     get_player_Id(id) {
-      console.log(this.player_id);
       this.player_id = id;
     },
   },
   mounted: function() {
-    this.$socket.client.emit('req_player_Id')
-  }
+    this.$socket.client.emit("req_player_id");
+  },
 };
 </script>
