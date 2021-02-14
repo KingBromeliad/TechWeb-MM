@@ -110,35 +110,41 @@
       "route": "/question",
       "domande": [
         {
-          "domanda": "Marte è rosso perchè?",
-          "argomento": ["pangolino", "rabarbaro", "piatto", "naso"],
+          "domanda": "Perchè Marte appare rosso?",
+          "argomento": ["Ossido di ferro nell'atmosfera", "Colore della sabbia", "Riflessi spaziali"],
           "soluzione": 0
         },
         {
-          "domanda": "Quando è possibile partire per Marte?",
-          "argomento": ["A", "B", "C", "D"],
+          "domanda": "Ogni quanto conviene partire per Marte?",
+          "argomento": ["Ogni settimana", "Di notte", "Ogni due anni", "Ogni 7 mesi"],
           "soluzione": 2
         },
         {
           "domanda": "Quanto dura la discesa verso la superficie?",
-          "argomento": ["Bob", "Fred", "Pippo", "Pluto"],
+          "argomento": ["7 secondi", "7 minuti", "1 secondo", "1 ora"],
           "soluzione": 1
         },
         {
           "domanda": "Per quanto tempo possono comunicare il rover e il suo orbiter?",
-          "argomento": ["Bob", "Fred", "Pippo", "Pluto"],
+          "argomento": ["Infinito", "Pochi minuti", "Una settimana"],
+          "soluzione": 1
+        },
+        {
+          "domanda": "Possiamo apprendere immediatamente l'esito dell'atterraggio?",
+          "argomento": ["Si", "No", "Dipende"],
           "soluzione": 1
         }
       ],
       "images": {
-        "background": "StoneTablet.svg",
+        "background": "spaceStory/Tablet.png",
         "singleQuestionImage": false,
-        "questionImage": "Triceratopo.svg",
+        "questionImage": "spaceStory/Mars.png",
         "questionImages": [
-          "Tirannosauro.svg",
-          "Brontosauro.svg",
-          "Diplodoco.png",
-          ""
+          "spaceStory/Mars.png",
+          "spaceStory/RocketSm.png",
+          "spaceStory/Rover.svg",
+          "spaceStory/Satellite.svg",
+          "spaceStory/Rover.svg"
         ]
       }
     },
@@ -168,24 +174,24 @@
       "images": {
         "singleCharacter": false,
         "character": "spaceStory/Manager.svg",
-        "characters": ["spaceStory/Manager.svg", "spaceStory/Astronaut.png"],
+        "characters": ["spaceStory/Manager.svg", "spaceStory/Astronaut.png","spaceStory/Empty.png","spaceStory/Empty.png","spaceStory/Empty.png","spaceStory/Empty.png","spaceStory/Empty.png","spaceStory/Empty.png"],
         "background": [
           "spaceStory/BgLab.svg",
           "spaceStory/BgLab.svg",
-          "spaceStory/Launch.svg",
-          "spaceStory/BrokenSatellite.svg",
-          "spaceStory/BrokenSatellite.svg",
-          "spaceStory/BrokenSatellite.svg",
-          "spaceStory/BrokenSatellite.svg",
-          "spaceStory/BrokenSatellite.svg"
+          "spaceStory/Launch.png",
+          "spaceStory/DamagedSatellite.png",
+          "spaceStory/DamagedSatellite.png",
+          "spaceStory/DamagedSatellite.png",
+          "spaceStory/DamagedSatellite.png",
+          "spaceStory/DamagedSatellite.png"
         ]
       }
     },
     {
-      "name": "Upload",
-      "route": "/upload",
+      "name": "ImageUpload",
+      "route": "/imageGame",
       "images": {
-        "background": "spaceStory/BgLab.svg"
+        "background": "spaceStory/Tablet.png"
       }
     },
     {
@@ -219,11 +225,11 @@
           "spaceStory/BgLab.svg",
           "spaceStory/BgLab.svg",
           "spaceStory/Launch.svg",
-          "spaceStory/BrokenSatellite.svg",
-          "spaceStory/BrokenSatellite.svg",
-          "spaceStory/BrokenSatellite.svg",
-          "spaceStory/BrokenSatellite.svg",
-          "spaceStory/BrokenSatellite.svg"
+          "spaceStory/DamagedSatellite.png",
+          "spaceStory/DamagedSatellite.png",
+          "spaceStory/DamagedSatellite.png",
+          "spaceStory/DamagedSatellite.png",
+          "spaceStory/DamagedSatellite.png"
         ]
       }
     },
@@ -239,39 +245,38 @@
       "name": "start",
       "route": "/start",
       "text": [
-        "Ecco il problema senza pannelli il satellite è rimasto a corto di energia",
-        "Fortunatamente nella navicella sono presenti i ricambi necessari",
-        "Dopo aver agganciato i pannelli dovrete sostituire i fusibili correttamente",
-        "Qui base, riuscite ad identificare il problema?",
-        "Purtroppo a causa dei danni al satellite non riceviamo il vostro feed video",
-        "Ragazzo riusciresti ad disegnare il danno al satellite osservando dalle ottiche della navicella?",
-        "Ottimo! Poi utilizza lo scanner del Mars-ablet per inviare il disegno, cerca di essere il più accurato possibile!",
-        "Inizia pure!"
+        "Magnifico lavoro!",
+        "Recuperate i pannelli rovinati, non vogliamo lasciare spazzatura spaziale",
+        "Ah.. Buon ritorno, vi aspettiamo!",
+        "COMPLIMENTI RAGAZZO! SEI UN EROE SPAZIALE!!",
+        "E ora finalmente possiamo ricevere le immagini da Inspiration!!"
       ],
       "option": [
         "Grazie",
-        "Evvai!",
         ">>",
-        "Non vedete?",
-        "Capisco",
-        "Credo di si",
         ">>",
-        "Subito"
+        ">>",
+        ">>"
       ],
       "images": {
         "singleCharacter": false,
         "character": "spaceStory/Manager.svg",
-        "characters": ["spaceStory/Manager.svg", "spaceStory/Astronaut.png"],
+        "characters": ["spaceStory/Empty.png", "spaceStory/Empty.png", "spaceStory/Empty.png","spaceStory/TwoChar.png","spaceStory/TwoChar.png"],
         "background": [
+          "spaceStory/SatelliteRepair.png",
+          "spaceStory/SatelliteRepair.png",
+          "spaceStory/SatelliteRepair.png",
           "spaceStory/BgLab.svg",
-          "spaceStory/BgLab.svg",
-          "spaceStory/Launch.svg",
-          "spaceStory/BrokenSatellite.svg",
-          "spaceStory/BrokenSatellite.svg",
-          "spaceStory/BrokenSatellite.svg",
-          "spaceStory/BrokenSatellite.svg",
-          "spaceStory/BrokenSatellite.svg"
+          "spaceStory/BgLab.svg"
         ]
+      }
+    },
+    {
+      "name": "EndScene",
+      "route": "/end",
+      "text": "Hai salvato la missione Inspiration!",
+      "images": {
+        "background": "spaceStory/Bg-Mars.svg"
       }
     }
   ]
