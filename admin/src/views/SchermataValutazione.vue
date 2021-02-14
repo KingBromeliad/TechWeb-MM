@@ -231,7 +231,12 @@ export default {
       console.log(data);
     },
     needs_help(data) {
-      this.giocatoreDaAiutare = data;
+      for(var i = 0; i < this.giocatori.length; i ++) {
+        if(this.giocatori[i].playerId == data) {
+          this.giocatoreDaAiutare = this.giocatori[i].nome;
+          break;
+        }
+      }
       this.showModal();
     },
     image_sent(data) {

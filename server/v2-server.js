@@ -317,9 +317,7 @@ io.on("connection", (chatSocket) => {
     })
   });
   chatSocket.on('needs_help', (data) => {
-    io.emit('needs_help', {
-      playerId: data.playerId
-    });
+    io.emit('needs_help', data);
   });
 
   chatSocket.on('gioco_testo', (data) =>{
