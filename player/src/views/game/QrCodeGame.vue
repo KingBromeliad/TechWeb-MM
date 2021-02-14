@@ -67,6 +67,7 @@ export default {
           if (this.numberOfStrings == 0) {
             this.$socket.client.emit("update_score", {
               playerId: this.playerId,
+              nome: this.playerId,
               punteggi: [{ nomeGioco: "qrCodeGame", punti: this.points }],
             });
           }

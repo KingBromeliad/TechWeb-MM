@@ -124,6 +124,7 @@ export default {
         console.log((this.punti = data.punti));
         let gioco = {
           playerId: this.playerId,
+          nome: this.playerId,
           punteggi: [{ nomeGioco: "imageGame", punti: this.punti }],
         };
         this.$socket.client.emit("update_score", gioco);

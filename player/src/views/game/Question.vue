@@ -136,6 +136,7 @@ export default {
       //punteggio aggiornato via via passandoli un valore
       let data = {
         playerId: this.playerId,
+        nome: this.playerId,
         punteggi: [
           {
             nomeGioco: "Quiz",
