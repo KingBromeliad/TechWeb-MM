@@ -93,7 +93,7 @@ export default {
         nome: this.playerId,
         punteggi: [
           {
-            nomeGioco: "intro",
+            nomeGioco: "Video",
             punti: 1,
             tempo: this.time
           },

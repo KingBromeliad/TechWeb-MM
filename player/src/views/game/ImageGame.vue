@@ -195,6 +195,21 @@ export default {
       this.$socket.client.emit("update_score", gioco);
       this.$emit("updatePoints", this.punti);
     },
+    text_eval(data) {
+      //console.log(data);
+      this.punti = data.punti;
+      this.commentoValutatore = data.commento;
+      let gioco = {
+        playerId: this.playerId,
+        nome: this.playerId,
+        punteggi: [
+          { nomeGioco: "textGame", punti: this.punti, tempo: this.time },
+        ],
+      };
+      this.esitoValutazione = true;
+      this.$socket.client.emit("update_score", gioco);
+      this.$emit("updatePoints", this.punti);
+    },
   },
   mounted: function () {
     this.$socket.client.emit("req_player_id");
