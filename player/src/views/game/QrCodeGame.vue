@@ -42,6 +42,7 @@ export default {
   name: "QrCodeGame",
   props: {
     data: Object,
+    time: Date,
   },
   computed: {
     background: function() {

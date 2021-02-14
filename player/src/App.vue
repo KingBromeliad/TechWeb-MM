@@ -20,7 +20,7 @@
         </a>
       </div>
     </div>
-    <router-view :data="this.game[this.progress]" @gameCompleted="nextView()" />
+    <router-view :data="this.game[this.progress]" @gameCompleted="nextView()" :time="this.formattedElapsedTime" @updatePoints="updateScore"/>
   </div>
 </template>
 

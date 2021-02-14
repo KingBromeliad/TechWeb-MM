@@ -3,56 +3,58 @@
     class="bg-fixed bg-cover bg-center bg-no-repeat min-h-screen"
     v-bind:style="{ 'background-image': background }"
   >
-  <section v-show="!trisCompleted" class="text-gray-600 body-font">
-    <div class="grid place-content-center min-h-screen">
-      <div class="flex flex-col">
-        <div class="flex justify-center items-center mt-0 mr-0 mb-3 ">
-          <img :src="symbol" style="height: 8vh" />
-          <h1 class="lg:text-8xl md:text-4xl text-2xl font-bold text-white"><b>Tris!</b></h1>
-        </div>
-  <div class="flex justify-center">
-        <board :squares="squares" :winner="winner" @click="click" />
-      </div>
-        <div
-          class="game-info bg-white rounded-lg text-xl px-2 py-4 text-center shadow"
-        >
-          <p
-            v-if="stepNumber === 0"
-            class="flex items-center justify-center m-0"
+    <section v-show="!trisCompleted" class="text-gray-600 body-font">
+      <div class="grid place-content-center min-h-screen">
+        <div class="flex flex-col">
+          <div class="flex justify-center items-center mt-0 mr-0 mb-3 ">
+            <img :src="symbol" style="height: 8vh" />
+            <h1 class="lg:text-8xl md:text-4xl text-2xl font-bold text-white">
+              <b>Tris!</b>
+            </h1>
+          </div>
+          <div class="flex justify-center">
+            <board :squares="squares" :winner="winner" @click="click" />
+          </div>
+          <div
+            class="game-info bg-white rounded-lg text-xl px-2 py-4 text-center shadow"
           >
-            Cominciamo! Cucciolo d'uomo inizia, sei la&nbsp;<b
-              :class="currentPlayer"
-              >{{ currentPlayer }}</b
-            >!
-          </p>
-          <p v-else-if="!!winner">
-            Il vincitore è stato:&nbsp;
-            <b :class="currentPlayer">{{ currentPlayer }}</b
-            >!&nbsp;
-            <button
-              @click="restart"
-              class="bg-white border-white border-solid border-2 cursor-pointer font-semibold text-xs -my-2 mr-0 ml-4 py-2 px-4 uppercase"
+            <p
+              v-if="stepNumber === 0"
+              class="flex items-center justify-center m-0"
             >
-              Gioca nuovamente
-            </button>
-          </p>
-          <p v-else-if="stepNumber > 8">
-            Parità!&nbsp;
-            <button
-              @click="restart"
-              class="bg-white border-white border-solid border-2 cursor-pointer font-semibold text-xs -my-2 mr-0 ml-4 py-2 px-4 uppercase"
-            >
-              Gioca nuovamente
-            </button>
-          </p>
-          <p v-else>
-            Ora tocca al giocatore&nbsp;
-            <b :class="currentPlayer">{{ currentPlayer }}</b
-            >!&nbsp;vai.
-          </p>
+              Cominciamo! Cucciolo d'uomo inizia, sei la&nbsp;<b
+                :class="currentPlayer"
+                >{{ currentPlayer }}</b
+              >!
+            </p>
+            <p v-else-if="!!winner">
+              Il vincitore è stato:&nbsp;
+              <b :class="currentPlayer">{{ currentPlayer }}</b
+              >!&nbsp;
+              <button
+                @click="restart"
+                class="bg-white border-white border-solid border-2 cursor-pointer font-semibold text-xs -my-2 mr-0 ml-4 py-2 px-4 uppercase"
+              >
+                Gioca nuovamente
+              </button>
+            </p>
+            <p v-else-if="stepNumber > 8">
+              Parità!&nbsp;
+              <button
+                @click="restart"
+                class="bg-white border-white border-solid border-2 cursor-pointer font-semibold text-xs -my-2 mr-0 ml-4 py-2 px-4 uppercase"
+              >
+                Gioca nuovamente
+              </button>
+            </p>
+            <p v-else>
+              Ora tocca al giocatore&nbsp;
+              <b :class="currentPlayer">{{ currentPlayer }}</b
+              >!&nbsp;vai.
+            </p>
+          </div>
         </div>
-      </div>
-      <div class="flex justify-center">
+        <div class="flex justify-center">
           <button
             @click="checkResults()"
             class="bg-black hover:bg-gray-700 focus:outline-none rounded-lg font-bold text-center text-white md:text-2xl sm:text-xl p-2 mt-4"
@@ -60,9 +62,9 @@
             Risultati
           </button>
         </div>
-    </div>
-  </section>
-      <section v-show="trisCompleted">
+      </div>
+    </section>
+    <section v-show="trisCompleted">
       <div class="grid place-content-center text-center h-screen">
         <h1
           class="text-white lg:text-8xl text-4xl font-bold text-center bg-gradient-to-r from-green-400 to-blue-500 rounded-2xl lg:p-4 p-2 m-1"
@@ -94,6 +96,7 @@ export default {
 
   props: {
     data: Object,
+    time: Date,
   },
 
   computed: {
@@ -171,7 +174,7 @@ export default {
     },
 
     click(i) {
-      if(this.hasWinner()){
+      if (this.hasWinner()) {
         this.punti += 30;
       }
       if (this.squares[i] || this.winner) return;

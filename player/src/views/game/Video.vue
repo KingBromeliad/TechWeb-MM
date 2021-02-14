@@ -36,7 +36,7 @@
         </h1>
       </div>
       <div class="flex justify-center">
-      <img style="height: 65vh" :src="source" />
+        <img style="height: 65vh" :src="source" />
       </div>
       <div class="flex justify-center">
         <button
@@ -47,13 +47,13 @@
         </button>
       </div>
     </div>
-
   </body>
 </template>
 <script>
 export default {
   props: {
     data: Object,
+    time: Date,
   },
   computed: {
     title: function() {

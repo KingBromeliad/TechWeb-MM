@@ -6,11 +6,9 @@
     <div class="grid grid-cols-2 gap-4 place-content-center h-screen">
       <!-- WELCOME INSIDE THE GRID LAYOUT-->
       <div class="flex flex-wrap content-end justify-center pb-2 h-screen">
-        <img :src="character" alt="character" style="height: 70vh"/>
+        <img :src="character" alt="character" style="height: 70vh" />
       </div>
-      <div
-        class="flex content-center justify-center flex-wrap space-y-8"
-      >
+      <div class="flex content-center justify-center flex-wrap space-y-8">
         <div class="bg-white rounded-md text-center lg:mr-4 mr-2">
           <p class="text-black font-extrabold lg:text-4xl text-2xl lg:m-10 m-2">
             {{ text }}
@@ -31,24 +29,32 @@
 export default {
   props: {
     data: Object,
+    time: Date,
   },
   computed: {
-    text: function () {
+    text: function() {
       if (this.data != null) {
         return this.data.text[this.line];
       } else return "loading...";
     },
-    option: function () {
+    option: function() {
       if (this.data != null) {
         return this.data.option[this.line];
       } else return "...";
     },
     background: function() {
       if (this.data.images.background.length == 1)
-      return "url(http://localhost:3000/" + this.data.images.background[0] + ")";
-      else return "url(http://localhost:3000/" + this.data.images.background[this.line] + ")";
+        return (
+          "url(http://localhost:3000/" + this.data.images.background[0] + ")"
+        );
+      else
+        return (
+          "url(http://localhost:3000/" +
+          this.data.images.background[this.line] +
+          ")"
+        );
     },
-    character: function () {
+    character: function() {
       if (this.data.images.singleCharacter) {
         return "http://localhost:3000/" + this.data.images.character;
       } else
@@ -57,7 +63,7 @@ export default {
         );
     },
   },
-  data: function () {
+  data: function() {
     return {
       line: 0,
       playerId: "",

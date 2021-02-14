@@ -66,6 +66,7 @@ import Rock from "../../components/Rock.vue";
 export default {
   props: {
     data: Object,
+    time: Date,
   },
   components: {
     Rock,
