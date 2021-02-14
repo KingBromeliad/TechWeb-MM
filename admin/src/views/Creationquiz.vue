@@ -41,7 +41,7 @@
             name="company_website"
             v-model="item.domanda"
             class="focus:ring-indigo-500 focus:border-indigo-500 rounded sm:text-sm border-2 border-purple-600"
-            placeholder="www.example.com"
+            placeholder="inserisci una domanda"
           />
         </div>
         <div>
@@ -101,12 +101,10 @@ export default {
       this.items[i].argomento.push(" ");
     },
     salvamodifiche() {
-      Vue.prototype.$appName[this.$numerostoria].giochi[
+      Vue.prototype.$SavedFile.game[
         this.$numeroquiz
       ].modificato = true;
-      Vue.prototype.$appName[this.$numerostoria].giochi[
-        this.$numeroquiz
-      ].opzioni = JSON.parse(JSON.stringify(this.items));
+      Vue.prototype.$SavedFile.game[this.$numeroquiz].option = JSON.parse(JSON.stringify(this.items));
     },
     aggiungidomanda() {
       var a = {
@@ -121,15 +119,9 @@ export default {
 
   mounted: function () {
     console.log("siamo nella quiz creation");
-    console.log(this.$numerostoria);
     console.log(this.$numeroquiz);
-    console.log(this.$appName);
-    this.items = JSON.parse(
-      JSON.stringify(
-        Vue.prototype.$appName[this.$numerostoria].giochi[this.$numeroquiz]
-          .opzioni
-      )
-    );
+    console.log(Vue.prototype.$SavedFile.game[Vue.prototype.$numeroquiz].option);
+    this.items = JSON.parse(JSON.stringify(Vue.prototype.$SavedFile.game[Vue.prototype.$numeroquiz].option));
   },
 };
 </script>

@@ -14,7 +14,7 @@
       <div
         class="h-3/5 flex flex-row flex-wrap justify-center sm:flex-row border overflow-auto"
       >
-        <div v-for="(item, index) in items" :key="index" class="w-1/4 p-4">
+        <div v-for="(item, index) in newjson.game" :key="index" class="w-1/4 p-4">
           <div
             class="bg-white px-2 py-4 rounded-lg shadow-lg text-center border-2 border-purple-600"
           >
@@ -22,7 +22,7 @@
               <img class="w-auto mx-auto rounded-full" src="item.url" alt="" />
             </div>
             <h2 class="text-xl font-medium text-gray-700">
-              {{ index }} {{ item.message }}
+              {{ index }} {{ item.name }}
             </h2>
             <h4
               v-if="item.modificato != true"
@@ -43,6 +43,12 @@
               Elimina
             </button>
           </div>
+          <button
+            @click="aggiungidialoghi(index)"
+            class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+          >
+            Aggiungi dialoghi
+          </button>
         </div>
 
         <div class="w-1/4 p-4">
@@ -65,11 +71,37 @@
         </div>
       </div>
       <div class="h-1/5 flex sm:flex-row">
-        <div class="w-4/5">
-          <textarea
-            v-model="nomestoria"
-            placeholder="add multiple lines"
-          ></textarea>
+        <div class="w-1/5 flex sm:flex-col justify-center">
+          <h3> nome della storia </h3>
+          <input
+          type="text"
+            v-model="newjson.namestory"
+            placeholder="inserisci un nome"
+          />
+        </div>
+        <div class="w-1/5 flex sm:flex-col justify-center">
+          <h3> nome della storia </h3>
+          <input
+          type="text"
+            v-model="name"
+            placeholder="inserisci un nome"
+          />
+        </div>
+        <div class="w-1/5 flex sm:flex-col justify-center">
+          <h3> nome della storia </h3>
+          <input
+          type="text"
+            v-model="name"
+            placeholder="inserisci un nome"
+          />
+        </div>
+        <div class="w-1/5 flex sm:flex-col justify-center">
+          <h3> nome della storia </h3>
+          <input
+          type="text"
+            v-model="name"
+            placeholder="inserisci un nome"
+          />
         </div>
         <div class="w-1/5 py-2 flex sm:flex-col">
           <button
@@ -79,22 +111,10 @@
             salva
           </button>
           <button
-            @click="modal()"
-            class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-          >
-            elimina
-          </button>
-          <button
             @click="escistoria()"
             class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
           >
             esci
-          </button>
-          <button
-            @click="saveFile()"
-            class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-          >
-            cosirobi
           </button>
         </div>
       </div>
@@ -114,9 +134,6 @@
       >
         <div v-for="(item, index) in giochi" :key="index">
           <div
-            v-if="
-              item.categoria === numerocategoria && item.fascia === numerofascia
-            "
             class="p-10"
           >
             <div
@@ -130,7 +147,7 @@
                 />
               </div>
               <h2 class="text-xl font-medium text-gray-700">
-                {{ item.message }}
+                {{ item.name }}
               </h2>
               <span class="text-blue-500 block mb-5">{{ index }}</span>
               <button
@@ -159,20 +176,6 @@
             <p class="text-gray-500 font-medium">
               Non sarà possibile recuperarla
             </p>
-            <div class="flex flex-row">
-              <button
-                @click="eliminastoria()"
-                class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-              >
-                elimina
-              </button>
-              <button
-                @click="exitmodal()"
-                class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-              >
-                annulla
-              </button>
-            </div>
           </div>
         </div>
       </div>
@@ -193,18 +196,24 @@ export default {
       numerocategoria: "",
       numerofascia: "",
       nomestoria: "",
-      name: "cagnolino",
+      name: "",
       listastorie: "",
       items: "",
+      newjson: "",
       giochi: [
         {
           modificato: false,
-          message: "quiz",
           categoria: 0,
           fascia: 0,
           url: "./gattino.jpg",
           src: "Creationsgame",
-          opzioni: [
+          name: "start",
+          route: "/start",
+          text: [
+            "Ciao sono Doco il Diplodoco!",
+            "Ehilà sono Ally l'Allosauro!"
+          ],
+          option: [
             { domanda: "qualcosa", risposta: "pompelmo" },
             { domanda: "qualcosa", risposta: "pompelmoneone" },
             { domanda: "qualcosa", risposta: "pompesssssssslmo" },
@@ -212,21 +221,45 @@ export default {
         },
         {
           modificato: false,
-          message: "niente",
           categoria: 0,
           fascia: 0,
           url: "./gattino.jpg",
           src: "Creationquiz",
-          opzioni: [{ domanda: "", soluzione: 0, argomento: [" "] }],
+          name: "start",
+          route: "/start",
+          text: [
+            "Ciao sono Doco il Diplodoco!",
+            "Ehilà sono Ally l'Allosauro!"
+          ],
+          option: [{ domanda: "", soluzione: 0, argomento: [" "] }],
         },
         {
           modificato: false,
-          message: "gioco strano",
           categoria: 0,
           fascia: 0,
           url: "./gattino.jpg",
           src: "Creationquiz",
-          opzioni: [{ domanda: "", soluzione: 0, argomento: [" "] }],
+          name: "start",
+          route: "/start",
+          text: [
+            "Ciao sono Doco il Diplodoco!",
+            "Ehilà sono Ally l'Allosauro!"
+          ],
+          option: [{ domanda: "", soluzione: 0, argomento: [" "] }],
+        },
+        {
+          modificato: false,
+          categoria: 0,
+          fascia: 0,
+          url: "./gattino.jpg",
+          src: "Creationgames",
+          name: "Games",
+          route: "/Games",
+          text: [
+            "Ciao sono Doco il Diplodoco!",
+            "Ehilà sono Ally l'Allosauro!"
+          ],
+          option: [{ domanda: "", soluzione: 0, argomento: [" "] }],
         },
       ],
     };
@@ -243,15 +276,8 @@ export default {
   methods: {
     premuto(data) {
       console.log(data);
-      this.items.push(this.giochi[data]);
-      console.log(this.items);
-    },
-    saveFile() {
-      const data = JSON.stringify(this.giochi);
-      window.localStorage.setItem("arr", data);
-      console.log(JSON.parse(window.localStorage.getItem("arr")));
-      localStorage.setItem("names", JSON.stringify(this.giochi));
-      console.log("fatto");
+      this.newjson.game.push(this.giochi[data]);
+      console.log(this.newjson.game);
     },
     modal() {
       console.log("modal aperto stronzetto");
@@ -262,49 +288,87 @@ export default {
     },
     elimina(data) {
       console.log(data);
-      this.items.splice(data, 1);
+      this.newjson.game.splice(data, 1);
     },
     modifica(data) {
-      console.log(this.items[data]);
-      Vue.prototype.$appName[this.$numerostoria].giochi = JSON.parse(
-        JSON.stringify(this.items)
-      );
-      Vue.prototype.$numeroquiz = data;
-      this.$router.push(this.items[data].src);
+      Vue.prototype.$SavedFile=JSON.parse(JSON.stringify(this.newjson));
+      Vue.prototype.$numeroquiz=data;
+      console.log(Vue.prototype.$numeroquiz);
+      this.$router.push(this.newjson.game[data].src);
     },
 
     salvastoria() {
-      Vue.prototype.$appName[this.$numerostoria].message = this.nomestoria;
-      Vue.prototype.$appName[this.$numerostoria].giochi = JSON.parse(
-        JSON.stringify(this.items)
-      );
-      Vue.prototype.$appName2 = JSON.parse(JSON.stringify(this.$appName));
+      Vue.prototype.$SavedFile=JSON.parse(JSON.stringify(this.newjson));
+      this.eliminajson(Vue.prototype.$oldName);
+      this.inviajson(this.newjson);
+      Vue.prototype.$oldName=JSON.parse(JSON.stringify(Vue.prototype.$SavedFile.namestory));
+        let newname=JSON.parse(JSON.stringify(Vue.prototype.$SavedFile.namestory));
+        let lista ;
+          this.axios.get("http://localhost:3500/SendStory").then((response) => {
+              console.log(response.data);
+              lista=response.data;
+              lista[this.$numerostoria].name=newname;
+              console.log(lista[this.$numerostoria].name);
+              console.log(lista);
+              let filejson=lista;
+              this.axios.post('http://localhost:3500/writeStoryList', {
+                filejson
+                })
+                .then(function (response) {
+                  console.log(response);
+                })
+                .catch(function (error) {
+                  console.log(error);
+                });
+          }).catch((errors) => {
+              console.log(errors);
+          });
+          console.log(lista);
+
     },
 
     escistoria() {
       console.log("storia salvata");
-      Vue.prototype.$appName = JSON.parse(JSON.stringify(this.$appName2));
+      Vue.prototype.$SavedFile = JSON.parse(JSON.stringify(this.$SavedFile2));
       this.$router.push("Creation");
     },
 
-    eliminastoria() {
-      this.$router.push("Creation");
-      Vue.prototype.$appName.splice(this.$numerostoria, 1);
-      Vue.prototype.$appName2.splice(this.$numerostoria, 1);
+    eliminajson (data) {
+      let filejson=data;
+      this.axios.post('http://localhost:3500/deleteStory', {
+        filejson
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+    },
+
+    inviajson (data) {
+      let filejson=JSON.parse(JSON.stringify(data));
+      this.axios.post('http://localhost:3500/writeStory', {
+        filejson
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
     },
   },
 
   mounted: function () {
     console.log("siamo nella View creation");
-    this.items = JSON.parse(
-      JSON.stringify(this.$appName[this.$numerostoria].giochi)
-    );
-    this.numerofascia = this.$appName[this.$numerostoria].fascia;
-    this.numerocategoria = this.$appName[this.$numerostoria].categoria;
-    console.log(this.numerofascia);
-    console.log(this.numerocategoria);
-    console.log(this.$appName);
-    console.log(this.$appName2);
+    console.log(Vue.prototype.$SavedFile);
+    this.newjson=JSON.parse(JSON.stringify(Vue.prototype.$SavedFile));
+    Vue.prototype.$SavedFile2=JSON.parse(JSON.stringify(Vue.prototype.$SavedFile));
+    Vue.prototype.$oldName=JSON.parse(JSON.stringify(Vue.prototype.$SavedFile.namestory));
+    console.log("ricevuto");
   },
 };
 </script>
