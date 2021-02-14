@@ -7,12 +7,12 @@
     <div class="grid place-content-center min-h-screen">
       <div class="flex flex-col">
         <div class="flex justify-center items-center mt-0 mr-0 mb-3 ">
-          <img :src="symbol" alt="Vue" class="my-0 mr-3 -ml-5 w-20" />
-          <h1 class="text-8xl font-bold text-white"><b>Tris!</b></h1>
+          <img :src="symbol" style="height: 8vh" />
+          <h1 class="lg:text-8xl md:text-4xl text-2xl font-bold text-white"><b>Tris!</b></h1>
         </div>
-
+  <div class="flex justify-center">
         <board :squares="squares" :winner="winner" @click="click" />
-
+      </div>
         <div
           class="game-info bg-white rounded-lg text-xl px-2 py-4 text-center shadow"
         >
