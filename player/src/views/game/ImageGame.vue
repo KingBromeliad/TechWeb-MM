@@ -104,7 +104,7 @@
           Ti sono stati assegnati: <br />
           {{ punti + " " }} punti! <br />
         </h1>
-        <div class="mt-1">
+        <div class="mt-1" v-show="esitoValutazione">
           <p class="text-2xl font-semibold">
             Il Valutatore ha pure detto questo: " {{ commentoValutatore }} "
           </p>
@@ -144,6 +144,7 @@ export default {
       esitoValutazione: false,
       punti: 0,
       commentoValutatore: "",
+      text: ""
     };
   },
   methods: {
@@ -167,6 +168,7 @@ export default {
         playerId: this.playerId,
         text: this.text,
       };
+      console.log(data);
       this.$socket.client.emit("gioco_testo", data);
     },
     ContinueToNext() {

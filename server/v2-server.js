@@ -133,7 +133,7 @@ app.post("/api/register", (req, res) => {
 //Per inviare la storia come file JSON
 app.get("/openStory", (req, res) => {
   console.log(req.body);
-  let story = JSON.parse(fs.readFileSync('storiaDinosauri.json'));
+  let story = JSON.parse(fs.readFileSync('storiaSpazio.json'));
   res.send(story);
 });
 //per creare un file JSON storia con contenuto
