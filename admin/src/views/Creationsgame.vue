@@ -73,7 +73,7 @@ export default {
       ].modificato = true;
       Vue.prototype.$appName[this.$numerostoria].giochi[
         this.$numeroquiz
-      ].opzioni = this.items;
+      ].option = this.items;
     },
     aggiungidomanda() {
       var a = {
@@ -90,7 +90,7 @@ export default {
     console.log(this.$appName);
     this.items = this.$appName[this.$numerostoria].giochi[
       this.$numeroquiz
-    ].opzioni;
+    ].option;
   },
 };
 </script>

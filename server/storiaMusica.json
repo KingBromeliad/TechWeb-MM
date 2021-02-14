@@ -1,4 +1,5 @@
 {
+    "namestory": "storiaMusica",
     "game": [
       {
         "name": "start",
@@ -20,7 +21,7 @@
           "title": ["Principali note - Chiave di Violino"],
           "source": ["https://www.youtube.com/embed/2jFy9DIn-Y0"],
           "images": {
-          "background": "musicStory/MusicBg.svg" 
+          "background": "musicStory/MusicBg.svg"
           }
       },
       {
@@ -90,4 +91,3 @@
         }
     ]
   }
-  

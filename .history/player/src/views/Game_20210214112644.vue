@@ -158,6 +158,7 @@ export default {
         ) {
           this.winner = [a, b, c];
           return true;
+        } else {
         }
       }
       return false;
@@ -170,9 +171,6 @@ export default {
     },
 
     click(i) {
-      if(this.hasWinner()){
-        this.punti += 30;
-      }
       if (this.squares[i] || this.winner) return;
       this.$set(this.squares, i, this.currentPlayer);
       if (!this.hasWinner()) {

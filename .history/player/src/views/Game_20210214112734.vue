@@ -170,10 +170,8 @@ export default {
     },
 
     click(i) {
-      if(this.hasWinner()){
-        this.punti += 30;
-      }
       if (this.squares[i] || this.winner) return;
+      this.punti += 25;
       this.$set(this.squares, i, this.currentPlayer);
       if (!this.hasWinner()) {
         this.punti += 5;

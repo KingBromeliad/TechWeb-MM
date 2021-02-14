@@ -3,7 +3,7 @@
     class="bg-fixed bg-cover bg-center bg-no-repeat min-h-screen"
     v-bind:style="{ 'background-image': background }"
   >
-  <section v-show="!trisCompleted" class="text-gray-600 body-font">
+  <section v-show="!quizCompleted" class="text-gray-600 body-font">
     <div class="grid place-content-center min-h-screen">
       <div class="flex flex-col">
         <div class="flex justify-center items-center mt-0 mr-0 mb-3 ">
@@ -52,14 +52,6 @@
           </p>
         </div>
       </div>
-      <div class="flex justify-center">
-          <button
-            @click="checkResults()"
-            class="bg-black hover:bg-gray-700 focus:outline-none rounded-lg font-bold text-center text-white md:text-2xl sm:text-xl p-2 mt-4"
-          >
-            Risultati
-          </button>
-        </div>
     </div>
   </section>
       <section v-show="trisCompleted">
@@ -91,11 +83,18 @@ export default {
   components: {
     Board: () => import("./Board"),
   },
-
   props: {
     data: Object,
   },
-
+  data() {
+    return {
+      squares: Array(9).fill(null),
+      stepNumber: 0,
+      currentPlayer: "X",
+      winner: null,
+      trisCompleted: false,
+    };
+  },
   computed: {
     background: function() {
       return "url(http://localhost:3000/" + this.data.images.background + ")";
@@ -104,24 +103,7 @@ export default {
       return "http://localhost:3000/" + this.data.images.symbol;
     },
   },
-
-  data() {
-    return {
-      squares: Array(9).fill(null),
-      stepNumber: 0,
-      currentPlayer: "X",
-      winner: null,
-      punti: 0,
-      trisCompleted: false,
-      playerId: "",
-    };
-  },
-
   methods: {
-    ContinueToNext() {
-      this.$emit("gameCompleted");
-    },
-
     updateScore() {
       //punteggio aggiornato via via passandoli un valore
       let data = {
@@ -157,40 +139,28 @@ export default {
           squares[a] === squares[c]
         ) {
           this.winner = [a, b, c];
+          this.updateScore();
           return true;
         }
       }
       return false;
     },
-
     restart() {
       this.squares = Array(9).fill(null);
       this.stepNumber = 0;
       this.winner = null;
     },
-
     click(i) {
-      if(this.hasWinner()){
-        this.punti += 30;
-      }
       if (this.squares[i] || this.winner) return;
       this.$set(this.squares, i, this.currentPlayer);
       if (!this.hasWinner()) {
-        this.punti += 5;
         this.stepNumber++;
         this.currentPlayer = this.currentPlayer === "X" ? "O" : "X";
       }
-    },
-
-    checkResults: function() {
-      this.trisCompleted = true;
       this.updateScore();
     },
-  },
-  sockets: {
-    get_player_id(data) {
-      this.playerId = data;
-      console.log(this.playerId);
+    ContinueToNext() {
+      this.$emit("gameCompleted");
     },
   },
 };

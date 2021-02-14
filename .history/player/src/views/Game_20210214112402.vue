@@ -111,7 +111,7 @@ export default {
       stepNumber: 0,
       currentPlayer: "X",
       winner: null,
-      punti: 0,
+      punti: 1,
       trisCompleted: false,
       playerId: "",
     };
@@ -157,7 +157,10 @@ export default {
           squares[a] === squares[c]
         ) {
           this.winner = [a, b, c];
+          this.punti += 25;
           return true;
+        } else {
+          this.punti += 5;
         }
       }
       return false;
@@ -170,13 +173,9 @@ export default {
     },
 
     click(i) {
-      if(this.hasWinner()){
-        this.punti += 30;
-      }
       if (this.squares[i] || this.winner) return;
       this.$set(this.squares, i, this.currentPlayer);
       if (!this.hasWinner()) {
-        this.punti += 5;
         this.stepNumber++;
         this.currentPlayer = this.currentPlayer === "X" ? "O" : "X";
       }

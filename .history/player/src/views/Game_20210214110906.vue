@@ -3,7 +3,7 @@
     class="bg-fixed bg-cover bg-center bg-no-repeat min-h-screen"
     v-bind:style="{ 'background-image': background }"
   >
-  <section v-show="!trisCompleted" class="text-gray-600 body-font">
+  <section v-show="!quizCompleted" class="text-gray-600 body-font">
     <div class="grid place-content-center min-h-screen">
       <div class="flex flex-col">
         <div class="flex justify-center items-center mt-0 mr-0 mb-3 ">
@@ -157,6 +157,7 @@ export default {
           squares[a] === squares[c]
         ) {
           this.winner = [a, b, c];
+          this.updateScore();
           return true;
         }
       }
@@ -170,13 +171,10 @@ export default {
     },
 
     click(i) {
-      if(this.hasWinner()){
-        this.punti += 30;
-      }
+      this.updateScore();
       if (this.squares[i] || this.winner) return;
       this.$set(this.squares, i, this.currentPlayer);
       if (!this.hasWinner()) {
-        this.punti += 5;
         this.stepNumber++;
         this.currentPlayer = this.currentPlayer === "X" ? "O" : "X";
       }
@@ -188,7 +186,7 @@ export default {
     },
   },
   sockets: {
-    get_player_id(data) {
+    req_player_id(data) {
       this.playerId = data;
       console.log(this.playerId);
     },

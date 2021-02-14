@@ -129,59 +129,18 @@ app.post("/api/register", (req, res) => {
   return res.send();
 });
 
+//per creare un file JSON storia con contenuto
+app.post("/writeStory", (req, res) => {
+  let story = JSON.stringify(req.body);
+  fs.writeFile("test", story);
+  res.send();
+});
 
 //Per inviare la storia come file JSON
 app.get("/openStory", (req, res) => {
   console.log(req.body);
-  let story = JSON.parse(fs.readFileSync('storiaMusica.json'));
+  let story = JSON.parse(fs.readFileSync('storiaDinoauri.json'));
   res.send(story);
-});
-//per creare un file JSON storia con contenuto
-app.post("/writeStory", (req, res) => {
-  let data=JSON.stringify(req.body.filejson,null, 4);
-  console.log(req.body.filejson.namestory);
-  let nome=req.body.filejson.namestory;
-  fs.writeFileSync("./"+nome+".json", data);;
-  res.send();
-});
-
-app.post("/deleteStory", (req, res) => {
-  let nome=req.body.filejson;
-  console.log(nome);
-  fs.unlinkSync("./"+nome+".json");;
-  res.send();
-});
-
-app.get("/apriStoria", (req, res) => {
-  console.log(req.body);
-  let storia = JSON.parse(fs.readFileSync('storie.json'));
-  res.send(storia);
-});
-
-app.post("/writeStoryList", (req, res) => {
-  let data=JSON.stringify(req.body.filejson,null, 4);
-  console.log(req.body);
-  fs.writeFileSync("./StoryList.json", data);;
-  res.send();
-});
-
-app.get("/prendiStoria", (req, res) => {
-  console.log("arrivato");
-   let sname=req.query.NAME;
-  let storia = JSON.parse(fs.readFileSync("./"+ sname +".json"));
-  res.send(storia);
-});
-
-app.get("/SendStory", (req, res) => {
-  console.log(req.body);
-  let storia = JSON.parse(fs.readFileSync('StoryList.json'));
-  res.send(storia);
-});
-
-app.get("/immagineDaValutare", (req, res) => {
-  console.log(req.body);
-  let urlImg = '/images/allosauro.svg';
-  res.send(urlImg);
 });
 
 let toEval = {
@@ -226,7 +185,7 @@ const io = require("socket.io")(chatServer, {
     credentials: true,
   },
 });
-//oggetto contenente i giocatori
+//oggetto contenente i giocatori 
 let giocatori = [];
 
 //CHAT - SOCKET
