@@ -17,10 +17,7 @@ const storage = multer.diskStorage({
   }
 })
 
-
 const upload = multer({ storage });
-
-
 
 //per CORS array dei domini dei quali accetta la comunicazione
 const whitelist = ['http://localhost:8081', 'http://localhost:8080'];

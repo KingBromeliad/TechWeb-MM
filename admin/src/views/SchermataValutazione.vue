@@ -165,9 +165,9 @@ export default {
         .then((response) => {
           this.immagineDaValutare.imageUrl =
             "http://localhost:3500/" + response.data.url;
-          console.log(this.immagineDaValutare.imageUrl);
+          //console.log(this.immagineDaValutare.imageUrl);
           this.immagineDaValutare.playerIdSendingImage = response.data.playerId;
-          console.log(this.immagineDaValutare.playerIdSendingImage);
+          //console.log(this.immagineDaValutare.playerIdSendingImage);
           this.imagePresent = true;
           alert(
             "Il giocatore: " +
@@ -197,7 +197,7 @@ export default {
       this.$modal.hide("playerNeedsHelp");
     },
     evalImage: function () {
-      console.log(this.punteggioEvalImg);
+      //console.log(this.punteggioEvalImg);
       let data = {
         punti: this.punteggioEvalImg,
         commento: this.commentoImmagine,
@@ -219,8 +219,8 @@ export default {
       else return false;
     },
     rinominaGiocatore: function (index) {
-      console.log(index);
-      console.log(this.newPlayerName);
+      //console.log(index);
+      //console.log(this.newPlayerName);
       this.giocatori[index].nome = this.newPlayerName[index];
       this.$socket.client.emit("rinomina_giocatore", this.giocatori);
     },
@@ -228,7 +228,7 @@ export default {
   sockets: {
     player_points(data) {
       this.giocatori = data;
-      console.log(data);
+      //console.log(data);
     },
     needs_help(data) {
       for(var i = 0; i < this.giocatori.length; i ++) {
@@ -244,7 +244,7 @@ export default {
       this.getImage();
     },
     testo_da_valutare(data) {
-      console.log(data);
+      //console.log(data);
       this.textToEval = data;
       this.textPresent = true;
     },

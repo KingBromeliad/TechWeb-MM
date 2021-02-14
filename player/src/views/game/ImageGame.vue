@@ -151,7 +151,7 @@ export default {
     sendFile: function (event) {
       let formData = new FormData();
       formData.append("image", event.target.files[0]);
-      console.log(this.playerId);
+      //console.log(this.playerId);
       formData.append("playerId", this.playerId);
       this.axios
         .post("http://localhost:3500/immagineRicevuta", formData)
@@ -168,7 +168,7 @@ export default {
         playerId: this.playerId,
         text: this.text,
       };
-      console.log(data);
+      //console.log(data);
       this.$socket.client.emit("gioco_testo", data);
     },
     ContinueToNext() {
@@ -178,10 +178,10 @@ export default {
   sockets: {
     get_player_Id(data) {
       this.playerId = data;
-      console.log(this.playerId);
+      //console.log(this.playerId);
     },
     image_eval(data) {
-      console.log(data);
+      //console.log(data);
       this.esitoValutazione = data.eval;
       this.punti = data.punti;
       this.commentoValutatore = data.commento;
