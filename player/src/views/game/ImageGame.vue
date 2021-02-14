@@ -181,8 +181,7 @@ export default {
       //console.log(this.playerId);
     },
     image_eval(data) {
-      //console.log(data);
-      this.punti = data.punti;
+      this.punti = parseInt(data.punti);
       this.commentoValutatore = data.commento;
       let gioco = {
         playerId: this.playerId,
@@ -196,8 +195,8 @@ export default {
       this.$emit("updatePoints", this.punti);
     },
     text_eval(data) {
-      //console.log(data);
-      this.punti = data.punti;
+      this.punti = parseInt(data.punti);
+      console.log(data.punti);
       this.commentoValutatore = data.commento;
       let gioco = {
         playerId: this.playerId,
