@@ -161,7 +161,7 @@ export default {
         playerId: this.playerId,
         punteggi: [
           {
-            nomeGioco: "Quiz",
+            nomeGioco: "TrovaPercorso",
             punti: this.punti,
           },
         ],

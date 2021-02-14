@@ -2,8 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Storia from '../views/Storia.vue'
-import Quiz from '../views/Quiz.vue'
-import FinalEval from '../views/FinalEval.vue'
 //--game pages--//
 import Start from '../views/game/Start.vue'
 import End from '../views/game/End.vue'
@@ -33,16 +31,6 @@ const routes = [
     path: '/startAccessible',
     name: 'StartAccessible',
     component: StartAccessible
-  },
-  {
-    path: '/quiz',
-    name: 'Quiz',
-    component: Quiz
-  },
-  {
-    path: '/final',
-    name: 'FinalEval',
-    component: FinalEval
   },
   {
     path: '/start',

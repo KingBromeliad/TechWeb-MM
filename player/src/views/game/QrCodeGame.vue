@@ -51,7 +51,7 @@ export default {
   data: function() {
     return {
       stringsToDecode: [],
-      numberOfStrings: 2,
+      numberOfStrings: 0,
       points: 0,
       playerId: "",
     };
