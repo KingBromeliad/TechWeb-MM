@@ -11,7 +11,7 @@
       </div>
       <div
         v-show="!victory"
-        class="grid place-content-center grid-cols-4 grid-rows-4 gap-x-2 h-screen md:pt-20 md:pb-20 "
+        class="grid place-content-center grid-cols-4 grid-rows-4 gap-x-2 h-screen lg:pt-20 lg:pb-20 "
       >
         <!-- ROCKS -->
         <Rock

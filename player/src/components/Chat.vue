@@ -1,7 +1,7 @@
 <!-- WORK IN PROGRESS... PLEASE WAIT -->
 <template>
   <!-- This example requires Tailwind CSS v2.0+ -->
-  <div class="fixed inset-0 overflow-hidden">
+  <div class="fixed inset-0 overflow-hidden z-10">
     <div class="absolute inset-0 overflow-hidden">
       <!--
       Background overlay, show/hide based on slide-over state.

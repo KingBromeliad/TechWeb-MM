@@ -2,7 +2,7 @@
   <div>
     <chat v-show="chatActive" :slideOver="chatActive"></chat>
     <nav
-      class="fixed bg-white shadow lg:w-56 w-20 ml-10 rounded-b-lg"
+      class="fixed bg-white shadow lg:w-56 w-20 ml-10 rounded-b-lg z-20"
       role="navigation"
     >
       <div
