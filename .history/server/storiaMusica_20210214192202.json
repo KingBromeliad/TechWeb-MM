@@ -140,18 +140,11 @@
       }
     },
     {
-      "name": "MusGame",
-      "route": "/musGame",
-      "images": {
-        "background": "MusicStory/mini.svg"
-      }
-    },
-    {
       "name": "EndScene",
       "route": "/end",
-      "text": "Complimenti hai imparato qualcosa sulla notazione del pentagramma!",
+      "text": "Complimenti cucciolo d'Uomo! Hai risolto il mistero!",
       "images": {
-        "background": "MusicStory/LastScene.png"
+        "background": "LastScene.svg"
       }
     }
   ]
