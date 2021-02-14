@@ -5,7 +5,7 @@
       <div>
         <img
           class="object-fill min-h-full"
-          src="http://localhost:3000/ShoreL.png"
+          src="http://localhost:3000/dinosaurStory/ShoreL.png"
           alt="shoreL"
         />
       </div>
@@ -55,7 +55,7 @@
       <div>
         <img
           class="object-fill min-h-full"
-          src="http://localhost:3000/ShoreR.png"
+          src="http://localhost:3000/dinosaurStory/ShoreR.png"
           alt="shoreR"
         />
       </div>
@@ -85,12 +85,12 @@ export default {
 
     background: function() {
       return (
-        "url(http://localhost:3000/" + this.data.images.backgroundPath + ")"
+        "url(http://localhost:3000/dinosaurStory/" + this.data.images.backgroundPath + ")"
       );
     },
 
     rock: function() {
-      return "http://localhost:3000/" + this.data.images.rock;
+      return "http://localhost:3000/dinosaurStory/" + this.data.images.rock;
     },
   },
   data: function() {
@@ -118,7 +118,7 @@ export default {
       path: [],
       attempts: 0,
       punti: 0,
-      address: "http://localhost:3000/"
+      address: "http://localhost:3000/dinosaurStory/"
     };
   },
   methods: {
