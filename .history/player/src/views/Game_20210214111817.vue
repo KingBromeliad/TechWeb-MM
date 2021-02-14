@@ -111,7 +111,7 @@ export default {
       stepNumber: 0,
       currentPlayer: "X",
       winner: null,
-      punti: 0,
+      punti: 1,
       trisCompleted: false,
       playerId: "",
     };
@@ -157,6 +157,7 @@ export default {
           squares[a] === squares[c]
         ) {
           this.winner = [a, b, c];
+          this.updateScore();
           return true;
         }
       }
@@ -170,13 +171,10 @@ export default {
     },
 
     click(i) {
-      if(this.hasWinner()){
-        this.punti += 30;
-      }
+      this.updateScore();
       if (this.squares[i] || this.winner) return;
       this.$set(this.squares, i, this.currentPlayer);
       if (!this.hasWinner()) {
-        this.punti += 5;
         this.stepNumber++;
         this.currentPlayer = this.currentPlayer === "X" ? "O" : "X";
       }
@@ -188,7 +186,7 @@ export default {
     },
   },
   sockets: {
-    get_player_id(data) {
+    req_player_id(data) {
       this.playerId = data;
       console.log(this.playerId);
     },
