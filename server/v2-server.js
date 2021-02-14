@@ -10,7 +10,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './images/uploads');
+    cb(null, './images');
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname);
@@ -190,7 +190,7 @@ let toEval = {
 
 app.post("/immagineRicevuta", upload.single('image'), (req, res) => {
   //console.log(req.file);
-  toEval.url = "/uploads/" + req.file.filename;
+  toEval.url = req.file.filename;
   toEval.playerId = req.body.playerId;
   console.log(req.body.playerId);
   res.json({
