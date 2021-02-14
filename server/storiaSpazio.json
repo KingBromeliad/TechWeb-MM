@@ -191,6 +191,7 @@
     {
       "name": "ImageUpload",
       "route": "/imageGame",
+      "image_or_text": false,
       "images": {
         "background": "spaceStory/Tablet.png"
       }
