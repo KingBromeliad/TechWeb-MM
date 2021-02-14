@@ -9,7 +9,22 @@
         <div
           class="py-8 px-8 max-w-sm mx-auto bg-gray-100 rounded-xl shadow-md space-y-2 sm:py-4 sm:space-y-0 sm:space-x-6 m-1 text-center"
         >
-          <p class="text-xl text-black align-top">{{ giocatore.playerId }}</p>
+          <p class="text-xl text-black align-top">{{ giocatore.nome }}</p>
+          <div class="flex justify-center">
+            <input
+              type="text"
+              v-model="newPlayerName[index]"
+              placeholder="Inserisci Alias"
+              class="p-r-1"
+              :key="index"
+            />
+            <button
+              @click="rinominaGiocatore(index)"
+              class="border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline"
+            >
+              Rinomina Giocatore
+            </button>
+          </div>
           <button
             class="align-bottom px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
             @click="updateIndex(index)"
@@ -19,7 +34,7 @@
         </div>
       </div>
       <p class="text-xl text-black align-top font-bold text-center">
-        Giocatore: {{ giocatori[shownPlayerIndex].playerId }}
+        Giocatore: {{ giocatori[shownPlayerIndex].nome }}
       </p>
       <div class="content-center max-w-sm bg-gray-100 mx-auto">
         <div
@@ -88,6 +103,7 @@ export default {
       },
       imagePresent: false,
       punteggioEval: 0,
+      newPlayerName: []
     };
   },
   methods: {
@@ -144,6 +160,12 @@ export default {
       if (this.giocatori && this.giocatori.length) return true;
       else return false;
     },
+    rinominaGiocatore: function(index) {
+      console.log(index);
+      console.log(this.newPlayerName);
+      this.giocatori[index].nome = this.newPlayerName[index];
+      this.$socket.emit('rinomina_giocatore', this.giocatori);
+    }
   },
   sockets: {
     player_points(data) {

@@ -259,6 +259,7 @@ io.on("connection", (chatSocket) => {
     } else {
       let nuovoGiocatore = {
         playerId: chatSocket.id,
+        nome: chatSocket.id,
         punteggi: [
           {
             nomeGioco: data.punteggi[0].nomeGioco,
@@ -268,7 +269,7 @@ io.on("connection", (chatSocket) => {
       };
       //console.log(punteggioNuovoGioco);
       giocatori.push(nuovoGiocatore);
-      console.log(giocatori[0].punteggi);
+      //console.log(giocatori[0].punteggi);
     }
     io.emit('update_score', giocatori);
     io.emit('player_points', giocatori);
@@ -299,6 +300,10 @@ io.on("connection", (chatSocket) => {
 
   io.emit('qr_code_game', stringsToDecode);
 
+  chatSocket.on('rinomina_giocatore', (data) => {
+    giocatori = data;
+  });
+
   chatSocket.on('input_da_valutare', (data) => {
     io.emit('input_da_valutare', {
       playerId: data.playerId,
@@ -323,7 +328,7 @@ io.on("connection", (chatSocket) => {
   //Messaggio inviato da admin
   chatSocket.on('admin_message', (data) => {
     io.emit('send_player', {
-      username: data.adminName,
+      username: "Valutatore",
       text: data.message
     });
   });
