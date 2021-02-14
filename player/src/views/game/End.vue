@@ -32,7 +32,7 @@ export default {
   name: "End",
   props: {
     data: Object,
-    time: Date,
+    time: String,
   },
   computed: {
     text: function () {

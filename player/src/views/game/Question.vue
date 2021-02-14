@@ -100,7 +100,7 @@ export default {
   name: "Question",
   props: {
     data: Object,
-    time: Date,
+    time: String,
   },
   computed: {
     questionImage: function() {

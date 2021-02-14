@@ -55,6 +55,7 @@ export default {
       elapsedTime: 0,
       player_id: "",
       timer: undefined,
+      score: 0,
     };
   },
 
@@ -67,6 +68,9 @@ export default {
         this.start();
         this.$router.push(this.game[this.progress].route);
       }
+    },
+    updateScore(points){
+      this.score += points;
     },
     start() {
       this.timer = setInterval(() => {

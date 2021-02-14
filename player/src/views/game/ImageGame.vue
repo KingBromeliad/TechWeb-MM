@@ -79,7 +79,7 @@ export default {
   name: "imageGame",
   props: {
     data: Object,
-    time: Date,
+    time: String,
   },
   computed: {
     background: function() {

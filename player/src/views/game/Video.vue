@@ -53,7 +53,7 @@
 export default {
   props: {
     data: Object,
-    time: Date,
+    time: String,
   },
   computed: {
     title: function() {
