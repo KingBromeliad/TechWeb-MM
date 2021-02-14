@@ -146,6 +146,7 @@ export default {
         ],
       };
       this.$socket.client.emit("update_score", data);
+      this.$emit('updatePoints', this.punti);
     },
     nextQuestion() {
       if (this.currentQuestion < this.data.domande.length) {

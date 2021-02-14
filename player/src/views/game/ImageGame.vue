@@ -129,6 +129,7 @@ export default {
           punteggi: [{ nomeGioco: "imageGame", punti: this.punti }],
         };
         this.$socket.client.emit("update_score", gioco);
+        this.$emit('updatePoints', this.punti);
       }
     },
   },

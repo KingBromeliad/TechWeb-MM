@@ -19,6 +19,7 @@
           Chat
         </a>
       </div>
+      {{score}}
     </div>
     <router-view :data="this.game[this.progress]" @gameCompleted="nextView()" :time="this.formattedElapsedTime" @updatePoints="updateScore"/>
   </div>

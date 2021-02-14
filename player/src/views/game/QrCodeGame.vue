@@ -66,6 +66,7 @@ export default {
           this.numberOfStrings--;
           this.points += 50;
           if (this.numberOfStrings == 0) {
+            this.$emit('updatePoints', this.points);
             this.$socket.client.emit("update_score", {
               playerId: this.playerId,
               nome: this.playerId,

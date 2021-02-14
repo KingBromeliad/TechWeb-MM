@@ -93,6 +93,7 @@ export default {
         punti: 1,
       };
       this.$socket.client.emit("update_score", data);
+      this.$emit('updatePoints', 1);
       //console.log(this.score);
     },
   },
