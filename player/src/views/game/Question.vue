@@ -5,17 +5,19 @@
   >
     <section v-show="!quizCompleted" class="text-gray-600 body-font">
       <div
-        class="container mx-auto flex px-5 py-24 items-center justify-center flex-col"
+        class="grid place-content-center h-screen"
       >
+      <div class="flex justify-center">
         <img
           class="object-contain object-center rounded"
           alt=""
           :src="questionImage"
-          style="height: 50vh"
+          style="height: 30vh"
         />
-        <div class="text-center lg:w-2/3 w-full">
+      </div>
+
           <h1
-            class="title-font sm:text-6xl text-3xl mb-4 font-medium text-gray-900"
+            class="title-font lg:text-6xl text-3xl mb-4 font-medium text-gray-900 text-center"
           >
             {{ domande[currentQuestion].domanda }}
           </h1>
@@ -24,7 +26,7 @@
             <div
               v-for="(option, index) in domande[currentQuestion].argomento"
               :key="index"
-              class="p-4 bg-white rounded-xl shadow-md h-14 flex m-4"
+              class="flex flex-row lg:p-4 p-2 bg-white rounded-xl shadow-md  m-4"
             >
               <label class="flex items-center space-x-3" :for="index">
                 <input
@@ -34,7 +36,7 @@
                   :id="index"
                   :value="index"
                   v-model="answer"
-                  class="form-tick h-6 w-6 border border-gray-300 rounded-md checked:bg-blue-600 checked:border-transparent focus:outline-none"
+                  class="form-tick lg:h-6 lg:w-6 h-4 w-4 border border-gray-300 rounded-md checked:bg-blue-600 checked:border-transparent focus:outline-none"
                 />
                 <span class="text-gray-900 text-s font-medium">{{
                   option
@@ -67,9 +69,9 @@
               Completa
             </button>
           </div>
-        </div>
       </div>
     </section>
+
     <section v-show="quizCompleted">
       <div class="grid place-content-center text-center h-screen">
         <h1
@@ -90,6 +92,7 @@
         </div>
       </div>
     </section>
+
   </body>
 </template>
 <script>

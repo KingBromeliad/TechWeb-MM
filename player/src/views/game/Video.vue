@@ -9,7 +9,7 @@
           {{ title }}
         </h1>
       </div>
-      <div>
+      <div class="flex justify-center">
         <iframe
           width="720"
           height="400"
@@ -35,7 +35,9 @@
           {{ title }}
         </h1>
       </div>
-      <img style="height: 70vh" :src="source" />
+      <div class="flex justify-center">
+      <img style="height: 65vh" :src="source" />
+      </div>
       <div class="flex justify-center">
         <button
           @click="Continue()"

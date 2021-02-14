@@ -11,15 +11,15 @@
       <div
         class="flex content-center justify-center flex-wrap space-y-8"
       >
-        <div class="bg-white rounded-md text-center md:mr-4">
-          <p class="text-black font-extrabold md:text-4xl md:m-10 sm:m-2">
+        <div class="bg-white rounded-md text-center lg:mr-4 mr-2">
+          <p class="text-black font-extrabold lg:text-4xl text-2xl lg:m-10 m-2">
             {{ text }}
           </p>
         </div>
 
         <button
           @click="Continue()"
-          class="bg-black hover:bg-gray-700 focus:outline-none rounded-lg font-extrabold text-center text-white md:text-6xl sm:text-2xl md:ml-40 sm:ml-10 p-3"
+          class="bg-black hover:bg-gray-700 focus:outline-none rounded-lg font-extrabold text-center text-white lg:text-4xl text-2xl lg:ml-40 ml-10 lg:p-4 p-2"
         >
           {{ option }}
         </button>
