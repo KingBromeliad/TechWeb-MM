@@ -156,6 +156,7 @@
                       type="text"
                       placeholder="Write Something"
                       class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-12 bg-gray-200 rounded-full py-3"
+                      v-on:keyup.enter="sendMessage()"
                     />
                     <div
                       class="absolute right-0 items-center inset-y-0 hidden sm:flex"

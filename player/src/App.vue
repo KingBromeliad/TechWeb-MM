@@ -7,15 +7,9 @@
       <router-link class="mr-10 mt-auto mb-auto text-center" to="/"
         >Home</router-link
       >
-      <div class="inline-flex rounded-md shadow">
-        <a
-          href="#"
-          @click="nextView()"
-          class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
-        >
-          Get started
-        </a>
-      </div>
+
+      <a @click="nextView()">o</a>
+
       <div class="inline-flex rounded-md shadow ml-1">
         <a
           href="#"
@@ -26,13 +20,12 @@
         </a>
       </div>
     </div>
-    <router-view :data="this.game[this.progress]" @gameCompleted="nextView()"/>
+    <router-view :data="this.game[this.progress]" @gameCompleted="nextView()" />
   </div>
 </template>
 
 <script>
 import Chat from "./components/Chat.vue";
-
 
 export default {
   name: "App",
@@ -40,12 +33,17 @@ export default {
     Chat,
   },
   beforeCreate: function() {
-
- this.axios.get("http://localhost:3500/openStory").then((response) => {
-  console.log(response.data)
-  this.game = response.data.game;
-})
-
+    this.axios.get("http://localhost:3500/openStory").then((response) => {
+      this.game = response.data.game;
+    });
+  },
+  computed: {
+    formattedElapsedTime() {
+      const date = new Date(null);
+      date.setSeconds(this.elapsedTime / 1000);
+      const utc = date.toUTCString();
+      return utc.substr(utc.indexOf(":") - 2, 8);
+    },
   },
   data: function() {
     return {
@@ -53,16 +51,46 @@ export default {
       progress: -1,
       chatActive: false,
       game: [],
+      help_interval: 30,
+      elapsedTime: 0,
+      player_id: "",
+      timer: undefined,
     };
   },
+
   methods: {
     //MAIN NAVIGATION: WORK IN PROGRESS
     nextView() {
       if (this.progress < this.game.length - 1) {
-                this.progress++;
-                console.log(this.game[this.progress]);
+        this.progress++;
+        this.reset();
+        this.start();
         this.$router.push(this.game[this.progress].route);
       }
+    },
+    start() {
+      this.timer = setInterval(() => {
+        this.elapsedTime += 1000;
+        if (this.elapsedTime > this.help_interval * 1000) {
+          this.askForHelp;
+        }
+      }, 1000);
+    },
+    stop() {
+      clearInterval(this.timer);
+    },
+    reset() {
+      this.elapsedTime = 0;
+    },
+    askForHelp() {
+      this.stop();
+      this.reset();
+      this.$socket.client.emit("needs_help", this.player_id);
+    },
+  },
+  sockets: {
+    get_player_Id(id) {
+      this.player_id = id;
     },
   },
 };
