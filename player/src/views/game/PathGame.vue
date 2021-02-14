@@ -165,6 +165,7 @@ export default {
           {
             nomeGioco: "TrovaPercorso",
             punti: this.punti,
+            tempo: this.time
           },
         ],
       };

@@ -90,6 +90,7 @@ export default {
           {
             nomeGioco: "intro",
             punti: 1,
+            tempo: this.time
           },
         ],
       };

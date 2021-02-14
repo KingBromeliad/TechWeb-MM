@@ -133,7 +133,7 @@ app.post("/api/register", (req, res) => {
 //Per inviare la storia come file JSON
 app.get("/openStory", (req, res) => {
   console.log(req.body);
-  let story = JSON.parse(fs.readFileSync('storiaMusica.json'));
+  let story = JSON.parse(fs.readFileSync('storiaDinosauri.json'));
   res.send(story);
 });
 //per creare un file JSON storia con contenuto
@@ -248,7 +248,8 @@ io.on("connection", (chatSocket) => {
           } else {
             let newGame = {
               nomeGioco: data.punteggi[0].nomeGioco,
-              punti: parseInt(data.punteggi[0].punti, 10)
+              punti: parseInt(data.punteggi[0].punti, 10),
+              tempo: data.punteggi[0].tempo
             }
             //console.log(newGame);
             if (newGame.nomeGioco != '') giocatore.punteggi.push(newGame);
@@ -264,6 +265,7 @@ io.on("connection", (chatSocket) => {
           {
             nomeGioco: data.punteggi[0].nomeGioco,
             punti: data.punteggi[0].punti,
+            tempo: data.punteggi[0].tempo
           }
         ]
       };

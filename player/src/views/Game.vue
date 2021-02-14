@@ -134,6 +134,7 @@ export default {
           {
             nomeGioco: "Tris",
             punti: this.punti,
+            tempo: this.time
           },
         ],
       };

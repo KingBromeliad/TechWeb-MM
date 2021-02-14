@@ -70,7 +70,7 @@ export default {
             this.$socket.client.emit("update_score", {
               playerId: this.playerId,
               nome: this.playerId,
-              punteggi: [{ nomeGioco: "qrCodeGame", punti: this.points }],
+              punteggi: [{ nomeGioco: "qrCodeGame", punti: this.points, tempo: this.time }],
             });
           }
         }

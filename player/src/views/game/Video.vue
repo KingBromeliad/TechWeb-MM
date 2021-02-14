@@ -89,8 +89,15 @@ export default {
     updateScore() {
       //punteggio aggiornato via via passandoli un valore
       let data = {
-        nomeGioco: "intro",
-        punti: 1,
+        playerId: this.playerId,
+        nome: this.playerId,
+        punteggi: [
+          {
+            nomeGioco: "intro",
+            punti: 1,
+            tempo: this.time
+          },
+        ],
       };
       this.$socket.client.emit("update_score", data);
       this.$emit('updatePoints', 1);

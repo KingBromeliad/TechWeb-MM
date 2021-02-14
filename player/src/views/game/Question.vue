@@ -142,6 +142,7 @@ export default {
           {
             nomeGioco: "Quiz",
             punti: this.punti,
+            tempo: this.time
           },
         ],
       };

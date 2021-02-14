@@ -126,7 +126,7 @@ export default {
         let gioco = {
           playerId: this.playerId,
           nome: this.playerId,
-          punteggi: [{ nomeGioco: "imageGame", punti: this.punti }],
+          punteggi: [{ nomeGioco: "imageGame", punti: this.punti, tempo: this.time }],
         };
         this.$socket.client.emit("update_score", gioco);
         this.$emit('updatePoints', this.punti);

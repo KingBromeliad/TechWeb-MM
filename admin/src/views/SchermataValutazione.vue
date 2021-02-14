@@ -44,7 +44,8 @@
           <div class="border-2">
             <p class="text-lg text-gray-500 text-center">
               Gioco: {{ punteggio.nomeGioco }} <br />
-              Punteggio: {{ punteggio.punti }}
+              Punteggio: {{ punteggio.punti }} <br />
+              Tempo Impiegato: {{ punteggio.tempo }}
             </p>
           </div>
         </div>
