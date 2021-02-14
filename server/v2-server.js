@@ -180,8 +180,7 @@ app.get("/SendStory", (req, res) => {
 
 app.get("/immagineDaValutare", (req, res) => {
   console.log(req.body);
-  let urlImg = '/images/allosauro.svg';
-  res.send(urlImg);
+  res.send(toEval);
 });
 
 let toEval = {

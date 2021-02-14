@@ -77,7 +77,7 @@ export default {
       this.timer = setInterval(() => {
         this.elapsedTime += 1000;
         if (this.elapsedTime > this.help_interval * 1000) {
-          this.askForHelp;
+          this.askForHelp();
         }
       }, 1000);
     },
@@ -95,11 +95,12 @@ export default {
   },
   sockets: {
     get_player_Id(id) {
+      console.log(this.player_id);
       this.player_id = id;
     },
   },
   mounted: function() {
-    this.$socket.client.emit('req_player_id')
+    this.$socket.client.emit('req_player_Id')
   }
 };
 </script>

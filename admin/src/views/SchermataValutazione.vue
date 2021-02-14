@@ -92,6 +92,7 @@
         type="text"
         placeholder="Dai un nome alla partita"
         v-model="nomePartita"
+        class="border-2"
       />
       <button
         @click="saveGame()"
@@ -99,9 +100,11 @@
       >
         Salva la Partita
       </button>
-      <p v-show="partitaSalvata">
+      <p v-show="partitaSalvata" class="px-4 py-2 m-2">
         La partita e' raggiungibile:
-        <a :href="'http://localhost:3500/' + nomePartita + '.json'"
+        <a
+          :href="'http://localhost:3500/' + nomePartita + '.json'"
+          class="underline"
           >{{ nomePartita }}
         </a>
       </p>
@@ -193,7 +196,7 @@ export default {
       console.log(index);
       console.log(this.newPlayerName);
       this.giocatori[index].nome = this.newPlayerName[index];
-      this.$socket.emit("rinomina_giocatore", this.giocatori);
+      this.$socket.client.emit("rinomina_giocatore", this.giocatori);
     },
   },
   sockets: {
