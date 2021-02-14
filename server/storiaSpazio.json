@@ -112,12 +112,21 @@
       "domande": [
         {
           "domanda": "Perchè Marte appare rosso?",
-          "argomento": ["Ossido di ferro nell'atmosfera", "Colore della sabbia", "Riflessi spaziali"],
+          "argomento": [
+            "Ossido di ferro nell'atmosfera",
+            "Colore della sabbia",
+            "Riflessi spaziali"
+          ],
           "soluzione": 0
         },
         {
           "domanda": "Ogni quanto conviene partire per Marte?",
-          "argomento": ["Ogni settimana", "Di notte", "Ogni due anni", "Ogni 7 mesi"],
+          "argomento": [
+            "Ogni settimana",
+            "Di notte",
+            "Ogni due anni",
+            "Ogni 7 mesi"
+          ],
           "soluzione": 2
         },
         {
@@ -158,9 +167,10 @@
         "In tre! Due! Uno! Lancio!",
         "Qui base, riuscite ad identificare il problema?",
         "Purtroppo a causa dei danni al satellite non riceviamo il vostro feed video",
-        "Ragazzo riusciresti ad disegnare il danno al satellite osservando dalle ottiche della navicella?",
-        "Ottimo! Poi utilizza lo scanner del Mars-ablet per inviare il disegno, cerca di essere il più accurato possibile!",
-        "Inizia pure!"
+        "Oppure potrebbe essere un problema dovuto alle lune di Marte, dovresti poter aggirare il loro disturbo",
+        "Accidenti il segnale! Non riesco ad inviarti le informazioni necessarie; se solo ci fosse un modo per farti sapere tutto quel che serve",
+        "Aspetta! Nella vostra capsula dovrebbe esserci un libro intitolato <<The Sun shines Bright>> lì troverai le informazioni sulle lune",
+        "Sembra che il vostro canale di upload funzioni, scrivimi quel che hai capito, così ti darò la conferma a voce"
       ],
       "option": [
         "Grazie",
@@ -168,18 +178,30 @@
         ">>",
         "Non vedete?",
         "Capisco",
-        "Credo di si",
+        "Ma come?",
         ">>",
-        "Subito"
+        "Lo cerco subito",
+        "Lo farò"
       ],
       "images": {
         "singleCharacter": false,
         "character": "spaceStory/Manager.svg",
-        "characters": ["spaceStory/Manager.svg", "spaceStory/Astronaut.png","spaceStory/Empty.png","spaceStory/Empty.png","spaceStory/Empty.png","spaceStory/Empty.png","spaceStory/Empty.png","spaceStory/Empty.png"],
+        "characters": [
+          "spaceStory/Manager.svg",
+          "spaceStory/Astronaut.png",
+          "spaceStory/Empty.png",
+          "spaceStory/Empty.png",
+          "spaceStory/Empty.png",
+          "spaceStory/Empty.png",
+          "spaceStory/Empty.png",
+          "spaceStory/Empty.png",
+          "spaceStory/Empty.png"
+        ],
         "background": [
           "spaceStory/BgLab.svg",
           "spaceStory/BgLab.svg",
           "spaceStory/Launch.png",
+          "spaceStory/DamagedSatellite.png",
           "spaceStory/DamagedSatellite.png",
           "spaceStory/DamagedSatellite.png",
           "spaceStory/DamagedSatellite.png",
@@ -200,20 +222,20 @@
       "name": "start",
       "route": "/start",
       "text": [
-        "Ecco il problema senza pannelli il satellite è rimasto a corto di energia",
-        "Fortunatamente nella navicella sono presenti i ricambi necessari",
-        "Dopo aver agganciato i pannelli dovrete sostituire i fusibili correttamente",
-        "Qui base, riuscite ad identificare il problema?",
-        "Purtroppo a causa dei danni al satellite non riceviamo il vostro feed video",
+        "Ottimo ora regola l'antenna perchè rimbalzi il segnale su Phobos!",
+        "Molto bene, ma non riceviamo ancora il feed video",
+        "Almeno però ora la banda è sufficiente a inviare immagini",
+        "La brutta notizia è che non avete videocamere, solo lo scanner del Mars-ablet",
+        "Ancora una volta dovremo affidarci alle risorse analogiche, mi sa che ti tocca",
         "Ragazzo riusciresti ad disegnare il danno al satellite osservando dalle ottiche della navicella?",
         "Ottimo! Poi utilizza lo scanner del Mars-ablet per inviare il disegno, cerca di essere il più accurato possibile!",
         "Inizia pure!"
       ],
       "option": [
-        "Grazie",
-        "Evvai!",
-        ">>",
-        "Non vedete?",
+        "Fatto",
+        "Mannaggia",
+        "Almeno",
+        "Ma nooo",
         "Capisco",
         "Credo di si",
         ">>",
@@ -222,11 +244,20 @@
       "images": {
         "singleCharacter": false,
         "character": "spaceStory/Manager.svg",
-        "characters": ["spaceStory/Manager.svg", "spaceStory/Astronaut.png"],
+        "characters": [
+          "spaceStory/Empty.png",
+          "spaceStory/Empty.png",
+          "spaceStory/Empty.png",
+          "spaceStory/Empty.png",
+          "spaceStory/Empty.png",
+          "spaceStory/Empty.png",
+          "spaceStory/Empty.png",
+          "spaceStory/Empty.png"
+        ],
         "background": [
-          "spaceStory/BgLab.svg",
-          "spaceStory/BgLab.svg",
-          "spaceStory/Launch.svg",
+          "spaceStory/DamagedSatellite.png",
+          "spaceStory/DamagedSatellite.png",
+          "spaceStory/DamagedSatellite.png",
           "spaceStory/DamagedSatellite.png",
           "spaceStory/DamagedSatellite.png",
           "spaceStory/DamagedSatellite.png",
@@ -236,11 +267,11 @@
       }
     },
     {
-      "name": "PathGame",
-      "route": "/pathgame",
+      "name": "ImageUpload",
+      "route": "/imageGame",
+      "image_or_text": true,
       "images": {
-        "backgroundPath": "backgroundPath.png",
-        "rock": "Rock.svg"
+        "background": "spaceStory/Tablet.png"
       }
     },
     {
@@ -253,17 +284,17 @@
         "COMPLIMENTI RAGAZZO! SEI UN EROE SPAZIALE!!",
         "E ora finalmente possiamo ricevere le immagini da Inspiration!!"
       ],
-      "option": [
-        "Grazie",
-        ">>",
-        ">>",
-        ">>",
-        ">>"
-      ],
+      "option": ["Grazie", ">>", ">>", ">>", ">>"],
       "images": {
         "singleCharacter": false,
         "character": "spaceStory/Manager.svg",
-        "characters": ["spaceStory/Empty.png", "spaceStory/Empty.png", "spaceStory/Empty.png","spaceStory/TwoChar.png","spaceStory/TwoChar.png"],
+        "characters": [
+          "spaceStory/Empty.png",
+          "spaceStory/Empty.png",
+          "spaceStory/Empty.png",
+          "spaceStory/TwoChar.png",
+          "spaceStory/TwoChar.png"
+        ],
         "background": [
           "spaceStory/SatelliteRepair.png",
           "spaceStory/SatelliteRepair.png",
