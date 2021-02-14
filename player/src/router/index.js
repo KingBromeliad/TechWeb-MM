@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Storia from '../views/Storia.vue'
 //--game pages--//
 import Start from '../views/game/Start.vue'
 import End from '../views/game/End.vue'
@@ -22,11 +21,6 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
-  },
-  {
-    path: '/storia',
-    name: 'Storia',
-    component: Storia
   },
   {
     path: '/startAccessible',

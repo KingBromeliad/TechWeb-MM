@@ -271,6 +271,7 @@
     {
       "name": "ImageUpload",
       "route": "/imageGame",
+      "image_or_text": true,
       "images": {
         "background": "StoneTablet.svg"
       }

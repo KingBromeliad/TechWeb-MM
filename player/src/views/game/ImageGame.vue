@@ -3,8 +3,9 @@
     class="bg-fixed bg-cover bg-no-repeat bg-center min-h-screen"
     v-bind:style="{ 'background-image': background }"
   >
+    <!-- GIOCO INVIO IMMAGINE -->
     <div
-      v-show="!esitoValutazione"
+      v-show="!esitoValutazione && imageGame"
       class="grid place-content-center min-h-screen"
     >
       <div
@@ -43,7 +44,50 @@
         </label>
       </div>
     </div>
-
+    <!-- GIOCO COMPONIMENTO TESTUALE -->
+    <div
+      v-show="!esitoValutazione && !imageGame"
+      class="grid place-content-center min-h-screen"
+    >
+      <div
+        class="flex justify-center text-center bg-gradient-to-r from-green-400 to-blue-500 rounded-2xl lg:p-4 p-2 m-10 mb-20 shadow-md"
+      >
+        <p class="lg:text-6xl text-2xl font-bold text-white">
+          Scrivi nel campo di testo sottostante
+        </p>
+      </div>
+      <div class="flex justify-center">
+        <textarea
+          id="about"
+          name="about"
+          rows="8"
+          v-model="text"
+          class="w-3/4 shadow-sm border-4  focus:border-gray-700 focus:outline-none lg:p-3 p-1 lg:text-xl text-md border-gray-300 rounded-md"
+          placeholder="Il tuo testo..."
+        ></textarea>
+      </div>
+      <div
+      @click="sendText()"
+        class="flex items-center justify-center bg-grey-lighter lg:pt-20 pt-10"
+      >
+        <label
+          class="w-64 flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue-500 hover:text-white"
+        >
+          <svg
+            class="w-8 h-8"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
+            />
+          </svg>
+          <span class="mt-2 text-xl leading-normal">Invia il testo</span>
+        </label>
+      </div>
+    </div>
+    <!-- SCHERMATA VALUTAZIONE -->
     <div
       v-show="esitoValutazione"
       class="grid place-content-center min-h-screen"
@@ -87,7 +131,10 @@ export default {
     time: String,
   },
   computed: {
-    background: function () {
+    imageGame: function() {
+      return this.data.image_or_text; //true for image, false for text
+    },
+    background: function() {
       return "url(http://localhost:3500/" + this.data.images.background + ")";
     },
   },
@@ -114,6 +161,13 @@ export default {
         .catch((errors) => {
           console.log("Invalid Data", errors);
         });
+    },
+    sendText() {
+      let data = {
+        playerId: this.playerId,
+        text: this.text,
+      };
+      this.$socket.client.emit("gioco_testo", data);
     },
     ContinueToNext() {
       this.$emit("gameCompleted");
