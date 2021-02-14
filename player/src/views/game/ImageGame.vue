@@ -182,7 +182,6 @@ export default {
     },
     image_eval(data) {
       //console.log(data);
-      this.esitoValutazione = data.eval;
       this.punti = data.punti;
       this.commentoValutatore = data.commento;
       let gioco = {
