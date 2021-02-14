@@ -45,7 +45,7 @@ app.use(passport.session());
 //static files-images
 app.use(express.static('images'));
 
-
+app.use(express.static('json'));
 //Middleware
 const authMiddleware = (req, res, next) => {
   if (!req.isAuthenticated()) {
@@ -316,6 +316,10 @@ io.on("connection", (chatSocket) => {
     });
   });
 
+  chatSocket.on('save_game', (data) => {
+    fs.writeFileSync(__dirname + '/json/' + data.nome + ".json", JSON.stringify(data.giocatori, null, 4));
+  });
+
   //messaggio inviato da giocatore
   chatSocket.on('player_message', (data) => {
     //console.log(data);
@@ -341,7 +345,6 @@ io.on("connection", (chatSocket) => {
   });
 
 });
-
 
 chatServer.listen(3000, () => {
   console.log("player http server listening on port: 3000");

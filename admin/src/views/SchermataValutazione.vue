@@ -86,6 +86,25 @@
         Non c'è una storia attiva al momento
       </h1>
     </div>
+    <div class="text-cemter text-2xl flex justify-center m-5">
+      <input
+        type="text"
+        placeholder="Dai un nome alla partita"
+        v-model="nomePartita"
+      />
+      <button
+        @click="saveGame()"
+        class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline"
+      >
+        Salva la Partita
+      </button>
+      <p v-show="partitaSalvata">
+        La partita e' raggiungibile:
+        <a :href="'http://localhost:3500/' + nomePartita + '.json'"
+          >{{ nomePartita }}
+        </a>
+      </p>
+    </div>
   </div>
 </template>
 
@@ -103,7 +122,9 @@ export default {
       },
       imagePresent: false,
       punteggioEval: 0,
-      newPlayerName: []
+      newPlayerName: [],
+      nomePartita: "",
+      partitaSalvata: false,
     };
   },
   methods: {
@@ -131,6 +152,13 @@ export default {
           console.log(err);
           this.imagePresent = false;
         });
+    },
+    saveGame: function () {
+      this.$socket.client.emit("save_game", {
+        nome: this.nomePartita,
+        giocatori: this.giocatori,
+      });
+      this.partitaSalvata = true;
     },
     updateIndex: function (index) {
       this.shownPlayerIndex = index;
@@ -160,12 +188,12 @@ export default {
       if (this.giocatori && this.giocatori.length) return true;
       else return false;
     },
-    rinominaGiocatore: function(index) {
+    rinominaGiocatore: function (index) {
       console.log(index);
       console.log(this.newPlayerName);
       this.giocatori[index].nome = this.newPlayerName[index];
-      this.$socket.emit('rinomina_giocatore', this.giocatori);
-    }
+      this.$socket.emit("rinomina_giocatore", this.giocatori);
+    },
   },
   sockets: {
     player_points(data) {
