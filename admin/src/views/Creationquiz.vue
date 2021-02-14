@@ -1,17 +1,15 @@
 <template>
   <div>
-    <h1>This is the creation page</h1>
-    <button @click="premuto()">premimi</button>
-    <div class="space-y-4">
+    <div class="space-y-4 ">
       <div
-        v-for="(item, index) in items"
+        v-for="(item, index) in items.domande"
         :key="index"
         class="block py-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-2 sm:py-4 sm:flex flex-col sm:items-center sm:space-y-0 sm:space-x-2"
       >
         <div class="block text-center py-4 space-y-6 sm:items-center">
           <h1>Le risposte</h1>
           <div
-            v-for="(item2, index2) in items[index].argomento"
+            v-for="(item2, index2) in items.domande[index].argomento"
             :key="index2"
             class="flex flex-row"
           >
@@ -69,7 +67,20 @@
           </div>
         </div>
       </div>
-      <button @click="salvamodifiche()">salva modifiche</button>
+      <div class="flex flex-row">
+      <button
+      class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+      @click="salvamodifiche()">salva modifiche</button>
+      <button
+      class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+      @click="indietro()">Indietro</button>
+    <div class="flex flex-col justify-center">
+      <p> aggiungi Background</p>
+      <input
+      class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+      type="file" @change="onFileChangedBackground($event)">
+    </div>
+    </div>
     </div>
   </div>
 </template>
@@ -97,14 +108,31 @@ export default {
     premuto() {
       console.log("mi hai premuto, ahia");
     },
+    onFileChangedBackground(event) {
+      let formData = new FormData();
+      formData.append("image", event.target.files[0]);
+      console.log(event.target.files[0].name);
+      this.items.images.background=event.target.files[0].name;
+      this.axios
+        .post("http://localhost:3500/immagineMeglio", formData)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((errors) => {
+          console.log("Invalid Data", errors);
+        });
+    },
     aggiungirisposta(i) {
-      this.items[i].argomento.push(" ");
+      this.items.domande[i].argomento.push(" ");
+    },
+    indietro() {
+      this.$router.push("Creationstory");
     },
     salvamodifiche() {
       Vue.prototype.$SavedFile.game[
         this.$numeroquiz
       ].modificato = true;
-      Vue.prototype.$SavedFile.game[this.$numeroquiz].option = JSON.parse(JSON.stringify(this.items));
+      Vue.prototype.$SavedFile.game[this.$numeroquiz].domande = JSON.parse(JSON.stringify(this.items.domande));
     },
     aggiungidomanda() {
       var a = {
@@ -112,16 +140,15 @@ export default {
         soluzione: 1,
         argomento: ["risposta"],
       };
-      this.items.push(a);
-      console.log(this.items);
+      this.items.domande.push(a);
+      console.log(this.items.domande);
     },
   },
 
   mounted: function () {
     console.log("siamo nella quiz creation");
     console.log(this.$numeroquiz);
-    console.log(Vue.prototype.$SavedFile.game[Vue.prototype.$numeroquiz].option);
-    this.items = JSON.parse(JSON.stringify(Vue.prototype.$SavedFile.game[Vue.prototype.$numeroquiz].option));
+    this.items = JSON.parse(JSON.stringify(Vue.prototype.$SavedFile.game[Vue.prototype.$numeroquiz]));
   },
 };
 </script>

@@ -31,6 +31,7 @@
               da modificare
             </h4>
             <button
+            v-if="item.modificabile!=false"
               @click="modifica(index)"
               class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
             >
@@ -43,12 +44,6 @@
               Elimina
             </button>
           </div>
-          <button
-            @click="aggiungidialoghi(index)"
-            class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-          >
-            Aggiungi dialoghi
-          </button>
         </div>
 
         <div class="w-1/4 p-4">
@@ -176,6 +171,29 @@
             <p class="text-gray-500 font-medium">
               Non sarà possibile recuperarla
             </p>
+            <div
+              v-for="(item, index) in newjson.game[numerogioco].text"
+              :key="index"
+              class="flex flex-row"
+            >
+              <input
+                type="text"
+                v-model="newjson.game[numerogioco].text[index]"
+                class="focus:ring-indigo-500 w-full focus:border-indigo-500 rounded sm:text-sm border-2 border-purple-600"
+                placeholder="aggiungi testo"
+              />
+            </div>
+            <button
+              @click="aggiungirisposta()"
+              class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+            >
+          </button>
+            <button
+              class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+              @click="chiudidialoghi()"
+            >
+              Chiudi
+            </button>
           </div>
         </div>
       </div>
@@ -196,6 +214,7 @@ export default {
       numerocategoria: "",
       numerofascia: "",
       nomestoria: "",
+      numerogioco: "",
       name: "",
       listastorie: "",
       items: "",
@@ -233,20 +252,7 @@ export default {
           ],
           option: [{ domanda: "", soluzione: 0, argomento: [" "] }],
         },
-        {
-          modificato: false,
-          categoria: 0,
-          fascia: 0,
-          url: "./gattino.jpg",
-          src: "Creationquiz",
-          name: "start",
-          route: "/start",
-          text: [
-            "Ciao sono Doco il Diplodoco!",
-            "Ehilà sono Ally l'Allosauro!"
-          ],
-          option: [{ domanda: "", soluzione: 0, argomento: [" "] }],
-        },
+
         {
           modificato: false,
           categoria: 0,
@@ -279,6 +285,17 @@ export default {
       this.newjson.game.push(this.giochi[data]);
       console.log(this.newjson.game);
     },
+    aggiungirisposta() {
+      this.newjson.game[this.numerogioco].text.push(" ");
+    },
+    aggiungidialoghi(data) {
+    this.numerogioco=data;
+    this.openmodal=true;
+    console.log(this.newjson.game[this.numerogioco].text);
+    },
+    chiudidialoghi(){
+      this.openmodal=false;
+    },
     modal() {
       console.log("modal aperto stronzetto");
       this.openmodal = true;
@@ -294,7 +311,7 @@ export default {
       Vue.prototype.$SavedFile=JSON.parse(JSON.stringify(this.newjson));
       Vue.prototype.$numeroquiz=data;
       console.log(Vue.prototype.$numeroquiz);
-      this.$router.push(this.newjson.game[data].src);
+    this.$router.push(this.newjson.game[data].src);
     },
 
     salvastoria() {

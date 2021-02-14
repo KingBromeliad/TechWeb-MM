@@ -142,6 +142,13 @@ app.post("/writeStory", (req, res) => {
   res.send();
 });
 
+app.post("/immagineMeglio", upload.single('image'), (req, res) => {
+  //console.log(req.file);
+  res.json({
+    file: req.file
+  });
+});
+
 app.post("/deleteStory", (req, res) => {
   let nome=req.body.filejson;
   console.log(nome);

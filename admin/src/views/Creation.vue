@@ -7,13 +7,7 @@
         :key="index"
         class="block py-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6"
       >
-        <!--
-          <img
-          class="block mx-auto h-24 rounded-full sm:mx-0 sm:flex-shrink-0"
-          src="item.url"
-          alt="Woman's Face"
-        />
-        -->
+
         <div class="text-center space-y-2 sm:text-left">
           <div class="space-y-0.5">
             <p class="text-lg text-black font-semibold">
@@ -106,7 +100,7 @@
             </p>
             <div class="flex flex-row">
               <button
-                @click="dublica()"
+                @click="duplicastoria()"
                 class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
               >
                 duplica
@@ -360,8 +354,55 @@ export default {
     },
     creazionestoria() {
       let name=this.lista[this.storiadamodificare].name;
-      this.meo(name);
+      this.vaialcreator(name);
     },
+
+    duplicastoria() {
+      let nomenuovo=this.lista[this.storiadamodificare].name;
+      console.log(nomenuovo);
+      let a={
+          archiviato: true,
+          name:nomenuovo + " nuovo",
+          edizione: "ciaolo"
+      };
+      this.lista.push(a)
+      console.log(this.lista);
+      let filejson=this.lista;
+      this.axios.post('http://localhost:3500/writeStoryList', {
+        filejson
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+        this.axios.get("http://localhost:3500/prendiStoria",{
+    params: {
+      NAME:nomenuovo
+    } }).then((response) => {
+            console.log(response.data);
+            console.log(response.data.namestory);
+            this.jsoncreato=response.data;
+            console.log("il nome nuovo"+ nomenuovo);
+            this.jsoncreato.namestory=nomenuovo+ " nuovo";
+            let filejson=this.jsoncreato;
+            console.log(filejson);
+            this.axios.post('http://localhost:3500/writeStory', {
+              filejson
+              })
+              .then(function (response) {
+                console.log(response);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+        }).catch((errors) => {
+            console.log(errors);
+        })
+
+    },
+
     creazionestorianuova() {
       let a={
           archiviato: true,
@@ -395,7 +436,7 @@ export default {
           console.log(errors);
       })
     },
-    meo(data) {
+    vaialcreator(data) {
         this.axios.get("http://localhost:3500/prendiStoria",{
     params: {
       NAME:data

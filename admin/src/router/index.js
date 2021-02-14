@@ -20,6 +20,21 @@ const routes = [
     component: () => import('../views/Creation.vue'),
   },
   {
+    path: '/creationimage',
+    name: 'Creationimage',
+    component: () => import('../views/Creationimage.vue'),
+  },
+  {
+    path: '/creationtris',
+    name: 'Creationtris',
+    component: () => import('../views/Creationtris.vue'),
+  },
+  {
+    path: '/creationstart',
+    name: 'Creationstart',
+    component: () => import('../views/Creationstart.vue'),
+  },
+  {
     path: '/creationsgame',
     name: 'Creationsgame',
     component: () => import('../views/Creationsgame.vue'),
