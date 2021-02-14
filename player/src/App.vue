@@ -93,5 +93,8 @@ export default {
       this.player_id = id;
     },
   },
+  mounted: function() {
+    this.$socket.client.emit('req_player_id')
+  }
 };
 </script>
