@@ -289,6 +289,11 @@ io.on("connection", (chatSocket) => {
     io.emit('image_eval', data);
   });
 
+  chatSocket.on('text_eval', (data) => {
+    io.emit('text_eval', data);
+  });
+
+
   chatSocket.on('image_sent', (data) => {
     io.emit('image_sent', data);
   });
@@ -316,6 +321,11 @@ io.on("connection", (chatSocket) => {
       playerId: data.playerId
     });
   });
+
+  chatSocket.on('gioco_testo', (data) =>{
+    io.emit('testo_da_valutare', data);
+  })
+
 
   chatSocket.on('save_game', (data) => {
     fs.writeFileSync(__dirname + '/json/' + data.nome + ".json", JSON.stringify(data.giocatori, null, 4));

@@ -72,7 +72,7 @@ export default {
       progress: -1,
       chatActive: false,
       game: [],
-      help_interval: 30,
+      help_interval: 300,
       elapsedTime: 0,
       player_id: "",
       timer: undefined,

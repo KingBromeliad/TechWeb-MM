@@ -58,22 +58,37 @@
           class="grid"
         >
           <img :src="immagineDaValutare.imageUrl" />
-          <p>Valuta l'immagine con un punteggio:</p>
-          <input type="number" v-model="punteggioEval" />
+          <p>Valuta l'immagine con un punteggio ed un commento:</p>
+          <input type="number" v-model="punteggioEvalImg" />
+          <input type="text" v-model="commentoImmagine" />
           <button
-            @click="evalImagePositive()"
+            @click="evalImage()"
             class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline"
           >
-            Giusta
+            Invia Risposta
           </button>
+        </div>
+        <div
+          v-if="
+            textPresent == true &&
+            textToEval.playerId ==
+              giocatori[shownPlayerIndex].playerId
+          "
+          class="grid"
+        >
+        <p class="text-sm"> {{ textToEval.text }} </p>
+          <p>Valuta il testo con un punteggio ed un commento:</p>
+          <input type="number" v-model="punteggioEvalText" />
+          <input type="text" v-model="commentoTesto" />
           <button
-            @click="evalImageNegative()"
-            class="border border-red-500 bg-red-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline"
+            @click="evalText()"
+            class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline"
           >
-            Sbagliata
+            Invia Risposta
           </button>
         </div>
       </div>
+      
       <modal name="playerNeedsHelp">
         <div class="text-xl text-center text-black font-bold py-5">
           Il giocatore: <br />
@@ -125,10 +140,18 @@ export default {
         playerIdSendingImage: "",
       },
       imagePresent: false,
-      punteggioEval: 0,
+      punteggioEvalImg: 0,
+      punteggioEvalText: 0,
       newPlayerName: [],
       nomePartita: "",
       partitaSalvata: false,
+      textPresent: false,
+      textToEval: {
+        playerId: "",
+        text: ""
+      },
+      commentoTesto: "",
+      commentoImmagine: ""
     };
   },
   methods: {
@@ -175,21 +198,24 @@ export default {
     hideModal: function () {
       this.$modal.hide("playerNeedsHelp");
     },
-    evalImagePositive: function () {
+    evalImage: function () {
+      console.log(this.punteggioEvalImg);
       let data = {
-        eval: true,
-        punti: this.punteggioEval,
+        punti: this.punteggioEvalImg,
+        commento: this.commentoImmagine
       };
       this.$socket.client.emit("image_eval", data);
       this.imagePresent = false;
     },
-    evalImageNegative: function () {
+    evalText: function () {
       let data = {
-        eval: false,
-        punti: this.punteggioEval,
+        punti: this.punteggioEvalText,
+        commento: this.commentoTesto
       };
-      this.$socket.client.emit("image_eval", data);
+      this.$socket.client.emit("text_eval", data);
+      this.textPresent = false;
     },
+
     isNotEmpty: function () {
       if (this.giocatori && this.giocatori.length) return true;
       else return false;
@@ -213,6 +239,9 @@ export default {
     image_sent(data) {
       this.imagePresent = data;
       this.getImage();
+    },
+    testo_da_valutare(data) {
+      this.textToEval = data;
     },
   },
   mounted: function () {

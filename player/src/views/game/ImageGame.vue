@@ -58,8 +58,13 @@
       <div class="text-center mt-10 mb-10">
         <h1 class="lg:text-6xl text-4xl text-black font-semibold">
           Ti sono stati assegnati: <br />
-          {{ punti + " " }} punti!
+          {{ punti + " " }} punti! <br />
         </h1>
+        <div class="mt-1">
+          <p class="text-2xl font-semibold">
+            Il Valutatore ha pure detto questo: " {{ commentoValutatore }} "
+          </p>
+        </div>
       </div>
 
       <div class="flex justify-center">
@@ -82,19 +87,20 @@ export default {
     time: String,
   },
   computed: {
-    background: function() {
+    background: function () {
       return "url(http://localhost:3500/" + this.data.images.background + ")";
     },
   },
-  data: function() {
+  data: function () {
     return {
       playerId: "",
       esitoValutazione: false,
       punti: 0,
+      commentoValutatore: "",
     };
   },
   methods: {
-    sendFile: function(event) {
+    sendFile: function (event) {
       let formData = new FormData();
       formData.append("image", event.target.files[0]);
       console.log(this.playerId);
@@ -119,21 +125,23 @@ export default {
       console.log(this.playerId);
     },
     image_eval(data) {
+      console.log(data);
       this.esitoValutazione = data.eval;
       this.punti = data.punti;
-      if (data.eval == true) {
-        console.log((this.punti = data.punti));
-        let gioco = {
-          playerId: this.playerId,
-          nome: this.playerId,
-          punteggi: [{ nomeGioco: "imageGame", punti: this.punti, tempo: this.time }],
-        };
-        this.$socket.client.emit("update_score", gioco);
-        this.$emit('updatePoints', this.punti);
-      }
+      this.commentoValutatore = data.commento;
+      let gioco = {
+        playerId: this.playerId,
+        nome: this.playerId,
+        punteggi: [
+          { nomeGioco: "imageGame", punti: this.punti, tempo: this.time },
+        ],
+      };
+      this.esitoValutazione = true;
+      this.$socket.client.emit("update_score", gioco);
+      this.$emit("updatePoints", this.punti);
     },
   },
-  mounted: function() {
+  mounted: function () {
     this.$socket.client.emit("req_player_id");
   },
 };
