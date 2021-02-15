@@ -60,7 +60,12 @@
           <img :src="immagineDaValutare.imageUrl" />
           <p>Valuta l'immagine con un punteggio ed un commento:</p>
           <input type="number" v-model="punteggioEvalImg" class="border-2" />
-          <input type="text" v-model="commentoImmagine" placeholder="Inserisci qua un commento" class="border-2"/>
+          <input
+            type="text"
+            v-model="commentoImmagine"
+            placeholder="Inserisci qua un commento"
+            class="border-2"
+          />
           <button
             @click="evalImage()"
             class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline"
@@ -77,8 +82,13 @@
         >
           <p class="font-semibold">{{ textToEval.text }}</p>
           <p>Valuta il testo con un punteggio ed un commento:</p>
-          <input type="number" v-model="punteggioEvalText" class="border-2"/>
-          <input type="text" v-model="commentoTesto" placeholder="Inserisci qua un commento" class="border-2" />
+          <input type="number" v-model="punteggioEvalText" class="border-2" />
+          <input
+            type="text"
+            v-model="commentoTesto"
+            placeholder="Inserisci qua un commento"
+            class="border-2"
+          />
           <button
             @click="evalText()"
             class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline"
@@ -95,6 +105,14 @@
           ha bisogno di aiuto!
         </div>
       </modal>
+      <div class="flex justify-center">
+        <button
+          @click="svuotaArrGiocatori()"
+          class="border border-red-500 bg-red-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline"
+        >
+          Svuota Lista Giocatori
+        </button>
+      </div>
     </div>
     <div v-else>
       <h1 class="text-4xl text-center font-bold">
@@ -156,7 +174,7 @@ export default {
   methods: {
     getPlayerPoints: function () {
       //chiamata al socket al momento del mounted per prendere i progressi
-      this.player_points;
+      this.$socket.client.emit('get_player_points');
     },
     getImage: function () {
       //chiamata all'API per prendere un immagine e ritorna l'URL come stringa
@@ -224,6 +242,10 @@ export default {
       this.giocatori[index].nome = this.newPlayerName[index];
       this.$socket.client.emit("rinomina_giocatore", this.giocatori);
     },
+    svuotaArrGiocatori: function () {
+      this.$socket.client.emit("flush_arr");
+      this.$socket.client.emit("get_player_points")
+    },
   },
   sockets: {
     player_points(data) {
@@ -231,8 +253,8 @@ export default {
       //console.log(data);
     },
     needs_help(data) {
-      for(var i = 0; i < this.giocatori.length; i ++) {
-        if(this.giocatori[i].playerId == data) {
+      for (var i = 0; i < this.giocatori.length; i++) {
+        if (this.giocatori[i].playerId == data) {
           this.giocatoreDaAiutare = this.giocatori[i].nome;
           break;
         }
@@ -250,7 +272,7 @@ export default {
     },
   },
   mounted: function () {
-    //this.getImage();
+    this.getPlayerPoints();
   },
 };
 </script>
