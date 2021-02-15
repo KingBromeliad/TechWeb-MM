@@ -48,6 +48,7 @@
       :time="this.formattedElapsedTime"
       @updatePoints="updateScore"
       :no_game="this.no_game"
+      :punteggioFinale="this.score"
     />
   </div>
 </template>

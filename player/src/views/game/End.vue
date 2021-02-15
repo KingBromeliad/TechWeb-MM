@@ -9,18 +9,8 @@
       >
         {{ text }}
       </h1>
-      <div v-if="this.presiPunti == false" class="flex justify-center">
-        <button
-          role="button"
-          aria-label="Vai al punteggio"
-          @click="contaPunteggio()"
-          class="bg-black hover:bg-gray-700 focus:outline-none rounded-lg font-extrabold text-center text-white lg:text-4xl text-2xl lg:p-4 p-2"
-        >
-          Premimi per vedere il punteggio finale!
-        </button>
-      </div>
+      
       <p
-        v-else
         class="text-center lg:text-4xl text-2xl text-gray-800 font-bold mb-60"
       >
         Hai completato la storia e ottenuto: <br />
@@ -35,6 +25,7 @@ export default {
   props: {
     data: Object,
     time: String,
+    punteggioFinale: Number
   },
   computed: {
     text: function () {
@@ -51,11 +42,11 @@ export default {
     return {
       playerId: "",
       giocatori: [],
-      punteggioFinale: 0,
       presiPunti: false,
     };
   },
   methods: {
+    /*
     contaPunteggio: function () {
       console.log(this.giocatori);
       for (var i = 0; i < this.giocatori.length; i++) {
@@ -66,7 +57,7 @@ export default {
         }
       }
       this.presiPunti = true;
-    },
+    },*/
   },
   sockets: {
     player_points(data) {
