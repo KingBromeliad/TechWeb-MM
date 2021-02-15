@@ -48,7 +48,7 @@ export default {
           "url("+ process.env.VUE_APP_BASE_URL + this.data.images.background[0] + ")"
         );
       else
-        return (
+        return ( "url(" +
           process.env.VUE_APP_BASE_URL +
           this.data.images.background[this.line] +
           ")"
