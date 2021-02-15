@@ -17,7 +17,8 @@
         "Bene per prima cosa ti faccio conoscere i miei amici dinosauri",
         "Prima però dovremo oltrepassare il fiume, per me non è un problema... Ma forse per te si",
         "Oh no, non vedi che sono ricoperto di ossa sulla schiena?",
-        "Mi sembri abbastanza agile, trova un percorso saltando sulle rocce!"
+        "Mi sembri abbastanza agile, trova un percorso saltando sulle rocce! Dal grosso masso di una riva all'altra",
+        "Ah ma attento alcune sono instabili e potrebbero mouversi!"
       ],
       "option": [
         ">>",
@@ -30,7 +31,8 @@
         ">>",
         "Posso salire su di te?",
         "Oh vero",
-        "Ce la farò!"
+        "Ce la farò!",
+        "Va bene!"
       ],
       "images": {
         "singleCharacter": true,
@@ -53,7 +55,7 @@
       "name": "start",
       "route": "/start",
       "text": [
-        "Complimenti! Ecco qui i miei amici, su non essere timido",
+        "Complimenti, Davvero agilissimo! Ecco qui i miei amici, su non essere timido",
         "Ciao sono Doco il Diplodoco!",
         "Sono uno dei dinosauri più alti mai esistiti",
         "Adoro mangiare cespugli, foglie di conifere e felci",
@@ -252,7 +254,8 @@
       "route": "/qrCodeGame",
       "images": {
         "background": "dinosaurStory/Lens.png"
-      }
+      },
+      "option":["42","estinzione","i topi"]
     },
     {
       "modificabile":true,
