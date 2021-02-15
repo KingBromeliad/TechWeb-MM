@@ -56,6 +56,12 @@
           </p>
         </div>
       </div>
+      <button
+        @click="indietro()"
+        class="px-10 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+      >
+      indietro
+     </button>
     </div>
   </div>
 </template>
@@ -83,12 +89,17 @@ export default {
     deleteString: function (data) {
       this.stringsToSubmit.splice(data,1);
     },
+    indietro() {
+      this.$router.push("Creationstory");
+    },
   },
   mounted: function () {
+    if(Vue.prototype.$SavedFile==null) this.$router.push("Creation");
     console.log("siamo nella start cration");
     console.log(this.$numeroquiz);
     console.log(Vue.prototype.$SavedFile.game[Vue.prototype.$numeroquiz]);
     this.items = JSON.parse(JSON.stringify(Vue.prototype.$SavedFile.game[Vue.prototype.$numeroquiz]));
+    this.stringsToSubmit=this.items.option;
   },
 };
 </script>

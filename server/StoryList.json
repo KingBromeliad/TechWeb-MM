@@ -1,42 +1,22 @@
 [
     {
         "archiviato": true,
-        "name": "Storia numero 1",
+        "name": "storiaMusica",
         "edizione": "ciaolo"
     },
     {
         "archiviato": true,
-        "name": "Storia numero 2",
+        "name": "StoriaSpazio",
         "edizione": "ciaolo"
     },
     {
         "archiviato": true,
-        "name": "Storia numero 3",
+        "name": "StoriaDinosauri",
         "edizione": "ciaolo"
     },
     {
         "archiviato": true,
-        "name": "Storia numero 4",
-        "edizione": "ciaolo"
-    },
-    {
-        "archiviato": true,
-        "name": "Storia numero 5",
-        "edizione": "ciaolo"
-    },
-    {
-        "archiviato": true,
-        "name": "Storia numero 6",
-        "edizione": "ciaolo"
-    },
-    {
-        "archiviato": true,
-        "name": "storia pupu",
-        "edizione": "ciaolo"
-    },
-    {
-        "archiviato": true,
-        "name": "Storia numero 8",
+        "name": "Storia test",
         "edizione": "ciaolo"
     }
 ]

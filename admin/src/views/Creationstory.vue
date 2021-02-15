@@ -469,6 +469,7 @@ export default {
   },
 
   mounted: function () {
+    if(Vue.prototype.$SavedFile==null) this.$router.push("Creation");
     console.log("siamo nella View creation");
     console.log(Vue.prototype.$SavedFile);
     this.newjson=JSON.parse(JSON.stringify(Vue.prototype.$SavedFile));
