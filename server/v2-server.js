@@ -7,6 +7,7 @@ const fs = require('fs');
 const express = require('express');
 const app = express();
 const multer = require('multer');
+let storiacorrente;
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -126,13 +127,13 @@ app.post("/api/register", (req, res) => {
   return res.send();
 });
 
-
 //Per inviare la storia come file JSON
 app.get("/openStory", (req, res) => {
   console.log(req.body);
-  let story = JSON.parse(fs.readFileSync('storiaSpazio.json'));
+  let story = JSON.parse(fs.readFileSync(storiacorrente));
   res.send(story);
 });
+
 //per creare un file JSON storia con contenuto
 app.post("/writeStory", (req, res) => {
   let data=JSON.stringify(req.body.filejson,null, 4);
@@ -154,12 +155,6 @@ app.post("/deleteStory", (req, res) => {
   console.log(nome);
   fs.unlinkSync("./"+nome+".json");;
   res.send();
-});
-
-app.get("/apriStoria", (req, res) => {
-  console.log(req.body);
-  let storia = JSON.parse(fs.readFileSync('storie.json'));
-  res.send(storia);
 });
 
 app.post("/writeStoryList", (req, res) => {
@@ -239,6 +234,14 @@ io.on("connection", (chatSocket) => {
     username: botName,
     text: "Welcome: " + chatSocket.id
   });
+
+  //socket per indicare storia attuale
+  chatSocket.on('caricastoria', (data) => {
+    storiacorrente=data+".json";
+    console.log("ricevuto");
+    console.log(storiacorrente);
+  });
+
 
   //aggiornamente del punteggio tramite socket
   chatSocket.on('update_score', (data) => {

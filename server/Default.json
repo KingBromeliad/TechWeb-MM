@@ -273,7 +273,8 @@
       }
     },
     {
-      "modificabile": false,
+      "modificabile": true,
+      "src": "Creationvideo",
       "name": "Video",
       "route": "/video",
       "resourceType": false,
@@ -285,7 +286,9 @@
       }
     },
     {
-      "modificabile": false,
+      "modificabile": true,
+      "src": "Creationimage",
+      "image_or_text": false,
       "name": "ImageUpload",
       "route": "/imageGame",
       "images": {

@@ -1,5 +1,5 @@
 {
-    "namestory": "latte",
+    "namestory": "Storia numero 1",
     "game": [
         {
             "src": "Creationstart",
@@ -328,7 +328,8 @@
             }
         },
         {
-            "modificabile": false,
+            "modificabile": true,
+            "src": "Creationvideo",
             "name": "Video",
             "route": "/video",
             "resourceType": false,
@@ -344,7 +345,8 @@
             }
         },
         {
-            "modificabile": false,
+            "modificabile": true,
+            "src": "Creationimage",
             "name": "ImageUpload",
             "route": "/imageGame",
             "images": {
