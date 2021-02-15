@@ -6,7 +6,7 @@
       class="flex flex-col justify-center text-center space-y-2 sm:text-left"
     >
       <div class="space-y-0.5">
-        <p class="text-lg text-black font-semibold">Aggiungi un background</p>
+        <p class="text-lg text-black font-semibold">Creazione Video</p>
         <p class="text-gray-500 font-medium">
           seleziona un file nel tuo pc per la tua storia
         </p>
@@ -19,13 +19,21 @@
           @change="onFileChangedBackground($event)"
         />
         <p>
-          Inserisci qui il link al video, puoi inserirne anche più di uno, basta
-          che ogni volta premi salva:
+          Inserisci qui il titolo ed il link al video (ricavato tramite la
+          funzionalità embed). Puoi inserirne anche più di uno, basta che ogni
+          volta premi salva:
         </p>
         <input
           class="px-5 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
           type="text"
-          placeholder="http://youtube.com/videoUrl"
+          placeholder="Titolo del Video"
+          v-model="titoloVid"
+        />
+
+        <input
+          class="px-5 py-2 mt-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+          type="text"
+          placeholder="https://youtube.com/embed/videoUrl"
           v-model="linkToVid"
         />
       </div>
@@ -53,6 +61,7 @@ export default {
       listastorie: "",
       items: "",
       linkToVid: "",
+      titoloVid: "",
     };
   },
 
@@ -85,6 +94,8 @@ export default {
     salvamodifiche() {
       this.items.source.push(this.linkToVid);
       this.linkToVid = "";
+      this.items.resourceType = true;
+      this.items.title.push(this.titoloVid);
       Vue.prototype.$SavedFile.game[this.$numeroquiz] = JSON.parse(
         JSON.stringify(this.items)
       );
