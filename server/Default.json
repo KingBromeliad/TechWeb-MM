@@ -2,7 +2,7 @@
   "namestory": "Default",
   "game": [
     {
-      "src":"Creationstart",
+      "src": "Creationstart",
       "modificabile": true,
       "name": "start",
       "route": "/start",
@@ -34,23 +34,23 @@
       ],
       "images": {
         "singleCharacter": true,
-        "character": "Dino1.svg",
+        "character": "dinosaurStory/Dino1.svg",
         "characters": ["", "", ""],
-        "background": ["Asset2.svg"]
+        "background": ["dinosaurStory/Asset2.svg"]
       }
     },
     {
-      "modificabile": false,
+      "modificabile":false,
       "name": "PathGame",
       "route": "/pathgame",
       "images": {
-        "backgroundPath": "backgroundPath.png",
-        "rock": "Rock.svg"
+        "backgroundPath": "dinosaurStory/backgroundPath.png",
+        "rock": "dinosaurStory/Rock.svg"
       }
     },
     {
+      "modificabile":true,
       "src":"Creationstart",
-      "modificabile": true,
       "name": "start",
       "route": "/start",
       "text": [
@@ -103,36 +103,36 @@
       ],
       "images": {
         "singleCharacter": false,
-        "background": ["BgMountain.png"],
+        "background": ["dinosaurStory/BgMountain.png"],
         "characters": [
-          "Dino1.svg",
-          "Diplodoco.svg",
-          "Diplodoco.svg",
-          "Diplodoco.svg",
-          "Allosauro.svg",
-          "Allosauro.svg",
-          "Allosauro.svg",
-          "Brontosauro.svg",
-          "Brontosauro.svg",
-          "Pterodattilo.svg",
-          "Pterodattilo.svg",
-          "Pterodattilo.svg",
-          "Triceratopo.svg",
-          "Triceratopo.svg",
-          "Triceratopo.svg",
-          "Tirannosauro.svg",
-          "Tirannosauro.svg",
-          "Tirannosauro.svg",
-          "Dino1.svg",
-          "Dino1.svg",
-          "Dino1.svg",
-          "Dino1.svg"
+          "dinosaurStory/Dino1.svg",
+          "dinosaurStory/Diplodoco.svg",
+          "dinosaurStory/Diplodoco.svg",
+          "dinosaurStory/Diplodoco.svg",
+          "dinosaurStory/Allosauro.svg",
+          "dinosaurStory/Allosauro.svg",
+          "dinosaurStory/Allosauro.svg",
+          "dinosaurStory/Brontosauro.svg",
+          "dinosaurStory/Brontosauro.svg",
+          "dinosaurStory/Pterodattilo.svg",
+          "dinosaurStory/Pterodattilo.svg",
+          "dinosaurStory/Pterodattilo.svg",
+          "dinosaurStory/Triceratopo.svg",
+          "dinosaurStory/Triceratopo.svg",
+          "dinosaurStory/Triceratopo.svg",
+          "dinosaurStory/Tirannosauro.svg",
+          "dinosaurStory/Tirannosauro.svg",
+          "dinosaurStory/Tirannosauro.svg",
+          "dinosaurStory/Dino1.svg",
+          "dinosaurStory/Dino1.svg",
+          "dinosaurStory/Dino1.svg",
+          "dinosaurStory/Dino1.svg"
         ]
       }
     },
     {
-      "modificabile": true,
-      "src": "Creationquiz",
+      "modificabile":true,
+      "src":"Creationquiz",
       "name": "question",
       "route": "/question",
       "domande": [
@@ -168,22 +168,22 @@
         }
       ],
       "images": {
-        "background": "StoneTablet.svg",
+        "background": "dinosaurStory/StoneTablet.svg",
         "singleQuestionImage": false,
-        "questionImage": "Triceratopo.svg",
+        "questionImage": "dinosaurStory/Triceratopo.svg",
         "questionImages": [
-          "Diplodoco.png",
-          "Allosauro.svg",
-          "Brontosauro.svg",
-          "Pterodattilo.svg",
-          "Triceratopo.svg",
-          "Tirannosauro.svg"
+          "dinosaurStory/Diplodoco.png",
+          "dinosaurStory/Allosauro.svg",
+          "dinosaurStory/Brontosauro.svg",
+          "dinosaurStory/Pterodattilo.svg",
+          "dinosaurStory/Triceratopo.svg",
+          "dinosaurStory/Tirannosauro.svg"
         ]
       }
     },
     {
+      "modificabile":true,
       "src":"Creationstart",
-      "modificabile": true,
       "name": "start",
       "route": "/start",
       "text": [
@@ -203,23 +203,24 @@
       ],
       "images": {
         "singleCharacter": true,
-        "character": "Dino1.svg",
+        "character": "dinosaurStory/Dino1.svg",
         "characters": ["", "", ""],
-        "background": ["Asset2.svg"]
+        "background": ["dinosaurStory/Asset2.svg"]
       }
     },
     {
-      "modificabile": true,
+      "modificabile":true,
       "src":"Creationtris",
       "name": "Tris",
       "route": "/game",
       "images": {
-        "background": "StoneTablet.svg",
-        "symbol": "Rock.png"
+        "background": "dinosaurStory/StoneTablet.svg",
+        "symbol": "dinosaurStory/Rock.png"
       }
     },
     {
-      "modificabile": true,
+      "modificabile":true,
+      "src":"Creationstart",
       "name": "start",
       "route": "/start",
       "text": [
@@ -240,22 +241,23 @@
       ],
       "images": {
         "singleCharacter": true,
-        "character": "Dino1.svg",
+        "character": "dinosaurStory/Dino1.svg",
         "characters": ["", "", ""],
-        "background": ["Forest.png"]
+        "background": ["dinosaurStory/Forest.png"]
       }
     },
     {
-      "modificabile": false,
+      "modificabile":true,
+      "src":"CreationQrGame",
       "name": "QrScanner",
       "route": "/qrCodeGame",
       "images": {
-        "background": "Lens.png"
+        "background": "dinosaurStory/Lens.png"
       }
     },
     {
+      "modificabile":true,
       "src":"Creationstart",
-      "modificabile": true,
       "name": "start",
       "route": "/start",
       "text": [
@@ -267,37 +269,36 @@
       "option": ["Eh si", ">>", ">>", "Si!"],
       "images": {
         "singleCharacter": true,
-        "character": "Dino1.svg",
+        "character": "dinosaurStory/Dino1.svg",
         "characters": ["", "", ""],
-        "background": ["Forest.png"]
+        "background": ["dinosaurStory/Forest.png"]
       }
     },
     {
-      "modificabile": true,
-      "src": "Creationvideo",
+      "modificabile":true,
+      "src":"Creationvideo",
       "name": "Video",
       "route": "/video",
       "resourceType": false,
       "title": ["Impronte Dinosauri"],
       "source": [""],
       "images": {
-        "background": "StoneTablet.svg",
-        "image": "Footprints.png"
+        "background": "dinosaurStory/StoneTablet.svg",
+        "image": "dinosaurStory/Footprints.png"
       }
     },
     {
-      "modificabile": true,
-      "src": "Creationimage",
-      "image_or_text": false,
+      "modificabile":true,
       "name": "ImageUpload",
       "route": "/imageGame",
+      "image_or_text": true,
       "images": {
-        "background": "StoneTablet.svg"
+        "background": "dinosaurStory/StoneTablet.svg"
       }
     },
     {
+      "modificabile":true,
       "src":"Creationstart",
-      "modificabile": true,
       "name": "start",
       "route": "/start",
       "text": [
@@ -338,35 +339,34 @@
       ],
       "images": {
         "singleCharacter": false,
-        "character": "Dino1.svg",
+        "character": "dinosaurStory/Dino1.svg",
         "characters": [
-          "Dino1.svg",
-          "Dino1.svg",
-          "Dino1.svg",
-          "Tirannosauro.svg",
-          "Dino1.svg",
-          "Dino1.svg",
-          "TirannosauroSad.svg",
-          "TirannosauroSad.svg",
-          "TirannosauroSad.svg",
-          "TirannosauroSad.svg",
-          "Dino1.svg",
-          "Dino1.svg",
-          "Tirannosauro.svg",
-          "Dino1.svg",
-          "Tirannosauro.svg",
-          "Dino1.svg"
+          "dinosaurStory/Dino1.svg",
+          "dinosaurStory/Dino1.svg",
+          "dinosaurStory/Dino1.svg",
+          "dinosaurStory/Tirannosauro.svg",
+          "dinosaurStory/Dino1.svg",
+          "dinosaurStory/Dino1.svg",
+          "dinosaurStory/TirannosauroSad.svg",
+          "dinosaurStory/TirannosauroSad.svg",
+          "dinosaurStory/TirannosauroSad.svg",
+          "dinosaurStory/TirannosauroSad.svg",
+          "dinosaurStory/Dino1.svg",
+          "dinosaurStory/Dino1.svg",
+          "dinosaurStory/Tirannosauro.svg",
+          "dinosaurStory/Dino1.svg",
+          "dinosaurStory/Tirannosauro.svg",
+          "dinosaurStory/Dino1.svg"
         ],
-        "background": ["Forest.png"]
+        "background": ["dinosaurStory/Forest.png"]
       }
     },
     {
-      "modificabile": false,
       "name": "EndScene",
       "route": "/end",
       "text": "Complimenti cucciolo d'Uomo! Hai risolto il mistero!",
       "images": {
-        "background": "FinalScene.png"
+        "background": "dinosaurStory/FinalScene.png"
       }
     }
   ]

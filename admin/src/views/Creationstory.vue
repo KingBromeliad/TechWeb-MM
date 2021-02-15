@@ -221,38 +221,92 @@ export default {
       newjson: "",
       giochi: [
         {
-          modificato: false,
-          categoria: 0,
-          fascia: 0,
-          url: "./gattino.jpg",
-          src: "Creationsgame",
+          src: "Creationstart",
+          modificabile: true,
           name: "start",
           route: "/start",
           text: [
-            "Ciao sono Doco il Diplodoco!",
-            "Ehilà sono Ally l'Allosauro!"
+            "Ciao cucciolo d'uomo, benevenuto nel pianeta dei dinosauri!",
+            "Qui vivono felicemente più di mille dinosauri, siamo tutti amici",
           ],
           option: [
-            { domanda: "qualcosa", risposta: "pompelmo" },
-            { domanda: "qualcosa", risposta: "pompelmoneone" },
-            { domanda: "qualcosa", risposta: "pompesssssssslmo" },
+            ">>",
+            ">>"
           ],
+          images: {
+            singleCharacter: true,
+            character: "dinosaurStory/Dino1.svg",
+            characters: ["", "", ""],
+            background: ["dinosaurStory/Asset2.svg"]
+          }
         },
         {
-          modificato: false,
-          categoria: 0,
-          fascia: 0,
-          url: "./gattino.jpg",
-          src: "Creationquiz",
-          name: "start",
-          route: "/start",
-          text: [
-            "Ciao sono Doco il Diplodoco!",
-            "Ehilà sono Ally l'Allosauro!"
-          ],
-          option: [{ domanda: "", soluzione: 0, argomento: [" "] }],
+          modificabile:false,
+          name: "PathGame",
+          route: "/pathgame",
+          images: {
+            backgroundPath: "dinosaurStory/backgroundPath.png",
+            rock: "dinosaurStory/Rock.svg"
+          }
         },
-
+        {
+          modificabile:true,
+          src:"Creationquiz",
+          name: "question",
+          route: "/question",
+          domande: [
+            {
+              domanda: "Il diplodoco è...",
+              argomento: ["molto alto", "carnivoro", "cornuto"],
+              soluzione: 0
+            },
+            {
+              domanda: "L'Allosauro si nutre di?",
+              argomento: ["Sassi", "Erba", "Carne"],
+              soluzione: 2
+            }
+          ],
+          images: {
+            backgroun: "dinosaurStory/StoneTablet.svg",
+            singleQuestionImage: false,
+            questionImage: "dinosaurStory/Triceratopo.svg",
+            questionImages: [
+              "dinosaurStory/Diplodoco.png",
+              "dinosaurStory/Allosauro.svg"
+            ]
+          }
+        },
+        {
+          modificabile:true,
+          src : "CreationQrGame",
+          name: "QrScanner",
+          route: "/qrCodeGame",
+          images: {
+            background: "Lens.png"
+          }
+        },
+        {
+          src:"Creationvideo",
+          name: "Video",
+          route: "/video",
+          resourceType: false,
+          title: ["Impronte Dinosauri"],
+          source: [""],
+          images: {
+            background: "dinosaurStory/StoneTablet.svg",
+            image: "dinosaurStory/Footprints.png"
+          }
+        },
+        {
+          src:"Creationimage",
+          modificabile:true,
+          name: "ImageUpload",
+          route: "/imageGame",
+          image_or_text: true,
+          images: {
+            "background": "dinosaurStory/StoneTablet.svg"
+          }
+        },
         {
           modificato: false,
           categoria: 0,
@@ -266,6 +320,16 @@ export default {
             "Ehilà sono Ally l'Allosauro!"
           ],
           option: [{ domanda: "", soluzione: 0, argomento: [" "] }],
+        },
+        {
+          modificabile:true,
+          src:"Creationtris",
+          name: "Tris",
+          route: "/game",
+          images: {
+          background: "dinosaurStory/StoneTablet.svg",
+            symbol: "dinosaurStory/Rock.png"
+          }
         },
       ],
     };

@@ -34,14 +34,14 @@
             ],
             "images": {
                 "singleCharacter": true,
-                "character": "Dino1.svg",
+                "character": "dinosaurStory/Dino1.svg",
                 "characters": [
                     "",
                     "",
                     ""
                 ],
                 "background": [
-                    "Asset2.svg"
+                    "dinosaurStory/Asset2.svg"
                 ]
             }
         },
@@ -50,13 +50,13 @@
             "name": "PathGame",
             "route": "/pathgame",
             "images": {
-                "backgroundPath": "backgroundPath.png",
-                "rock": "Rock.svg"
+                "backgroundPath": "dinosaurStory/backgroundPath.png",
+                "rock": "dinosaurStory/Rock.svg"
             }
         },
         {
-            "src": "Creationstart",
             "modificabile": true,
+            "src": "Creationstart",
             "name": "start",
             "route": "/start",
             "text": [
@@ -110,31 +110,31 @@
             "images": {
                 "singleCharacter": false,
                 "background": [
-                    "BgMountain.png"
+                    "dinosaurStory/BgMountain.png"
                 ],
                 "characters": [
-                    "Dino1.svg",
-                    "Diplodoco.svg",
-                    "Diplodoco.svg",
-                    "Diplodoco.svg",
-                    "Allosauro.svg",
-                    "Allosauro.svg",
-                    "Allosauro.svg",
-                    "Brontosauro.svg",
-                    "Brontosauro.svg",
-                    "Pterodattilo.svg",
-                    "Pterodattilo.svg",
-                    "Pterodattilo.svg",
-                    "Triceratopo.svg",
-                    "Triceratopo.svg",
-                    "Triceratopo.svg",
-                    "Tirannosauro.svg",
-                    "Tirannosauro.svg",
-                    "Tirannosauro.svg",
-                    "Dino1.svg",
-                    "Dino1.svg",
-                    "Dino1.svg",
-                    "Dino1.svg"
+                    "dinosaurStory/Dino1.svg",
+                    "dinosaurStory/Diplodoco.svg",
+                    "dinosaurStory/Diplodoco.svg",
+                    "dinosaurStory/Diplodoco.svg",
+                    "dinosaurStory/Allosauro.svg",
+                    "dinosaurStory/Allosauro.svg",
+                    "dinosaurStory/Allosauro.svg",
+                    "dinosaurStory/Brontosauro.svg",
+                    "dinosaurStory/Brontosauro.svg",
+                    "dinosaurStory/Pterodattilo.svg",
+                    "dinosaurStory/Pterodattilo.svg",
+                    "dinosaurStory/Pterodattilo.svg",
+                    "dinosaurStory/Triceratopo.svg",
+                    "dinosaurStory/Triceratopo.svg",
+                    "dinosaurStory/Triceratopo.svg",
+                    "dinosaurStory/Tirannosauro.svg",
+                    "dinosaurStory/Tirannosauro.svg",
+                    "dinosaurStory/Tirannosauro.svg",
+                    "dinosaurStory/Dino1.svg",
+                    "dinosaurStory/Dino1.svg",
+                    "dinosaurStory/Dino1.svg",
+                    "dinosaurStory/Dino1.svg"
                 ]
             }
         },
@@ -200,22 +200,22 @@
                 }
             ],
             "images": {
-                "background": "StoneTablet.svg",
+                "background": "dinosaurStory/StoneTablet.svg",
                 "singleQuestionImage": false,
-                "questionImage": "Triceratopo.svg",
+                "questionImage": "dinosaurStory/Triceratopo.svg",
                 "questionImages": [
-                    "Diplodoco.png",
-                    "Allosauro.svg",
-                    "Brontosauro.svg",
-                    "Pterodattilo.svg",
-                    "Triceratopo.svg",
-                    "Tirannosauro.svg"
+                    "dinosaurStory/Diplodoco.png",
+                    "dinosaurStory/Allosauro.svg",
+                    "dinosaurStory/Brontosauro.svg",
+                    "dinosaurStory/Pterodattilo.svg",
+                    "dinosaurStory/Triceratopo.svg",
+                    "dinosaurStory/Tirannosauro.svg"
                 ]
             }
         },
         {
-            "src": "Creationstart",
             "modificabile": true,
+            "src": "Creationstart",
             "name": "start",
             "route": "/start",
             "text": [
@@ -235,14 +235,14 @@
             ],
             "images": {
                 "singleCharacter": true,
-                "character": "Dino1.svg",
+                "character": "dinosaurStory/Dino1.svg",
                 "characters": [
                     "",
                     "",
                     ""
                 ],
                 "background": [
-                    "Asset2.svg"
+                    "dinosaurStory/Asset2.svg"
                 ]
             }
         },
@@ -252,12 +252,13 @@
             "name": "Tris",
             "route": "/game",
             "images": {
-                "background": "StoneTablet.svg",
-                "symbol": "Rock.png"
+                "background": "dinosaurStory/StoneTablet.svg",
+                "symbol": "dinosaurStory/Rock.png"
             }
         },
         {
             "modificabile": true,
+            "src": "Creationstart",
             "name": "start",
             "route": "/start",
             "text": [
@@ -278,28 +279,29 @@
             ],
             "images": {
                 "singleCharacter": true,
-                "character": "Dino1.svg",
+                "character": "dinosaurStory/Dino1.svg",
                 "characters": [
                     "",
                     "",
                     ""
                 ],
                 "background": [
-                    "Forest.png"
+                    "dinosaurStory/Forest.png"
                 ]
             }
         },
         {
-            "modificabile": false,
+            "modificabile": true,
+            "src": "CreationQrGame",
             "name": "QrScanner",
             "route": "/qrCodeGame",
             "images": {
-                "background": "Lens.png"
+                "background": "dinosaurStory/Lens.png"
             }
         },
         {
-            "src": "Creationstart",
             "modificabile": true,
+            "src": "Creationstart",
             "name": "start",
             "route": "/start",
             "text": [
@@ -316,14 +318,14 @@
             ],
             "images": {
                 "singleCharacter": true,
-                "character": "Dino1.svg",
+                "character": "dinosaurStory/Dino1.svg",
                 "characters": [
                     "",
                     "",
                     ""
                 ],
                 "background": [
-                    "Forest.png"
+                    "dinosaurStory/Forest.png"
                 ]
             }
         },
@@ -340,23 +342,22 @@
                 ""
             ],
             "images": {
-                "background": "StoneTablet.svg",
-                "image": "Footprints.png"
+                "background": "dinosaurStory/StoneTablet.svg",
+                "image": "dinosaurStory/Footprints.png"
             }
         },
         {
             "modificabile": true,
-            "src": "Creationimage",
-            "image_or_text": false,
             "name": "ImageUpload",
             "route": "/imageGame",
+            "image_or_text": true,
             "images": {
-                "background": "StoneTablet.svg"
+                "background": "dinosaurStory/StoneTablet.svg"
             }
         },
         {
-            "src": "Creationstart",
             "modificabile": true,
+            "src": "Creationstart",
             "name": "start",
             "route": "/start",
             "text": [
@@ -397,37 +398,36 @@
             ],
             "images": {
                 "singleCharacter": false,
-                "character": "Dino1.svg",
+                "character": "dinosaurStory/Dino1.svg",
                 "characters": [
-                    "Dino1.svg",
-                    "Dino1.svg",
-                    "Dino1.svg",
-                    "Tirannosauro.svg",
-                    "Dino1.svg",
-                    "Dino1.svg",
-                    "TirannosauroSad.svg",
-                    "TirannosauroSad.svg",
-                    "TirannosauroSad.svg",
-                    "TirannosauroSad.svg",
-                    "Dino1.svg",
-                    "Dino1.svg",
-                    "Tirannosauro.svg",
-                    "Dino1.svg",
-                    "Tirannosauro.svg",
-                    "Dino1.svg"
+                    "dinosaurStory/Dino1.svg",
+                    "dinosaurStory/Dino1.svg",
+                    "dinosaurStory/Dino1.svg",
+                    "dinosaurStory/Tirannosauro.svg",
+                    "dinosaurStory/Dino1.svg",
+                    "dinosaurStory/Dino1.svg",
+                    "dinosaurStory/TirannosauroSad.svg",
+                    "dinosaurStory/TirannosauroSad.svg",
+                    "dinosaurStory/TirannosauroSad.svg",
+                    "dinosaurStory/TirannosauroSad.svg",
+                    "dinosaurStory/Dino1.svg",
+                    "dinosaurStory/Dino1.svg",
+                    "dinosaurStory/Tirannosauro.svg",
+                    "dinosaurStory/Dino1.svg",
+                    "dinosaurStory/Tirannosauro.svg",
+                    "dinosaurStory/Dino1.svg"
                 ],
                 "background": [
-                    "Forest.png"
+                    "dinosaurStory/Forest.png"
                 ]
             }
         },
         {
-            "modificabile": false,
             "name": "EndScene",
             "route": "/end",
             "text": "Complimenti cucciolo d'Uomo! Hai risolto il mistero!",
             "images": {
-                "background": "FinalScene.png"
+                "background": "dinosaurStory/FinalScene.png"
             }
         }
     ]
