@@ -44,7 +44,6 @@
       "name": "PathGame",
       "route": "/pathgame",
       "images": {
-        "backgroundPath": "dinosaurStory/backgroundPath.png",
         "rock": "dinosaurStory/Rock.svg"
       }
     },
@@ -172,7 +171,7 @@
         "singleQuestionImage": false,
         "questionImage": "dinosaurStory/Triceratopo.svg",
         "questionImages": [
-          "dinosaurStory/Diplodoco.png",
+          "dinosaurStory/Diplodoco.svg",
           "dinosaurStory/Allosauro.svg",
           "dinosaurStory/Brontosauro.svg",
           "dinosaurStory/Pterodattilo.svg",
