@@ -366,8 +366,12 @@ export default {
 
   methods: {
     premuto(data) {
-      console.log(data);
+      let tempo=JSON.parse(JSON.stringify(this.newjson.game[this.newjson.game.length-1]));
+      this.newjson.game.pop();
+      console.log(this.newjson.game);
       this.newjson.game.push(this.giochi[data]);
+      console.log(this.newjson.game);
+      this.newjson.game.push(tempo);
       console.log(this.newjson.game);
     },
     aggiungirisposta() {
