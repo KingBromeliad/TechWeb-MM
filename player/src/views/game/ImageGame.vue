@@ -96,7 +96,7 @@
         class="flex place-content-center text-center bg-gradient-to-r from-green-400 to-blue-500 rounded-2xl lg:p-4 p-2 m-1"
       >
         <p class="lg:text-6xl text-2xl font-bold">
-          Ottimo lavoro la tua immagine è stata valutata!
+          Ottimo lavoro!
         </p>
       </div>
       <div class="text-center mt-10 mb-10">

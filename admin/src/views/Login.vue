@@ -104,6 +104,7 @@ export default {
             router.push("/profile");
           })
           .catch((errors) => {
+            alert("Username o password sbagliati!");
             console.log("Cannot login " + errors);
           });
       };
