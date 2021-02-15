@@ -87,12 +87,6 @@ export default {
     shoreR: function(){
       return process.env.VUE_APP_BASE_URL +"dinosaurStory/ShoreR.png"
     },
-    background: function() {
-      return (
-        "url("+ process.env.VUE_APP_BASE_URL + this.data.images.backgroundPath + ")"
-      );
-    },
-
     rock: function() {
       return process.env.VUE_APP_BASE_URL + this.data.images.rock;
     },
