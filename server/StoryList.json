@@ -1,12 +1,22 @@
 [
     {
         "archiviato": true,
-        "name": "Storia numero 1",
+        "name": "storiaMusica",
         "edizione": "ciaolo"
     },
     {
         "archiviato": true,
-        "name": "Storia numero 2",
+        "name": "StoriaSpazio",
+        "edizione": "ciaolo"
+    },
+    {
+        "archiviato": true,
+        "name": "StoriaDinosauri",
+        "edizione": "ciaolo"
+    },
+    {
+        "archiviato": true,
+        "name": "Storia test",
         "edizione": "ciaolo"
     }
 ]

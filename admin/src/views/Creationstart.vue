@@ -245,6 +245,7 @@ export default {
   },
 
   mounted: function () {
+    if(Vue.prototype.$SavedFile==null) this.$router.push("Creation");
     console.log("siamo nella start cration");
     console.log(this.$numeroquiz);
     console.log(Vue.prototype.$SavedFile.game[Vue.prototype.$numeroquiz].option);
