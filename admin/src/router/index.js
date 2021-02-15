@@ -30,6 +30,11 @@ const routes = [
     component: () => import('../views/Creationvideo.vue'),
   },
   {
+    path: '/creationstartaccessibile',
+    name: 'CreationStartAccessibile',
+    component: () => import('../views/Creationstartaccessibile.vue'),
+  },
+  {
     path: '/creationtris',
     name: 'Creationtris',
     component: () => import('../views/Creationtris.vue'),
