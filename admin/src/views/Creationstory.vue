@@ -15,6 +15,7 @@
       >
         <div v-for="(item, index) in newjson.game" :key="index" class="w-1/4 p-4">
           <div
+          v-if="newjson.game[index].name!='EndScene'"
             class="bg-white px-2 py-4 rounded-lg shadow-lg text-center border-2 border-purple-600"
           >
             <div class="mb-3">
@@ -37,11 +38,23 @@
               Modifica
             </button>
             <button
-            v-if="newjson.game[index].name!='EndScene'"
               @click="elimina(index)"
               class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
             >
               Elimina
+            </button>
+          </div>
+        </div>
+
+        <div class="w-1/4 p-4">
+          <div
+            class="bg-white px-2 py-4 rounded-lg shadow-lg text-center border-2 border-purple-600"
+          >
+            <button
+            @click="modifica(newjson.game.length-1)"
+              class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+            >
+              Modifica fine
             </button>
           </div>
         </div>
@@ -310,7 +323,7 @@ export default {
         },
         {
           modificabile:true,
-          src:"creationstartaccessibile",
+          src:"Crationstartaccessibile",
           name: "startaccessibile",
           route: "/startAccessible",
           text: [
