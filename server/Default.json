@@ -253,7 +253,8 @@
       "route": "/qrCodeGame",
       "images": {
         "background": "dinosaurStory/Lens.png"
-      }
+      },
+      "option" :["pupu","carpa","maramiao"]
     },
     {
       "modificabile":true,
@@ -363,6 +364,8 @@
       }
     },
     {
+      "src":"creationend",
+      "modificabile":true,
       "name": "EndScene",
       "route": "/end",
       "text": "Complimenti cucciolo d'Uomo! Hai risolto il mistero!",

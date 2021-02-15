@@ -1,5 +1,5 @@
 {
-    "namestory": "Storia numero 3",
+    "namestory": "Storia numero 5",
     "game": [
         {
             "src": "Creationstart",
@@ -297,7 +297,12 @@
             "route": "/qrCodeGame",
             "images": {
                 "background": "dinosaurStory/Lens.png"
-            }
+            },
+            "option": [
+                "pupu",
+                "carpa",
+                "maramiao"
+            ]
         },
         {
             "modificabile": true,
