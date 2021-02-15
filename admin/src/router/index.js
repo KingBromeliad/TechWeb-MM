@@ -75,6 +75,11 @@ const routes = [
     component: () => import('../views/Creationstory.vue')
   },
   {
+    path: '/creationstartaccessibile',
+    name: 'CreationStartAccessibile',
+    component: () => import('../views/Creationstartaccessibile.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     component: Login

@@ -310,7 +310,7 @@ export default {
         },
         {
           modificabile:true,
-          src:"Crationstartaccessibile",
+          src:"creationstartaccessibile",
           name: "startaccessibile",
           route: "/startAccessible",
           text: [

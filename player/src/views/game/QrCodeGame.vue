@@ -59,8 +59,9 @@ export default {
   },
   methods: {
     onDecode: function(decodedString) {
-      console.log(this.stringsToDecode);
-      this.stringsToDecode.forEach((string) => {
+      console.log(this.data.option);
+      this.numberOfStrings = this.data.option.length;
+      this.data.option.forEach((string) => {
         if (string.text == decodedString) {
           string.decoded = true;
           this.numberOfStrings--;
@@ -81,16 +82,6 @@ export default {
     }
   },
   sockets: {
-    qr_code_game(data) {
-      data.forEach((string) => {
-        let newString = {
-          text: string,
-          decoded: false,
-        };
-        this.stringsToDecode.push(newString);
-      });
-      this.numberOfStrings = this.stringsToDecode.length;
-    },
     get_player_Id(data) {
       this.playerId = data;
       console.log(this.playerId);
