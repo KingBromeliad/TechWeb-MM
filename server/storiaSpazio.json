@@ -2,6 +2,8 @@
   "namestory": "storiaSpazio",
   "game": [
     {
+      "modificabile":true,
+      "src":"Creationstart",
       "name": "start",
       "route": "/start",
       "text": [
@@ -20,6 +22,8 @@
       }
     },
     {
+      "modificabile":true,
+      "src":"Creationvideo",
       "name": "Video",
       "route": "/video",
       "resourceType": true,
@@ -30,6 +34,8 @@
       }
     },
     {
+      "modificabile":true,
+      "src":"Creationstart",
       "name": "start",
       "route": "/start",
       "text": [
@@ -75,6 +81,8 @@
       }
     },
     {
+      "modificabile":true,
+      "src":"Creationvideo",
       "name": "Video",
       "route": "/video",
       "resourceType": true,
@@ -93,6 +101,8 @@
       }
     },
     {
+      "modificabile":true,
+      "src":"Creationstart",
       "name": "start",
       "route": "/start",
       "text": [
@@ -159,6 +169,8 @@
       }
     },
     {
+      "modificabile":true,
+      "src":"Creationstart",
       "name": "start",
       "route": "/start",
       "text": [
@@ -211,6 +223,8 @@
       }
     },
     {
+      "modificabile":true,
+      "src":"Creationimage",
       "name": "ImageUpload",
       "route": "/imageGame",
       "image_or_text": false,
@@ -219,6 +233,8 @@
       }
     },
     {
+      "modificabile":true,
+      "src":"Creationstart",
       "name": "start",
       "route": "/start",
       "text": [
@@ -267,6 +283,8 @@
       }
     },
     {
+      "modificabile":true,
+      "src":"Creationimage",
       "name": "ImageUpload",
       "route": "/imageGame",
       "image_or_text": true,
@@ -275,6 +293,8 @@
       }
     },
     {
+      "modificabile":true,
+      "src":"Creationstart",
       "name": "start",
       "route": "/start",
       "text": [
@@ -305,6 +325,8 @@
       }
     },
     {
+      "modificabile":true,
+      "src":"Creationend",
       "name": "EndScene",
       "route": "/end",
       "text": "Hai salvato la missione Inspiration!",

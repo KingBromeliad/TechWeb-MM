@@ -21,6 +21,8 @@
       }
     },
     {
+      "modificabile":true,
+      "src":"Creationvideo",
       "name": "Video",
       "route": "/video",
       "resourceType": true,
@@ -61,6 +63,8 @@
       }
     },
     {
+      "modificabile":true,
+      "src":"Creationvideo",
       "name": "Video",
       "route": "/video",
       "resourceType": true,
@@ -75,6 +79,8 @@
       }
     },
     {
+      "modificabile":true,
+      "src":"Creationquiz",
       "name": "question",
       "route": "/question",
       "domande": [
@@ -140,6 +146,7 @@
       }
     },
     {
+      "modificabile":false,
       "name": "MusGame",
       "route": "/musGame",
       "images": {
@@ -147,6 +154,7 @@
       }
     },
     {
+      "modificabile":true,
       "name": "EndScene",
       "route": "/end",
       "text": "Complimenti hai imparato qualcosa sulla notazione del pentagramma!",

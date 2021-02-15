@@ -3,7 +3,6 @@
     class="text-center container mx-auto flex justify-around sm:flex-row h-screen"
   >
     <div class="container w-3/4 flex sm:flex-col h-screen">
-      <div class="h-4/25">cfdf</div>
       <div class="p-8 h-1/10">
         <div
           class="bg-white px-6 py-8 rounded-lg shadow-lg text-center border-2 border-purple-600"
@@ -66,39 +65,16 @@
         </div>
       </div>
       <div class="h-1/5 flex sm:flex-row">
-        <div class="w-1/5 flex sm:flex-col justify-center">
+        <div class="w-1/2 flex sm:flex-col justify-center">
           <h3> nome della storia </h3>
           <input
+          class="px-10 py-2 text-sm text-center text-purple-600 font-semibold rounded-full border border-purple-200 "
           type="text"
             v-model="newjson.namestory"
             placeholder="inserisci un nome"
           />
         </div>
-        <div class="w-1/5 flex sm:flex-col justify-center">
-          <h3> nome della storia </h3>
-          <input
-          type="text"
-            v-model="name"
-            placeholder="inserisci un nome"
-          />
-        </div>
-        <div class="w-1/5 flex sm:flex-col justify-center">
-          <h3> nome della storia </h3>
-          <input
-          type="text"
-            v-model="name"
-            placeholder="inserisci un nome"
-          />
-        </div>
-        <div class="w-1/5 flex sm:flex-col justify-center">
-          <h3> nome della storia </h3>
-          <input
-          type="text"
-            v-model="name"
-            placeholder="inserisci un nome"
-          />
-        </div>
-        <div class="w-1/5 py-2 flex sm:flex-col">
+        <div class="w-1/2 py-2 flex sm:flex-col">
           <button
             @click="salvastoria()"
             class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"

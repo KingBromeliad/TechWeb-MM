@@ -14,18 +14,30 @@
   <div v-if="items.image_or_text!=true"  class="flex flex-col">
     <p> seleziona background</p>
   <input
-  class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-  type="file" @change="onFileChangedBackground($event)">
+  class="px-10 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600"
+  type="file"  @change="onFileChangedBackground($event)">
+  </div>
+  <div v-else  class="flex flex-col">
+    <p> seleziona testo</p>
+  <input
+  class="px-10 py-2 text-sm text-center text-purple-600 font-semibold rounded-full border border-purple-200 "
+  type="text" v-model="items.images.background">
   </div>
   <button
+    @click="cambia()"
+    class="px-10 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+  >
+  Cambia
+ </button>
+  <button
     @click="indietro()"
-    class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+    class="px-10 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
   >
   indietro
  </button>
  <button
    @click="salvamodifiche()"
-   class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+   class="px-10 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
  >
  salva
 </button>
@@ -71,6 +83,10 @@ export default {
       },
     indietro() {
       this.$router.push("Creationstory");
+    },
+    cambia() {
+      this.items.image_or_text= !this.items.image_or_text;
+      this.items.images.background="";
     },
     salvamodifiche() {
       Vue.prototype.$SavedFile.game[this.$numeroquiz] = JSON.parse(JSON.stringify(this.items));
