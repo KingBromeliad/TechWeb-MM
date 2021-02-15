@@ -13,9 +13,10 @@
       <div
         class="h-3/5 flex flex-row flex-wrap justify-center sm:flex-row border overflow-auto"
       >
-        <div v-for="(item, index) in newjson.game" :key="index" class="w-1/4 p-4">
+        <div v-for="(item, index) in newjson.game" :key="index" class="w-1/4 p-4" >
+          <div v-if="newjson.game[index].name!='EndScene'" >
           <div
-          v-if="newjson.game[index].name!='EndScene'"
+
             class="bg-white px-2 py-4 rounded-lg shadow-lg text-center border-2 border-purple-600"
           >
             <div class="mb-3">
@@ -44,6 +45,7 @@
               Elimina
             </button>
           </div>
+        </div>
         </div>
 
         <div class="w-1/4 p-4">
