@@ -241,6 +241,7 @@ export default {
       //console.log(this.newPlayerName);
       this.giocatori[index].nome = this.newPlayerName[index];
       this.$socket.client.emit("rinomina_giocatore", this.giocatori);
+      this.newPlayerName[index] = "";
     },
     svuotaArrGiocatori: function () {
       this.$socket.client.emit("flush_arr");

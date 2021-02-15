@@ -1,6 +1,5 @@
 <template>
   <div>
-    <button @click="openmodal=true"> celeste</button>
     <div class="space-y-4">
       <div
         v-for="(item, index) in lista"
@@ -64,31 +63,6 @@
         </div>
       </div>
     </div>
-    <router-link
-      href="#"
-      :to="{ name: 'Creationquiz' }"
-      class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-      >Creationquiz</router-link
-    >
-    <router-link
-      href="#"
-      to="/team"
-      class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-      >guardiamo i Team</router-link
-    >
-    <router-link
-      href="#"
-      to="/Gamequiz"
-      class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-      >gioco strano</router-link
-    >
-    <router-link
-      href="#"
-      to="/Games"
-      class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-      >quiz</router-link
-    >
-    <button @click="modal()">apri il modalsdfasdf</button>
     <div
       class="fixed overflow-x-hidden overflow-y-auto inset-0 flex justify center items-center z-50"
       v-if="openmodal3"
@@ -182,63 +156,17 @@
       >
         <div class="sm:items-center text-center space-y-2">
           <div class="space-y-0.5 flex flex-col">
-            <div class="flex flex-row">
+            <div class="flex flex-col">
               <h3> nome della storia </h3>
               <input
               type="text"
-                v-model="storyname"
+              class="px-10 py-2 text-sm text-center text-purple-600 font-semibold rounded-full border border-purple-200 "                v-model="storyname"
                 placeholder="inserisci un nome"
               />
             </div>
             <p class="text-lg text-black font-semibold">
               Crea una nuova storia
             </p>
-            <p class="text-lg text-black font-semibold">
-              Scegli la fascia alla quale il gioco è dedicato
-            </p>
-            <div class="flex flex-row">
-              <button
-                @click="cambiafascia(0)"
-                class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-              >
-                singolo
-              </button>
-              <button
-                @click="cambiafascia(1)"
-                class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-              >
-                coppia
-              </button>
-              <button
-                @click="cambiafascia(2)"
-                class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-              >
-                gruppo
-              </button>
-            </div>
-            <p class="text-lg text-black font-semibold">
-              Scegli il numero di giocatori
-            </p>
-            <div class="flex flex-row">
-              <button
-                @click="cambiacategoria(0)"
-                class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-              >
-                bambini
-              </button>
-              <button
-                @click="cambiacategoria(1)"
-                class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-              >
-                ragazzi
-              </button>
-              <button
-                @click="cambiacategoria(2)"
-                class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-              >
-                adulti
-              </button>
-            </div>
             <div class="flex flex-row justify-centr">
               <button
                 @click="creazionestorianuova()"

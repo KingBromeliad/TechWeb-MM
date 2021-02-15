@@ -21,7 +21,7 @@
             :key="index"
             class="flex flex-row"
           >
-          <div class="flex flex row">
+          <div class="flex row">
         <input
         type="text"
         v-model="items.text[index]"
@@ -61,7 +61,7 @@
             :key="index"
             class="flex flex-row"
           >
-          <div class="flex flex row">
+          <div class="flex row">
   <input
     type="text"
     v-model="items.option[index]"

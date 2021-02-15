@@ -21,6 +21,8 @@
       }
     },
     {
+      "modificabile":true,
+      "src":"Creationvideo",
       "name": "Video",
       "route": "/video",
       "resourceType": true,
@@ -35,7 +37,7 @@
       }
     },
     {
-      "name": "start",
+      "name": "startAccessible",
       "route": "/startAccessible",
       "text": [
         " La chiave di violino viene detta invece chiave del SOL in quanto nel pentagramma, spostato più in alto per rappresentare le note più alte, la chiave di violino nasce dal SOL{immagine di un pentagramma con chiave di SOL}. Tornando alla storia, le note della chiave di  SOL andarono a cercare la loro chiave smarrita e la trovarono solo grazie alla scia di trambusto che la chiave di SOL aveva lasciato. Le note della chiave di SOL non sapevano che erano state seguite dalla chiave di FA insieme alle proprie note se non per una nota  della chiave di SOL che avvertì tutti quanti. Inaspettatamente, la chiave di FA si fece avanti e propose di collaborare perché durante questo trambusto, la chiave di SOL  e le sue note non si erano accorte che il maestro di musica aspettava che loro si rimettessero al loro posto e che nel frattempo il pianoforte si era fermato e così anche il loro mondo armonioso. Infine grazie alla parte di note e di pentagramma che le due chiavi di questa storia dimenticavano di avere in comune{immagine di due pentagrammi con le due chiavi dove viene mostrata la “parte di note in comune”}, la chiave di SOL e le sue note si rimisero tutti al loro posto e insieme avviarono il concerto musicale di pianoforte e così anche il loro mondo armonioso."
@@ -61,6 +63,8 @@
       }
     },
     {
+      "modificabile":true,
+      "src":"Creationvideo",
       "name": "Video",
       "route": "/video",
       "resourceType": true,
@@ -75,6 +79,8 @@
       }
     },
     {
+      "modificabile":true,
+      "src":"Creationquiz",
       "name": "question",
       "route": "/question",
       "domande": [
@@ -140,6 +146,7 @@
       }
     },
     {
+      "modificabile":false,
       "name": "MusGame",
       "route": "/musGame",
       "images": {
@@ -147,6 +154,7 @@
       }
     },
     {
+      "modificabile":true,
       "name": "EndScene",
       "route": "/end",
       "text": "Complimenti hai imparato qualcosa sulla notazione del pentagramma!",

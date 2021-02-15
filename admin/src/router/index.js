@@ -20,6 +20,11 @@ const routes = [
     component: () => import('../views/Creation.vue'),
   },
   {
+    path: '/creationend',
+    name: 'Creationend',
+    component: () => import('../views/Creationend.vue'),
+  },
+  {
     path: '/creationimage',
     name: 'Creationimage',
     component: () => import('../views/Creationimage.vue'),

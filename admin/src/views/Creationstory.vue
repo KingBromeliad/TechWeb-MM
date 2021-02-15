@@ -3,7 +3,6 @@
     class="text-center container mx-auto flex justify-around sm:flex-row h-screen"
   >
     <div class="container w-3/4 flex sm:flex-col h-screen">
-      <div class="h-4/25">cfdf</div>
       <div class="p-8 h-1/10">
         <div
           class="bg-white px-6 py-8 rounded-lg shadow-lg text-center border-2 border-purple-600"
@@ -38,6 +37,7 @@
               Modifica
             </button>
             <button
+            v-if="newjson.game[index].name!='EndScene'"
               @click="elimina(index)"
               class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
             >
@@ -66,39 +66,16 @@
         </div>
       </div>
       <div class="h-1/5 flex sm:flex-row">
-        <div class="w-1/5 flex sm:flex-col justify-center">
+        <div class="w-1/2 flex sm:flex-col justify-center">
           <h3> nome della storia </h3>
           <input
+          class="px-10 py-2 text-sm text-center text-purple-600 font-semibold rounded-full border border-purple-200 "
           type="text"
             v-model="newjson.namestory"
             placeholder="inserisci un nome"
           />
         </div>
-        <div class="w-1/5 flex sm:flex-col justify-center">
-          <h3> nome della storia </h3>
-          <input
-          type="text"
-            v-model="name"
-            placeholder="inserisci un nome"
-          />
-        </div>
-        <div class="w-1/5 flex sm:flex-col justify-center">
-          <h3> nome della storia </h3>
-          <input
-          type="text"
-            v-model="name"
-            placeholder="inserisci un nome"
-          />
-        </div>
-        <div class="w-1/5 flex sm:flex-col justify-center">
-          <h3> nome della storia </h3>
-          <input
-          type="text"
-            v-model="name"
-            placeholder="inserisci un nome"
-          />
-        </div>
-        <div class="w-1/5 py-2 flex sm:flex-col">
+        <div class="w-1/2 py-2 flex sm:flex-col">
           <button
             @click="salvastoria()"
             class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
@@ -329,6 +306,34 @@ export default {
           images: {
           background: "dinosaurStory/StoneTablet.svg",
             symbol: "dinosaurStory/Rock.png"
+          }
+        },
+        {
+          modificabile:true,
+          src:"Crationstartaccessibile",
+          name: "startaccessibile",
+          route: "/startAccessible",
+          text: [
+            " La chiave di violino viene detta invece chiave del SOL in quanto nel pentagramma, spostato più in alto per rappresentare le note più alte, la chiave di violino nasce dal SOL{immagine di un pentagramma con chiave di SOL}. Tornando alla storia, le note della chiave di  SOL andarono a cercare la loro chiave smarrita e la trovarono solo grazie alla scia di trambusto che la chiave di SOL aveva lasciato. Le note della chiave di SOL non sapevano che erano state seguite dalla chiave di FA insieme alle proprie note se non per una nota  della chiave di SOL che avvertì tutti quanti. Inaspettatamente, la chiave di FA si fece avanti e propose di collaborare perché durante questo trambusto, la chiave di SOL  e le sue note non si erano accorte che il maestro di musica aspettava che loro si rimettessero al loro posto e che nel frattempo il pianoforte si era fermato e così anche il loro mondo armonioso. Infine grazie alla parte di note e di pentagramma che le due chiavi di questa storia dimenticavano di avere in comune{immagine di due pentagrammi con le due chiavi dove viene mostrata la “parte di note in comune”}, la chiave di SOL e le sue note si rimisero tutti al loro posto e insieme avviarono il concerto musicale di pianoforte e così anche il loro mondo armonioso."
+          ],
+          images: {
+            singleCharacter: false,
+            character: "musicStory/MusicAtmosphere.png",
+            characters: [
+              " ",
+              " ",
+              " ",
+              " ",
+              " ",
+              " ",
+              " ",
+              " ",
+              " ",
+              " "
+            ],
+            background: [
+              "musicStory/MusicAtmosphere.svg"
+            ]
           }
         },
       ],
