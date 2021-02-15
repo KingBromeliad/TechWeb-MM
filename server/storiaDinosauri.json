@@ -254,7 +254,8 @@
       "route": "/qrCodeGame",
       "images": {
         "background": "dinosaurStory/Lens.png"
-      }
+      },
+      "option":["42","estinzione","i topi"]
     },
     {
       "modificabile":true,

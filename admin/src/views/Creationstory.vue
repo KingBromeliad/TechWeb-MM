@@ -273,7 +273,8 @@ export default {
           route: "/qrCodeGame",
           images: {
             background: "Lens.png"
-          }
+          },
+          option:["prova","prova2","prova3"]
         },
         {
           src:"Creationvideo",
