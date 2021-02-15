@@ -6,21 +6,21 @@
         :key="index"
         class="block py-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6"
       >
-
         <div class="text-center space-y-2 sm:text-left">
           <div class="space-y-0.5">
             <p class="text-lg text-black font-semibold">
               {{ item.name }}
             </p>
-            <p  class="text-gray-500 font-medium">
+            <p class="text-gray-500 font-medium">
               {{ item.edizione }}
             </p>
-            <p v-if="item.archiviato!=false" class="text-gray-500 font-medium">
+            <p
+              v-if="item.archiviato != false"
+              class="text-gray-500 font-medium"
+            >
               archiviato
             </p>
-            <p v-else class="text-gray-500 font-medium">
-              disponibile
-            </p>
+            <p v-else class="text-gray-500 font-medium">disponibile</p>
           </div>
           <button
             @click="modal3(index)"
@@ -73,11 +73,9 @@
         <div class="sm:items-center text-center space-y-2">
           <div class="space-y-0.5 flex flex-col">
             <p class="text-lg text-black font-semibold">
-              sei sicuro di voler eliminare la storia?
+              Scegli cosa fare con la storia
             </p>
-            <p class="text-gray-500 font-medium">
-              Non sarà possibile recuperarla
-            </p>
+            <p class="text-gray-500 font-medium">Tramite il dialogo sotto</p>
             <div class="flex flex-row">
               <button
                 @click="duplicastoria()"
@@ -85,13 +83,15 @@
               >
                 duplica
               </button>
-              <button v-if="lista[storiadamodificare].archiviato!=true"
+              <button
+                v-if="lista[storiadamodificare].archiviato != true"
                 @click="archivia()"
                 class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
               >
                 archivia
               </button>
-              <button v-else
+              <button
+                v-else
                 @click="archivia()"
                 class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
               >
@@ -157,10 +157,11 @@
         <div class="sm:items-center text-center space-y-2">
           <div class="space-y-0.5 flex flex-col">
             <div class="flex flex-col">
-              <h3> nome della storia </h3>
+              <h3>nome della storia</h3>
               <input
-              type="text"
-              class="px-10 py-2 text-sm text-center text-purple-600 font-semibold rounded-full border border-purple-200 "                v-model="storyname"
+                type="text"
+                class="px-10 py-2 text-sm text-center text-purple-600 font-semibold rounded-full border border-purple-200"
+                v-model="storyname"
                 placeholder="inserisci un nome"
               />
             </div>
@@ -194,35 +195,36 @@
 
 <script>
 import Vue from "vue";
+import router from "../router";
 export default {
   data() {
     return {
       openmodal3: "",
-      storyname:"ddd",
+      storyname: "ddd",
       storiadaeliminare: 0,
-      storiadamodificare:0,
+      storiadamodificare: 0,
       numerocategoria: 0,
       numerofascia: 0,
       openmodal: false,
       openmodal2: false,
-      jsoncreato:"",
+      jsoncreato: "",
       name: "cagnolinonononoe",
       listastorie: "",
       items: "",
       lista: [
-      {
-      name:"clausoladdddddddddddddd",
-      edizione:"ciaolo",
-      },
-      {
-        name:"clausola",
-        edizione:"ciaolo",
-      },
-      {
-        name:"clausola",
-        edizione:"ciaolo",
-      }
-    ]
+        {
+          name: "clausoladdddddddddddddd",
+          edizione: "ciaolo",
+        },
+        {
+          name: "clausola",
+          edizione: "ciaolo",
+        },
+        {
+          name: "clausola",
+          edizione: "ciaolo",
+        },
+      ],
     };
   },
 
@@ -251,8 +253,8 @@ export default {
     },
     modal2() {
       console.log("modal aperto stronzetto");
-      let numero=this.lista.length+1;
-      this.storyname="Storia numero "+numero;
+      let numero = this.lista.length + 1;
+      this.storyname = "Storia numero " + numero;
       this.numerofascia = 0;
       this.numerocategoria = 0;
       this.openmodal2 = true;
@@ -260,24 +262,27 @@ export default {
     exitmodal() {
       this.openmodal = false;
       this.openmodal2 = false;
-      this.openmodal3=false;
+      this.openmodal3 = false;
     },
     archivia() {
-      this.lista[this.storiadamodificare].archiviato= !this.lista[this.storiadamodificare].archiviato;
+      this.lista[this.storiadamodificare].archiviato = !this.lista[
+        this.storiadamodificare
+      ].archiviato;
     },
 
     modal3(data) {
-      Vue.prototype.$numerostoria=data;
-      this.storiadamodificare=data;
-      this.openmodal3=true;
+      Vue.prototype.$numerostoria = data;
+      this.storiadamodificare = data;
+      this.openmodal3 = true;
     },
     eliminastoria() {
-      let filejson=this.lista[this.storiadaeliminare].name;
+      let filejson = this.lista[this.storiadaeliminare].name;
       this.lista.splice(this.storiadaeliminare, 1);
       this.openmodal = false;
       this.invialistastoria();
-      this.axios.post('http://localhost:3500/deleteStory', {
-        filejson
+      this.axios
+        .post("http://localhost:3500/deleteStory", {
+          filejson,
         })
         .then(function (response) {
           console.log(response);
@@ -287,23 +292,24 @@ export default {
         });
     },
     creazionestoria() {
-      let name=this.lista[this.storiadamodificare].name;
+      let name = this.lista[this.storiadamodificare].name;
       this.vaialcreator(name);
     },
 
     duplicastoria() {
-      let nomenuovo=this.lista[this.storiadamodificare].name;
+      let nomenuovo = this.lista[this.storiadamodificare].name;
       console.log(nomenuovo);
-      let a={
-          archiviato: true,
-          name:nomenuovo + " nuovo",
-          edizione: "ciaolo"
+      let a = {
+        archiviato: true,
+        name: nomenuovo + " nuovo",
+        edizione: "ciaolo",
       };
-      this.lista.push(a)
+      this.lista.push(a);
       console.log(this.lista);
-      let filejson=this.lista;
-      this.axios.post('http://localhost:3500/writeStoryList', {
-        filejson
+      let filejson = this.lista;
+      this.axios
+        .post("http://localhost:3500/writeStoryList", {
+          filejson,
         })
         .then(function (response) {
           console.log(response);
@@ -311,53 +317,23 @@ export default {
         .catch(function (error) {
           console.log(error);
         });
-        this.axios.get("http://localhost:3500/prendiStoria",{
-    params: {
-      NAME:nomenuovo
-    } }).then((response) => {
-            console.log(response.data);
-            console.log(response.data.namestory);
-            this.jsoncreato=response.data;
-            console.log("il nome nuovo"+ nomenuovo);
-            this.jsoncreato.namestory=nomenuovo+ " nuovo";
-            let filejson=this.jsoncreato;
-            console.log(filejson);
-            this.axios.post('http://localhost:3500/writeStory', {
-              filejson
-              })
-              .then(function (response) {
-                console.log(response);
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
-        }).catch((errors) => {
-            console.log(errors);
+      this.axios
+        .get("http://localhost:3500/prendiStoria", {
+          params: {
+            NAME: nomenuovo,
+          },
         })
-
-    },
-
-    creazionestorianuova() {
-      let a={
-          archiviato: true,
-          name:this.storyname,
-          edizione: "ciaolo"
-      };
-      Vue.prototype.$numerostoria=this.lista.length;
-      this.lista.push(a)
-      this.invialistastoria();
-      this.axios.get("http://localhost:3500/prendiStoria",{
-  params: {
-    NAME:"Default"
-  } }).then((response) => {
-          this.jsoncreato=response.data;
+        .then((response) => {
           console.log(response.data);
-          this.jsoncreato.namestory=this.storyname;
-          Vue.prototype.$SavedFile=this.jsoncreato;
-          this.$router.push("Creationstory");
-          let filejson=this.jsoncreato;
-          this.axios.post('http://localhost:3500/writeStory', {
-            filejson
+          console.log(response.data.namestory);
+          this.jsoncreato = response.data;
+          console.log("il nome nuovo" + nomenuovo);
+          this.jsoncreato.namestory = nomenuovo + " nuovo";
+          let filejson = this.jsoncreato;
+          console.log(filejson);
+          this.axios
+            .post("http://localhost:3500/writeStory", {
+              filejson,
             })
             .then(function (response) {
               console.log(response);
@@ -365,27 +341,70 @@ export default {
             .catch(function (error) {
               console.log(error);
             });
-
-      }).catch((errors) => {
+        })
+        .catch((errors) => {
           console.log(errors);
-      })
+        });
+    },
+
+    creazionestorianuova() {
+      let a = {
+        archiviato: true,
+        name: this.storyname,
+        edizione: "ciaolo",
+      };
+      Vue.prototype.$numerostoria = this.lista.length;
+      this.lista.push(a);
+      this.invialistastoria();
+      this.axios
+        .get("http://localhost:3500/prendiStoria", {
+          params: {
+            NAME: "Default",
+          },
+        })
+        .then((response) => {
+          this.jsoncreato = response.data;
+          console.log(response.data);
+          this.jsoncreato.namestory = this.storyname;
+          Vue.prototype.$SavedFile = this.jsoncreato;
+          this.$router.push("Creationstory");
+          let filejson = this.jsoncreato;
+          this.axios
+            .post("http://localhost:3500/writeStory", {
+              filejson,
+            })
+            .then(function (response) {
+              console.log(response);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        })
+        .catch((errors) => {
+          console.log(errors);
+        });
     },
     vaialcreator(data) {
-        this.axios.get("http://localhost:3500/prendiStoria",{
-    params: {
-      NAME:data
-    } }).then((response) => {
-            Vue.prototype.$SavedFile=response.data;
-            this.$router.push("Creationstory");
-            console.log(response);
-        }).catch((errors) => {
-            console.log(errors);
+      this.axios
+        .get("http://localhost:3500/prendiStoria", {
+          params: {
+            NAME: data,
+          },
         })
+        .then((response) => {
+          Vue.prototype.$SavedFile = response.data;
+          this.$router.push("Creationstory");
+          console.log(response);
+        })
+        .catch((errors) => {
+          console.log(errors);
+        });
     },
-    invialistastoria () {
-      let filejson=JSON.parse(JSON.stringify(this.lista));
-      this.axios.post('http://localhost:3500/writeStoryList', {
-        filejson
+    invialistastoria() {
+      let filejson = JSON.parse(JSON.stringify(this.lista));
+      this.axios
+        .post("http://localhost:3500/writeStoryList", {
+          filejson,
         })
         .then(function (response) {
           console.log(response);
@@ -393,24 +412,34 @@ export default {
         .catch(function (error) {
           console.log(error);
         });
-
     },
     getStory() {
-        this.axios.get("http://localhost:3500/SendStory").then((response) => {
-            console.log(response.data);
-            this.lista=response.data;
-        }).catch((errors) => {
-            console.log(errors);
+      this.axios
+        .get("http://localhost:3500/SendStory")
+        .then((response) => {
+          console.log(response.data);
+          this.lista = response.data;
         })
+        .catch((errors) => {
+          console.log(errors);
+        });
     },
     rendidisponibile(data) {
-      let cambio=this.lista[data].name;
-      this.$socket.client.emit('caricastoria',cambio);
+      let cambio = this.lista[data].name;
+      this.$socket.client.emit("caricastoria", cambio);
     },
   },
   mounted: function () {
+    this.axios
+      .get("http://localhost:3500/api/user", { withCredentials: true })
+      .then((response) => {
+        return response;
+      })
+      .catch((errors) => {
+        console.log(errors);
+        router.push("/login");
+      });
     this.getStory();
-    console.log("ricevuto");
   },
 };
 </script>
