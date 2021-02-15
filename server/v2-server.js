@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 //per CORS array dei domini dei quali accetta la comunicazione
-const whitelist = ['http://localhost:8081', 'http://localhost:8080'];
+const whitelist = ['http://localhost:3000', 'http://localhost:3500'];
 
 app.use(cors({ credentials: true, origin: whitelist }));
 // Tipologia di autenticazione locale
@@ -44,6 +44,19 @@ app.use(passport.session());
 app.use(express.static('images'));
 
 app.use(express.static('json'));
+
+app.use(express.static('playerdist'));
+
+app.use(express.static('admindist'));
+
+app.get('/player' ,(req,res)=> {
+  res.sendFile(__dirname + '/playerdist/index.html')
+});
+
+app.get('/admin' ,(req,res)=> {
+  res.sendFile(__dirname + '/admindist/index.html')
+});
+
 //Middleware
 const authMiddleware = (req, res, next) => {
   if (!req.isAuthenticated()) {
