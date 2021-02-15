@@ -11,6 +11,8 @@
       </h1>
       <div v-if="this.presiPunti == false" class="flex justify-center">
         <button
+          role="button"
+          aria-label="Vai al punteggio"
           @click="contaPunteggio()"
           class="bg-black hover:bg-gray-700 focus:outline-none rounded-lg font-extrabold text-center text-white lg:text-4xl text-2xl lg:p-4 p-2"
         >

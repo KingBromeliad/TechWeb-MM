@@ -13,9 +13,10 @@
       <div
         class="h-3/5 flex flex-row flex-wrap justify-center sm:flex-row border overflow-auto"
       >
-        <div v-for="(item, index) in newjson.game" :key="index" class="w-1/4 p-4">
+        <div v-for="(item, index) in newjson.game" :key="index" class="w-1/4 p-4" >
+          <div v-if="newjson.game[index].name!='EndScene'" >
           <div
-          v-if="newjson.game[index].name!='EndScene'"
+
             class="bg-white px-2 py-4 rounded-lg shadow-lg text-center border-2 border-purple-600"
           >
             <div class="mb-3">
@@ -44,6 +45,7 @@
               Elimina
             </button>
           </div>
+        </div>
         </div>
 
         <div class="w-1/4 p-4">
@@ -364,8 +366,12 @@ export default {
 
   methods: {
     premuto(data) {
-      console.log(data);
+      let tempo=JSON.parse(JSON.stringify(this.newjson.game[this.newjson.game.length-1]));
+      this.newjson.game.pop();
+      console.log(this.newjson.game);
       this.newjson.game.push(this.giochi[data]);
+      console.log(this.newjson.game);
+      this.newjson.game.push(tempo);
       console.log(this.newjson.game);
     },
     aggiungirisposta() {

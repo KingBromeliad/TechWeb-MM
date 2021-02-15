@@ -9,7 +9,12 @@
         class="lg:p-3 p-1 flex flex-wrap justify-center md:flex-no-wrap text-center"
       >
         <div class="flex justify-center">
-          <button @click="chatActive = !chatActive" class="focus:outline-none">
+          <button
+            @click="chatActive = !chatActive"
+            class="focus:outline-none"
+            role="button"
+            aria-label="Apri la chat"
+          >
             <svg
               class="lg:w-10 lg:h-10 w-7 h-7 text-gray-800"
               xmlns="http://www.w3.org/2000/svg"
@@ -30,6 +35,7 @@
         >
           <p
             class="text-gray-800 leading-tight lg:text-xl text-lg text-medium font-mono font-medium lg:p-2 p-0"
+            aria-label="Contatore Punteggio"
           >
             PUNTI {{ " " + score }}
           </p>
@@ -54,15 +60,18 @@ export default {
   components: {
     Chat,
   },
-  beforeCreate: function() {
-    this.axios.get("http://localhost:3500/openStory").then((response) => {
-      this.game = response.data.game;
-      this.no_game = true;
-    }).catch(function (error) {
-    // handle error
-    console.log(error);
-    this.no_game = false;
-  });
+  beforeCreate: function () {
+    this.axios
+      .get("http://localhost:3500/openStory")
+      .then((response) => {
+        this.game = response.data.game;
+        this.no_game = true;
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+        this.no_game = false;
+      });
   },
   computed: {
     formattedElapsedTime() {
@@ -72,7 +81,7 @@ export default {
       return utc.substr(utc.indexOf(":") - 2, 8);
     },
   },
-  data: function() {
+  data: function () {
     return {
       username: "",
       progress: -1,
@@ -83,7 +92,7 @@ export default {
       player_id: "",
       timer: undefined,
       score: 0,
-      no_game: false
+      no_game: false,
     };
   },
 
@@ -125,7 +134,7 @@ export default {
       this.player_id = id;
     },
   },
-  mounted: function() {
+  mounted: function () {
     this.$socket.client.emit("req_player_id");
   },
 };

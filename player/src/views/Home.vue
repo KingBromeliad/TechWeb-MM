@@ -28,6 +28,8 @@
       </ul>
       <div class="flex justify-center">
         <button
+          role="button"
+          aria-label="Inizia la Storia"
           @click="ContinueToNext()"
           class="bg-white hover:bg-gray-900 hover:text-white focus:outline-none text-gray-800 font-semibold py-4 px-6 border-white border-2 rounded-md shadow-xl lg:text-6xl text-4xl font-sans tracking-wide"
         >

@@ -2,6 +2,8 @@
   "namestory": "storiaMusica",
   "game": [
     {
+      "modificabile":true,
+      "src":"Creationstartaccessibile",
       "name": "start",
       "route": "/startAccessible",
       "text": [
@@ -37,6 +39,8 @@
       }
     },
     {
+      "modificabile":true,
+      "src":"Creationstartaccessibile",
       "name": "startAccessible",
       "route": "/startAccessible",
       "text": [
