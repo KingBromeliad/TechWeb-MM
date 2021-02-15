@@ -104,6 +104,23 @@ type="file" @change="onFileChangedSingleC($event)">
 <div
  class="flex flex-col">
  <button
+ v-if="items.images.singleCharacter!=false"
+   @click="numeroimmagini()"
+   class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+ >
+ Immagini multiple
+</button>
+<button
+v-else
+  @click="numeroimmagini()"
+  class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+>
+ Immagine singola
+</button>
+</div>
+<div
+ class="flex flex-col">
+ <button
    @click="salvamodifiche()"
    class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
  >
@@ -162,6 +179,17 @@ export default {
     eliminatesto(data) {
       this.items.text.splice(data,1);
       this.items.option.splice(data,1);
+    },
+
+    numeroimmagini() {
+      if(this.items.images.singleCharacter==true) {
+        this.items.images.singleCharacter=false;
+
+      } else {
+        this.items.images.singleCharacter=true;
+        this.items.images.character="dinosaurStory/Dino1.svg";
+      }
+
     },
 
     onFileChangedBackground(event) {

@@ -24,6 +24,12 @@
               class="focus:ring-indigo-500 focus:border-indigo-500 rounded sm:text-sm border-2 border-purple-600"
               placeholder="aggiunta"
             />
+            <button
+              @click="eliminarisposta(index, index2)"
+              class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+            >
+              Elimina
+            </button>
           </div>
           <button
             @click="aggiungirisposta(index)"
@@ -43,10 +49,10 @@
           />
         </div>
         <div>
-          <button
+          <button @click="eliminadomanda(index)"
             class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
           >
-            Elimina {{ index }}
+            Elimina domanda {{ index }}
           </button>
         </div>
       </div>
@@ -107,6 +113,12 @@ export default {
   methods: {
     premuto() {
       console.log("mi hai premuto, ahia");
+    },
+    eliminarisposta(data,data2) {
+      this.items.domande[data].argomento.splice(data2,1);
+    },
+    eliminadomanda(data) {
+      this.items.domande.splice(data,1);
     },
     onFileChangedBackground(event) {
       let formData = new FormData();

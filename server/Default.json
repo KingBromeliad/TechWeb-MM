@@ -291,6 +291,7 @@
       "modificabile":true,
       "name": "ImageUpload",
       "route": "/imageGame",
+      "src":"Creationimage",
       "image_or_text": true,
       "images": {
         "background": "dinosaurStory/StoneTablet.svg"

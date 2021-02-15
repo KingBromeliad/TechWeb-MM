@@ -25,6 +25,11 @@ const routes = [
     component: () => import('../views/Creationimage.vue'),
   },
   {
+    path: '/creationvideo',
+    name: 'Creationvideo',
+    component: () => import('../views/Creationvideo.vue'),
+  },
+  {
     path: '/creationtris',
     name: 'Creationtris',
     component: () => import('../views/Creationtris.vue'),
