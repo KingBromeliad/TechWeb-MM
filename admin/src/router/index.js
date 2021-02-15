@@ -20,6 +20,11 @@ const routes = [
     component: () => import('../views/Creation.vue'),
   },
   {
+    path: '/creationend',
+    name: 'Creationend',
+    component: () => import('../views/Creationend.vue'),
+  },
+  {
     path: '/creationimage',
     name: 'Creationimage',
     component: () => import('../views/Creationimage.vue'),
@@ -28,11 +33,6 @@ const routes = [
     path: '/creationvideo',
     name: 'Creationvideo',
     component: () => import('../views/Creationvideo.vue'),
-  },
-  {
-    path: '/creationstartaccessibile',
-    name: 'CreationStartAccessibile',
-    component: () => import('../views/Creationstartaccessibile.vue'),
   },
   {
     path: '/creationtris',
