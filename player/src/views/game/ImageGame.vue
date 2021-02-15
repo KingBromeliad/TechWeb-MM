@@ -131,11 +131,14 @@ export default {
     time: String,
   },
   computed: {
+    address: function(){
+      return process.env.VUE_APP_BASE_URL + "immagineRicevuta"
+    },
     imageGame: function() {
       return this.data.image_or_text; //true for image, false for text
     },
     background: function() {
-      return "url(http://localhost:3500/" + this.data.images.background + ")";
+      return "url(" + process.env.VUE_APP_BASE_URL + this.data.images.background + ")";
     },
   },
   data: function () {
@@ -144,7 +147,7 @@ export default {
       esitoValutazione: false,
       punti: 0,
       commentoValutatore: "",
-      text: ""
+      text: "",
     };
   },
   methods: {
@@ -154,7 +157,7 @@ export default {
       //console.log(this.playerId);
       formData.append("playerId", this.playerId);
       this.axios
-        .post("http://localhost:3500/immagineRicevuta", formData)
+        .post(this.address, formData)
         .then((response) => {
           console.log(response);
           this.$socket.client.emit("image_sent", true);

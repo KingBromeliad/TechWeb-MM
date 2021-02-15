@@ -5,7 +5,7 @@
       <div>
         <img
           class="object-fill min-h-full"
-          src="http://localhost:3000/dinosaurStory/ShoreL.png"
+          :src="shoreL"
           alt="shoreL"
         />
       </div>
@@ -20,7 +20,6 @@
           :initialAngle="rock.angle"
           :rotates="rock.rotates"
           :id="rock.id"
-          :url_address="address"
           @rockClick="rockClick"
         ></Rock>
 
@@ -55,7 +54,7 @@
       <div>
         <img
           class="object-fill min-h-full"
-          src="http://localhost:3000/dinosaurStory/ShoreR.png"
+          :src="shoreR"
           alt="shoreR"
         />
       </div>
@@ -82,15 +81,20 @@ export default {
         return this.data.text[this.line];
       } else return "loading...";
     },
-
+    shoreL: function(){
+      return process.env.VUE_APP_BASE_URL +"dinosaurStory/ShoreL.png"
+    },
+    shoreR: function(){
+      return process.env.VUE_APP_BASE_URL +"dinosaurStory/ShoreR.png"
+    },
     background: function() {
       return (
-        "url(http://localhost:3000/dinosaurStory/" + this.data.images.backgroundPath + ")"
+        "url("+ process.env.VUE_APP_BASE_URL + this.data.images.backgroundPath + ")"
       );
     },
 
     rock: function() {
-      return "http://localhost:3000/dinosaurStory/" + this.data.images.rock;
+      return process.env.VUE_APP_BASE_URL + this.data.images.rock;
     },
   },
   data: function() {
@@ -101,7 +105,7 @@ export default {
         { id: 2, angle: 2, rotates: true },
         { id: 3, angle: 2, rotates: false },
         { id: 4, angle: 2, rotates: false },
-        { id: 5, angle: 2, rotates: false },
+        { id: 5, angle: 0, rotates: false },
         { id: 6, angle: 2, rotates: true },
         { id: 7, angle: 0, rotates: false },
         { id: 8, angle: 3, rotates: false },
@@ -118,7 +122,6 @@ export default {
       path: [],
       attempts: 0,
       punti: 0,
-      address: "http://localhost:3000/dinosaurStory/"
     };
   },
   methods: {
@@ -152,7 +155,7 @@ export default {
     },
     win() {
       this.victory = true;
-      this.punti = 200/this.attempts;
+      this.punti = 220 - 20*this.attempts;
       this.updateScore();
     },
     ContinueToNext() {

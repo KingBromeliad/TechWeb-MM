@@ -105,10 +105,10 @@ export default {
   computed: {
     questionImage: function() {
       if (this.data.images.singleQuestionImage)
-        return "http://localhost:3000/" + this.data.images.questionImage;
+        return process.env.VUE_APP_BASE_URL + this.data.images.questionImage;
       else
         return (
-          "http://localhost:3000/" +
+          process.env.VUE_APP_BASE_URL +
           this.data.images.questionImages[this.currentQuestion]
         );
     },
@@ -116,7 +116,7 @@ export default {
       return this.data.domande;
     },
     background: function() {
-      return "url(http://localhost:3000/" + this.data.images.background + ")";
+      return "url(" + process.env.VUE_APP_BASE_URL + this.data.images.background + ")";
     },
   },
   data: function() {

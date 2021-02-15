@@ -101,10 +101,10 @@ export default {
 
   computed: {
     background: function() {
-      return "url(http://localhost:3000/" + this.data.images.background + ")";
+      return "url(" + process.env.VUE_APP_BASE_URL + this.data.images.background + ")";
     },
     symbol: function() {
-      return "http://localhost:3000/" + this.data.images.symbol;
+      return process.env.VUE_APP_BASE_URL + this.data.images.symbol;
     },
   },
 

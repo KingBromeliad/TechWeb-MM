@@ -45,21 +45,21 @@ export default {
     background: function() {
       if (this.data.images.background.length == 1)
         return (
-          "url(http://localhost:3000/" + this.data.images.background[0] + ")"
+          "url("+ process.env.VUE_APP_BASE_URL + this.data.images.background[0] + ")"
         );
       else
         return (
-          "url(http://localhost:3000/" +
+          process.env.VUE_APP_BASE_URL +
           this.data.images.background[this.line] +
           ")"
         );
     },
     character: function() {
       if (this.data.images.singleCharacter) {
-        return "http://localhost:3000/" + this.data.images.character;
+        return process.env.VUE_APP_BASE_URL + this.data.images.character;
       } else
         return (
-          "http://localhost:3000/" + this.data.images.characters[this.line]
+          process.env.VUE_APP_BASE_URL + this.data.images.characters[this.line]
         );
     },
   },

@@ -19,7 +19,6 @@ export default {
     initialAngle: Number,
     rotates: Boolean,
     id: Number,
-    url_address: String
   },
   data: function() {
     return {
@@ -31,9 +30,9 @@ export default {
   },
   computed: {
     image: function() {
-      if (this.id == 1 || (this.id == 16))
-        return this.url_address + "RockArrow.svg";
-      else return this.url_address + "Rock.png";
+      if (this.id == 1 || this.id == 16)
+        return process.env.VUE_APP_BASE_URL + "dinosaurStory/RockArrow.svg";
+      else return process.env.VUE_APP_BASE_URL + "dinosaurStory/Rock.png";
     },
     highlight: function() {
       if (this.high_light) return "bg-green-300";

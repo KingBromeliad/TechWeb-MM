@@ -41,6 +41,7 @@
       @gameCompleted="nextView()"
       :time="this.formattedElapsedTime"
       @updatePoints="updateScore"
+      :no_game="this.no_game"
     />
   </div>
 </template>
@@ -56,7 +57,12 @@ export default {
   beforeCreate: function() {
     this.axios.get("http://localhost:3500/openStory").then((response) => {
       this.game = response.data.game;
-    });
+      this.no_game = true;
+    }).catch(function (error) {
+    // handle error
+    console.log(error);
+    this.no_game = false;
+  });
   },
   computed: {
     formattedElapsedTime() {
@@ -77,6 +83,7 @@ export default {
       player_id: "",
       timer: undefined,
       score: 0,
+      no_game: false
     };
   },
 
