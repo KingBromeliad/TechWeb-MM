@@ -136,10 +136,10 @@ app.get("/openStory", (req, res) => {
 
 //per creare un file JSON storia con contenuto
 app.post("/writeStory", (req, res) => {
-  let data=JSON.stringify(req.body.filejson,null, 4);
+  let data = JSON.stringify(req.body.filejson, null, 4);
   console.log(req.body.filejson.namestory);
-  let nome=req.body.filejson.namestory;
-  fs.writeFileSync("./"+nome+".json", data);;
+  let nome = req.body.filejson.namestory;
+  fs.writeFileSync("./" + nome + ".json", data);;
   res.send();
 });
 
@@ -151,14 +151,14 @@ app.post("/immagineMeglio", upload.single('image'), (req, res) => {
 });
 
 app.post("/deleteStory", (req, res) => {
-  let nome=req.body.filejson;
+  let nome = req.body.filejson;
   console.log(nome);
-  fs.unlinkSync("./"+nome+".json");;
+  fs.unlinkSync("./" + nome + ".json");;
   res.send();
 });
 
 app.post("/writeStoryList", (req, res) => {
-  let data=JSON.stringify(req.body.filejson,null, 4);
+  let data = JSON.stringify(req.body.filejson, null, 4);
   console.log(req.body);
   fs.writeFileSync("./StoryList.json", data);;
   res.send();
@@ -166,8 +166,8 @@ app.post("/writeStoryList", (req, res) => {
 
 app.get("/prendiStoria", (req, res) => {
   console.log("arrivato");
-   let sname=req.query.NAME;
-  let storia = JSON.parse(fs.readFileSync("./"+ sname +".json"));
+  let sname = req.query.NAME;
+  let storia = JSON.parse(fs.readFileSync("./" + sname + ".json"));
   res.send(storia);
 });
 
@@ -237,7 +237,7 @@ io.on("connection", (chatSocket) => {
 
   //socket per indicare storia attuale
   chatSocket.on('caricastoria', (data) => {
-    storiacorrente=data+".json";
+    storiacorrente = data + ".json";
     console.log("ricevuto");
     console.log(storiacorrente);
   });
@@ -289,8 +289,12 @@ io.on("connection", (chatSocket) => {
 
   chatSocket.emit('get_player_Id', chatSocket.id);
 
-
-  io.emit('player_points', giocatori);
+  chatSocket.on('flush_arr', () => {
+    giocatori = [];
+  });
+  chatSocket.on('get_player_points', () => {
+    io.emit('player_points', giocatori);
+  });
 
   chatSocket.on('image_eval', (data) => {
     io.emit('image_eval', data);
@@ -327,7 +331,7 @@ io.on("connection", (chatSocket) => {
     io.emit('needs_help', data);
   });
 
-  chatSocket.on('gioco_testo', (data) =>{
+  chatSocket.on('gioco_testo', (data) => {
     io.emit('testo_da_valutare', data);
   })
 
