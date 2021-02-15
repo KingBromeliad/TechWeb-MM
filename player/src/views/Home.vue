@@ -48,7 +48,7 @@
         NESSUNA STORIA ATTIVA AL MOMENTO
       </h2>
       <p class="lg:text-2xl text-xl font-light text-gray-200 lg:mb-16 mb-10">
-        attendi l'attivazione delle storie da parte del creatore
+        attendi l'attivazione delle storie da parte del creatore e ricarica la pagina
       </p>
     </div>
   </body>
