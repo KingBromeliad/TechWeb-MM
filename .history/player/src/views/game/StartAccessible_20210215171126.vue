@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     focusButton(){
-      this.$refs.button.focus();
+      console.log(this.$refs);
     },
     //method modified
     ContinueToNext() {

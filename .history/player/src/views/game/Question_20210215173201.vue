@@ -5,7 +5,7 @@
   >
     <section v-show="!quizCompleted" class="text-gray-600 body-font">
       <div class="grid place-content-center h-screen">
-        <div class="flex justify-center" role="img" aria-labelledby="immagine di background">
+        <div class="flex justify-center">
           <img
             class="object-contain object-center rounded"
             alt=""
@@ -16,19 +16,21 @@
 
         <h1
           class="title-font lg:text-6xl text-3xl mb-4 font-medium text-gray-900 text-center"
+          :aria-label="ciao + domande[currentQuestion].domanda"
         >
           {{ domande[currentQuestion].domanda }}
         </h1>
 
-        <div class="container flex flex-row items-center justify-center" aria-live="polite" aria-atomic="true">
+        <div class="container flex flex-row items-center justify-center">
           <div
             v-for="(option, index) in domande[currentQuestion].argomento"
             :key="index"
             class="flex flex-row lg:p-4 p-2 bg-white rounded-xl shadow-md m-4"
           >
-            <label class="flex items-center space-x-3" :for="index" aria-labelledby="Indice delle risposte" >
+            <label class="flex items-center space-x-3" :for="index">
               <input
                 checked
+                :aria-label="option"
                 type="radio"
                 :id="index"
                 :value="index"
@@ -39,7 +41,7 @@
             </label>
           </div>
         </div>
-        <div class="flex justify-center" role="button">
+        <div class="flex justify-center">
           <!--<button
               class="inline-flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg"
             >
@@ -48,7 +50,6 @@
           <button
             @click="nextQuestion()"
             role="button"
-            aria-live="polite" aria-atomic="true"
             aria-label="Passa alla domanda successiva"
             v-if="currentQuestion < data.domande.length - 1"
             class="ml-4 inline-flex text-black bg-blue-300 border-0 py-2 px-8 focus:outline-none hover:bg-blue-500 rounded-md text-2xl font-bold"

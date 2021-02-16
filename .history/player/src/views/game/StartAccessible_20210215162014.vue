@@ -7,15 +7,16 @@
       <!-- WELCOME INSIDE THE GRID LAYOUT-->
       <div class="flex content-center justify-center flex-wrap space-y-8">
         <div class="rounded-md text-center md:mr-4">
-          <p @click="focusButton" class="text-black font-extrabold md:text-xl md:m-10 sm:m-2">
+          <p class="text-black font-extrabold md:text-xl md:m-10 sm:m-2">
             {{ text }}
           </p>
         </div>
 
         <button
-          ref="button"
-          @click="ContinueToNext()"
+          @click="toggleToItemEditForm()"
           class="hover:bg-gray-700 focus:outline-none rounded-lg font-extrabold text-center text-black md:text-6xl sm:text-2xl md:ml-40 sm:ml-10 p-3"
+          type="button"
+          ref="nextScene"
           aria-label="Prosegui con la storia"
         >
           Continua ..
@@ -62,16 +63,16 @@ export default {
   },
   data: function() {
     return {
+      isEditing: false,
       line: 0,
       playerId: "",
     };
   },
   methods: {
-    focusButton(){
-      this.$refs.button.focus();
-    },
     //method modified
-    ContinueToNext() {
+      toggleToItemEditForm() {
+      console.log(this.$refs.editButton);
+      this.isEditing = true;
       this.$emit("gameCompleted");
     },
     updateScore() {

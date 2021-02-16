@@ -13,9 +13,9 @@
         </div>
 
         <button
-          ref="button"
           @click="ContinueToNext()"
           class="hover:bg-gray-700 focus:outline-none rounded-lg font-extrabold text-center text-black md:text-6xl sm:text-2xl md:ml-40 sm:ml-10 p-3"
+          ref="button"
           aria-label="Prosegui con la storia"
         >
           Continua ..
@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     focusButton(){
-      this.$refs.button.focus();
+      console.log('clicked');
     },
     //method modified
     ContinueToNext() {
