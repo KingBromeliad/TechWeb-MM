@@ -75,13 +75,16 @@ export default {
   data: function() {
     return {
       line: 0,
+      playerId: ""
     };
   },
   methods: {
     Continue() {
       if (this.line < this.data.source.length - 1) {
         this.line++;
+        this.updateScore();
       } else if (this.line == this.data.source.length - 1) {
+        this.updateScore();
         this.ContinueToNext();
       }
     },
@@ -105,6 +108,12 @@ export default {
       this.$emit('updatePoints', 1);
       //console.log(this.score);
     },
+    get_player_Id(data) {
+      this.playerId = data;
+    },
   },
+  mounted: function () {
+    this.$socket.emit('req_player_id')
+  }
 };
 </script>

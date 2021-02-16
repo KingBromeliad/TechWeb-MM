@@ -11,9 +11,6 @@
             <p class="text-lg text-black font-semibold">
               {{ item.name }}
             </p>
-            <p class="text-gray-500 font-medium">
-              {{ item.edizione }}
-            </p>
             <p
               v-if="item.accessibile != false"
               class="text-gray-500 font-medium"

@@ -138,6 +138,7 @@
                       "
                       :message="incomingFeed.incomingMessage"
                       :username="incomingFeed.username"
+                      aria-label="messaggio"
                     >
                     </Message>
 
@@ -153,8 +154,9 @@
                   <div class="relative flex">
                     <input
                       v-model="userMessage"
+                      aria-label="scrivi il messaggio"
+                      role="textbox"
                       type="text"
-                      placeholder="Write Something"
                       class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-12 bg-gray-200 rounded-full py-3"
                       v-on:keyup.enter="sendMessage()"
                     />
@@ -162,7 +164,9 @@
                       class="absolute right-0 items-center inset-y-0 hidden sm:flex"
                     >
                       <button
+                        aria-label="Invia il messaggio"
                         type="button"
+                        role="button"
                         @click="sendMessage()"
                         class="inline-flex items-center justify-center rounded-full h-12 w-12 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none"
                       >
