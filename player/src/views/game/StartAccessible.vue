@@ -7,7 +7,7 @@
       <!-- WELCOME INSIDE THE GRID LAYOUT-->
       <div class="flex content-center justify-center flex-wrap space-y-8">
         <div class="rounded-md text-center md:mr-4">
-          <p @click="focusButton" class="text-black font-extrabold md:text-xl md:m-10 sm:m-2">
+          <p class="text-black font-extrabold md:text-xl md:m-10 sm:m-2" ref="text">
             {{ text }}
           </p>
         </div>
@@ -67,11 +67,9 @@ export default {
     };
   },
   methods: {
-    focusButton(){
-      this.$refs.button.focus();
-    },
     //method modified
     ContinueToNext() {
+      this.$refs.button.focus();
       this.$emit("gameCompleted");
     },
     updateScore() {

@@ -4,8 +4,10 @@
       class="block py-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-2 sm:py-4 sm:flex flex-col sm:items-center sm:space-y-0 sm:space-x-2"
     >
       <div>
-        <div v-if="parolachiave[0] != null" class="py-8" role="button" aria-labelledby="pulsanti rimozione lettera scelta">
+        <div v-if="parolachiave[0] != null" class="py-8">
           <button
+            role="button"
+             aria-labelledby="pulsanti rimozione lettera scelta"
             @click="rimuovi(i)"
             v-for="(item, i) in parolachiave"
             :key="i"
@@ -16,8 +18,9 @@
           </button>
           <p>La chiave indispettita era quella di ...</p>
         </div>
-        <div v-if="parolachiave2[0] != null" role="button" aria-labelledby="pulsanti scelta lettera">
+        <div v-if="parolachiave2[0] != null">
           <button
+             role="button" aria-labelledby="pulsanti scelta lettera"
             @click="inserisci(index)"
             v-for="(item2, index) in parolachiave2"
             :key="index"
@@ -29,8 +32,9 @@
         </div>
       </div>
       <div>
-        <div v-if="vittoria != true && numerodomanda < lunghezza - 1" role="button" aria-labelledby="Pulsante per andare avanti in caso di vittoria">
+        <div v-if="vittoria != true && numerodomanda < lunghezza - 1">
           <button
+             role="button" aria-labelledby="Pulsante per andare avanti in caso di vittoria"
             @click="avanti()"
             class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
           >
@@ -41,8 +45,9 @@
           <h1>HAI VINTO</h1>
           <!--<button @click="ricomincia()">ricomincia</button>-->
         </div>
-        <div class="flex justify-center" role="button" aria-labelledby="Prossima schermata">
+        <div class="flex justify-center">
           <button
+            role="button" aria-labelledby="Prossima schermata"
             @click="ontinueToNext()"
             class="bg-black hover:bg-gray-700 focus:outline-none rounded-lg font-bold text-center text-white md:text-2xl sm:text-xl p-2 mt-4"
             aria-label="Clicca sul pulsante per continuare"
@@ -180,3 +185,12 @@ export default {
   },
 };
 </script>
+
+<style>
+[role="button"]:hover,
+[role="button"]:focus,
+[role="button"]:active{
+  color:navy
+}
+
+</style>

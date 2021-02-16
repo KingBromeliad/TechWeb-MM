@@ -155,6 +155,7 @@
                     <input
                       v-model="userMessage"
                       aria-label="scrivi il messaggio"
+                      ref="textbox"
                       role="textbox"
                       type="text"
                       class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-12 bg-gray-200 rounded-full py-3"
@@ -167,6 +168,7 @@
                         aria-label="Invia il messaggio"
                         type="button"
                         role="button"
+                        ref="button"
                         @click="sendMessage()"
                         class="inline-flex items-center justify-center rounded-full h-12 w-12 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none"
                       >
@@ -258,6 +260,12 @@ export default {
       this.feed.push(incomingData);
     },
   },
+  created () {
+      this.$refs.input.focus();
+      this.$refs.button.focus();
+
+   },
+
   methods: {
     sendMessage: function () {
       this.$socket.client.emit("player_message", this.userMessage);
