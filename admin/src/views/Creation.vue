@@ -15,12 +15,14 @@
               {{ item.edizione }}
             </p>
             <p
-              v-if="item.archiviato != false"
+              v-if="item.accessibile != false"
               class="text-gray-500 font-medium"
             >
-              archiviato
+              accessibile
             </p>
-            <p v-else class="text-gray-500 font-medium">disponibile</p>
+            <p v-else class="text-gray-500 font-medium">
+              non accessibile
+            </p>
           </div>
           <button
             @click="modal3(index)"
@@ -82,20 +84,6 @@
                 class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
               >
                 duplica
-              </button>
-              <button
-                v-if="lista[storiadamodificare].archiviato != true"
-                @click="archivia()"
-                class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-              >
-                archivia
-              </button>
-              <button
-                v-else
-                @click="archivia()"
-                class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-              >
-                Rendi disponibile
               </button>
               <button
                 @click="creazionestoria()"
@@ -165,6 +153,15 @@
                 placeholder="inserisci un nome"
               />
             </div>
+            <div class="flex flex-col">
+              <h3>Definisci l'accessibilità</h3>
+              <button
+                @click="definisciaccesibile()"
+                class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+              >
+                {{parolamagica}}
+              </button>
+            </div>
             <p class="text-lg text-black font-semibold">
               Crea una nuova storia
             </p>
@@ -199,12 +196,12 @@ import router from "../router";
 export default {
   data() {
     return {
+      parolamagica:"accessibile",
       openmodal3: "",
       storyname: "ddd",
       storiadaeliminare: 0,
       storiadamodificare: 0,
-      numerocategoria: 0,
-      numerofascia: 0,
+      accesibilita: true,
       openmodal: false,
       openmodal2: false,
       jsoncreato: "",
@@ -240,20 +237,25 @@ export default {
     premuto() {
       console.log("ciao");
     },
+    definisciaccesibile() {
+      this.accessibilita= !this.accessibilita;
+      console.log(this.accessibilita);
+      if (this.accessibilita==true) {
+        this.parolamagica="accessibile";
+      } else {
+        this.parolamagica="non accessibile";
+      }
+      console.log(this.parolamagica);
+    },
     modal(data) {
       console.log("modal aperto stronzetto");
       this.openmodal = true;
       this.storiadaeliminare = data;
     },
-    cambiafascia(data) {
-      this.numerofascia = data;
-    },
-    cambiacategoria(data) {
-      this.numerocategoria = data;
-    },
     modal2() {
       console.log("modal aperto stronzetto");
       let numero = this.lista.length + 1;
+      this.accessibilita=true;
       this.storyname = "Storia numero " + numero;
       this.numerofascia = 0;
       this.numerocategoria = 0;
@@ -263,11 +265,6 @@ export default {
       this.openmodal = false;
       this.openmodal2 = false;
       this.openmodal3 = false;
-    },
-    archivia() {
-      this.lista[this.storiadamodificare].archiviato = !this.lista[
-        this.storiadamodificare
-      ].archiviato;
     },
 
     modal3(data) {
@@ -298,9 +295,10 @@ export default {
 
     duplicastoria() {
       let nomenuovo = this.lista[this.storiadamodificare].name;
+      let ac=this.lista[this.storiadamodificare].accessibile;
       console.log(nomenuovo);
       let a = {
-        archiviato: true,
+        accessibile: ac,
         name: nomenuovo + " nuovo",
         edizione: "ciaolo",
       };
@@ -345,11 +343,12 @@ export default {
         .catch((errors) => {
           console.log(errors);
         });
+                this.openmodal3=false;
     },
 
     creazionestorianuova() {
       let a = {
-        archiviato: true,
+        accessibile: this.accessibilita,
         name: this.storyname,
         edizione: "ciaolo",
       };
@@ -366,6 +365,7 @@ export default {
           this.jsoncreato = response.data;
           console.log(response.data);
           this.jsoncreato.namestory = this.storyname;
+          this.jsoncreato.accessibile = this.accessibilita;
           Vue.prototype.$SavedFile = this.jsoncreato;
           this.$router.push("Creationstory");
           let filejson = this.jsoncreato;
@@ -374,6 +374,7 @@ export default {
               filejson,
             })
             .then(function (response) {
+
               console.log(response);
             })
             .catch(function (error) {

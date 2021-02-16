@@ -14,10 +14,15 @@
             class="flex flex-row"
           >
             <button
-              class="uppercase p-3 flex items-center bg-blue-600 text-blue-50 max-w-max shadow-sm hover:shadow-lg rounded-full w-12 h-12"
+            @click="selezionacorretta(index, index2)"
+              class="uppercase p-3 flex items-center bg-purple-500 text-blue-50 max-w-max shadow-sm hover:shadow-lg rounded-full w-12 h-12"
             >
               {{ index2 }}
             </button>
+            <p
+            class=" text-purple-500 justify-cente sm:text-sm border-2 border-purple-600r"
+            v-if="index2==items.domande[index].soluzione"
+            >corretta</p>
             <input
               type="text"
               v-model="item.argomento[index2]"
@@ -26,14 +31,14 @@
             />
             <button
               @click="eliminarisposta(index, index2)"
-              class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+              class="px-10 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
             >
               Elimina
             </button>
           </div>
           <button
             @click="aggiungirisposta(index)"
-            class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+            class="px-10 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
           >
             Aggiungi risposta
           </button>
@@ -48,12 +53,20 @@
             placeholder="inserisci una domanda"
           />
         </div>
-        <div>
+        <div class=" flex flex-col">
           <button @click="eliminadomanda(index)"
             class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
           >
             Elimina domanda {{ index }}
           </button>
+          <div
+          v-if="items.images.singleQuestionImage!=true"
+           class="flex flex-col justify-center">
+            <p> aggiungi il personaggio</p>
+            <input
+            class="px-10 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+            type="file" @change="onFileChangedCharacter($event,index)">
+          </div>
         </div>
       </div>
       <div
@@ -75,16 +88,30 @@
       </div>
       <div class="flex flex-row">
       <button
-      class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+      class="px-10 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
       @click="salvamodifiche()">salva modifiche</button>
       <button
-      class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+      class="px-10 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
       @click="indietro()">Indietro</button>
     <div class="flex flex-col justify-center">
       <p> aggiungi Background</p>
       <input
-      class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+      class="px-10 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
       type="file" @change="onFileChangedBackground($event)">
+    </div>
+    <div
+    v-if="items.images.singleQuestionImage!=false"
+     class="flex flex-col justify-center">
+      <p> aggiungi il personaggio</p>
+      <input
+      class="px-10 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+      type="file" @change="onFileChangedSingleC($event)">
+    </div>
+    <div class="flex flex-col justify-center">
+      <p>Cambia numero di interlocutori </p>
+      <button
+      class="px-10 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+      type="file" @click="cambiafoto()">cambia </button>
     </div>
     </div>
     </div>
@@ -96,7 +123,6 @@ import Vue from "vue";
 export default {
   data() {
     return {
-      name: [[]],
       listastorie: "",
       items: "",
     };
@@ -117,6 +143,28 @@ export default {
     eliminarisposta(data,data2) {
       this.items.domande[data].argomento.splice(data2,1);
     },
+    onFileChangedCharacter($event,data) {
+      console.log(data);
+      let formData = new FormData();
+      formData.append("image", event.target.files[0]);
+      this.items.images.questionImages[data]=event.target.files[0].name;
+      this.axios
+        .post("http://localhost:3500/immagineMeglio", formData)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((errors) => {
+          console.log("Invalid Data", errors);
+        });
+    },
+    cambiafoto() {
+      this.items.images.singleQuestionImage= !this.items.images.singleQuestionImage;
+      console.log(this.items.images.singleQuestionImage);
+    },
+    selezionacorretta(data,data2) {
+      this.items.domande[data].soluzione=data2;
+      console.log(this.items);
+    },
     eliminadomanda(data) {
       this.items.domande.splice(data,1);
     },
@@ -124,7 +172,21 @@ export default {
       let formData = new FormData();
       formData.append("image", event.target.files[0]);
       console.log(event.target.files[0].name);
-      this.items.images.background=event.target.files[0].name;
+      this.items.images.background[0]=event.target.files[0].name;
+      this.axios
+        .post("http://localhost:3500/immagineMeglio", formData)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((errors) => {
+          console.log("Invalid Data", errors);
+        });
+    },
+    onFileChangedSingleC(event) {
+      let formData = new FormData();
+      formData.append("image", event.target.files[0]);
+      console.log(event.target.files[0].name);
+      this.items.images.questionImage=event.target.files[0].name;
       this.axios
         .post("http://localhost:3500/immagineMeglio", formData)
         .then((response) => {
@@ -144,7 +206,7 @@ export default {
       Vue.prototype.$SavedFile.game[
         this.$numeroquiz
       ].modificato = true;
-      Vue.prototype.$SavedFile.game[this.$numeroquiz].domande = JSON.parse(JSON.stringify(this.items.domande));
+      Vue.prototype.$SavedFile.game[this.$numeroquiz] = JSON.parse(JSON.stringify(this.items));
     },
     aggiungidomanda() {
       var a = {

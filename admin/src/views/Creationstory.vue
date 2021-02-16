@@ -13,7 +13,7 @@
       <div
         class="h-3/5 flex flex-row flex-wrap justify-center sm:flex-row border overflow-auto"
       >
-        <div v-for="(item, index) in newjson.game" :key="index" class="w-1/4 p-4" >
+        <div v-for="(item, index) in newjson.game" :key="index" class="w-1/4 p-2" >
           <div v-if="newjson.game[index].name!='EndScene'" >
           <div
 
@@ -120,7 +120,7 @@
         class="h-full flex flex-row flex-wrap justify-center sm:flex-row border overflow-auto"
       >
         <div v-for="(item, index) in giochi" :key="index">
-          <div
+          <div v-if="(accesso!=false&& item.accessibile!=false) || accesso!=true"
             class="p-10"
           >
             <div
@@ -136,7 +136,6 @@
               <h2 class="text-xl font-medium text-gray-700">
                 {{ item.name }}
               </h2>
-              <span class="text-blue-500 block mb-5">{{ index }}</span>
               <button
                 class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
                 @click="premuto(index)"
@@ -163,18 +162,6 @@
             <p class="text-gray-500 font-medium">
               Non sarà possibile recuperarla
             </p>
-            <div
-              v-for="(item, index) in newjson.game[numerogioco].text"
-              :key="index"
-              class="flex flex-row"
-            >
-              <input
-                type="text"
-                v-model="newjson.game[numerogioco].text[index]"
-                class="focus:ring-indigo-500 w-full focus:border-indigo-500 rounded sm:text-sm border-2 border-purple-600"
-                placeholder="aggiungi testo"
-              />
-            </div>
             <button
               @click="aggiungirisposta()"
               class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
@@ -202,6 +189,7 @@ import Vue from "vue";
 export default {
   data() {
     return {
+      accesso:false,
       openmodal: false,
       numerocategoria: "",
       numerofascia: "",
@@ -213,6 +201,7 @@ export default {
       newjson: "",
       giochi: [
         {
+          accessibile:false,
           src: "Creationstart",
           modificabile: true,
           name: "start",
@@ -233,6 +222,7 @@ export default {
           }
         },
         {
+          accessibile:false,
           modificabile:false,
           name: "PathGame",
           route: "/pathgame",
@@ -242,6 +232,7 @@ export default {
           }
         },
         {
+          accessibile:true,
           modificabile:true,
           src:"Creationquiz",
           name: "question",
@@ -269,6 +260,7 @@ export default {
           }
         },
         {
+          accessibile:false,
           modificabile:true,
           src : "CreationQrGame",
           name: "QrScanner",
@@ -279,6 +271,7 @@ export default {
           option:["prova","prova2","prova3"]
         },
         {
+          accessibile:true,
           src:"Creationvideo",
           name: "Video",
           route: "/video",
@@ -291,6 +284,16 @@ export default {
           }
         },
         {
+          accessibile:true,
+          modificabile:false,
+          name: "MusGame",
+          route: "/musGame",
+          images: {
+            background: "musicStory/mini.svg"
+          }
+        },
+        {
+          accessibile:false,
           src:"Creationimage",
           modificabile:true,
           name: "ImageUpload",
@@ -299,20 +302,6 @@ export default {
           images: {
             "background": "dinosaurStory/StoneTablet.svg"
           }
-        },
-        {
-          modificato: false,
-          categoria: 0,
-          fascia: 0,
-          url: "./gattino.jpg",
-          src: "Creationgames",
-          name: "Games",
-          route: "/Games",
-          text: [
-            "Ciao sono Doco il Diplodoco!",
-            "Ehilà sono Ally l'Allosauro!"
-          ],
-          option: [{ domanda: "", soluzione: 0, argomento: [" "] }],
         },
         {
           modificabile:true,
@@ -325,6 +314,7 @@ export default {
           }
         },
         {
+          accessibile:true,
           modificabile:true,
           src:"Crationstartaccessibile",
           name: "startaccessibile",
@@ -468,14 +458,15 @@ export default {
     },
   },
 
-  mounted: function () {
+  created: function () {
     if(Vue.prototype.$SavedFile==null) this.$router.push("Creation");
     console.log("siamo nella View creation");
     console.log(Vue.prototype.$SavedFile);
     this.newjson=JSON.parse(JSON.stringify(Vue.prototype.$SavedFile));
     Vue.prototype.$SavedFile2=JSON.parse(JSON.stringify(Vue.prototype.$SavedFile));
     Vue.prototype.$oldName=JSON.parse(JSON.stringify(Vue.prototype.$SavedFile.namestory));
-    console.log("ricevuto");
+    this.accesso=this.newjson.accessibile;
+    console.log(this.accesso);
   },
 };
 </script>

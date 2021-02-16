@@ -50,19 +50,9 @@ const routes = [
     component: () => import('../views/Creationsgame.vue'),
   },
   {
-    path: '/games',
-    name: 'Games',
-    component: () => import('../views/Games.vue'),
-  },
-  {
     path: '/gamequiz',
     name: 'Gamequiz',
     component: () => import('../views/Gamequiz.vue'),
-  },
-  {
-    path: '/team',
-    name: 'Team',
-    component: () => import('../views/Team.vue'),
   },
   {
     path: '/creationquiz',

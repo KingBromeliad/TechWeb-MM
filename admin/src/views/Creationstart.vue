@@ -32,10 +32,6 @@
           @click="eliminatesto(index)"
           class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
         >elimina </button>
-        <button
-          @click="impostaimmagine(index)"
-          class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-        >immagine </button>
         <input
         v-if="items.images.singleCharacter!=true"
         class="px-16 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
@@ -172,10 +168,6 @@ export default {
       this.items.text.push("testo");
       this.items.option.push("testo");
     },
-    impostaimmagine(data) {
-        console.log(data);
-
-    },
     eliminatesto(data) {
       this.items.text.splice(data,1);
       this.items.option.splice(data,1);
@@ -196,7 +188,8 @@ export default {
       let formData = new FormData();
       formData.append("image", event.target.files[0]);
       console.log(event.target.files[0].name);
-      this.items.images.background=event.target.files[0].name;
+      this.items.images.background.pop();
+      this.items.images.background.push(event.target.files[0].name);
       this.axios
         .post("http://localhost:3500/immagineMeglio", formData)
         .then((response) => {

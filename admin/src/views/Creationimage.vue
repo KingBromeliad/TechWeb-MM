@@ -11,24 +11,31 @@
       seleziona un file nel tuo pc per la tua storia
     </p>
   </div>
-  <div v-if="items.image_or_text!=true"  class="flex flex-col">
+  <div  class="flex flex-col">
     <p> seleziona background</p>
   <input
   class="px-10 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600"
   type="file"  @change="onFileChangedBackground($event)">
   </div>
-  <div v-else  class="flex flex-col">
-    <p> seleziona testo</p>
-  <input
-  class="px-10 py-2 text-sm text-center text-purple-600 font-semibold rounded-full border border-purple-200 "
-  type="text" v-model="items.images.background">
-  </div>
+  <div class=" flex flex-col space-y-0.5">
+    <p class="justify-center text-lg text-black font-semibold">
+      Decidi cosa richiedere al giocatore
+    </p>
+    <p v-if="items.image_or_text!=true"
+      class="justify-center text-gray-500 font-medium">
+      richiedi un immagine
+    </p>
+    <p v-if="items.image_or_text!=false"
+      class="text-gray-500 font-medium">
+      richiedi testo
+    </p>
   <button
     @click="cambia()"
     class="px-10 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
   >
   Cambia
  </button>
+</div>
   <button
     @click="indietro()"
     class="px-10 py-2 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
@@ -86,10 +93,10 @@ export default {
     },
     cambia() {
       this.items.image_or_text= !this.items.image_or_text;
-      this.items.images.background="";
     },
     salvamodifiche() {
       Vue.prototype.$SavedFile.game[this.$numeroquiz] = JSON.parse(JSON.stringify(this.items));
+      console.log(this.items);
     }
   },
 

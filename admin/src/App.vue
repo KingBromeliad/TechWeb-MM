@@ -112,12 +112,6 @@
                   >
                   <router-link
                     href="#"
-                    to="/Team"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                    >Team</router-link
-                  >
-                  <router-link
-                    href="#"
                     to="/profile"
                     class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     >Profilo</router-link
