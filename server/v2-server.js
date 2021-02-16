@@ -232,7 +232,7 @@ io.on("connection", (chatSocket) => {
   console.log("Client connected, connection id: " + chatSocket.id);
   io.emit('welcome_message', {
     username: botName,
-    text: "Welcome: " + chatSocket.id
+    text: "Un utente si è unito alla chat!"
   });
 
   //socket per indicare storia attuale
@@ -342,9 +342,14 @@ io.on("connection", (chatSocket) => {
 
   //messaggio inviato da giocatore
   chatSocket.on('player_message', (data) => {
-    //console.log(data);
+    let user;
+    for(var i = 0; i < giocatori.length; i++) {
+      if(giocatori[i].playerId == chatSocket.id){ 
+        user = giocatori[i].nome; 
+      }
+    }
     io.emit('send_admin', {
-      username: chatSocket.id,
+      username: user,
       text: data
     });
   });
