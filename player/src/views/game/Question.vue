@@ -5,7 +5,11 @@
   >
     <section v-show="!quizCompleted" class="text-gray-600 body-font">
       <div class="grid place-content-center h-screen">
-        <div class="flex justify-center" role="img" aria-labelledby="immagine di background">
+        <div
+          class="flex justify-center"
+          role="img"
+          aria-labelledby="immagine di background"
+        >
           <img
             class="object-contain object-center rounded"
             alt=""
@@ -20,13 +24,21 @@
           {{ domande[currentQuestion].domanda }}
         </h1>
 
-        <div class="container flex flex-row items-center justify-center" aria-live="polite" aria-atomic="true">
+        <div
+          class="container flex flex-row items-center justify-center"
+          aria-live="polite"
+          aria-atomic="true"
+        >
           <div
             v-for="(option, index) in domande[currentQuestion].argomento"
             :key="index"
             class="flex flex-row lg:p-4 p-2 bg-white rounded-xl shadow-md m-4"
           >
-            <label class="flex items-center space-x-3" :for="index" aria-labelledby="Indice delle risposte" >
+            <label
+              class="flex items-center space-x-3"
+              :for="index"
+              aria-labelledby="Indice delle risposte"
+            >
               <input
                 checked
                 type="radio"
@@ -48,7 +60,8 @@
           <button
             @click="nextQuestion()"
             role="button"
-            aria-live="polite" aria-atomic="true"
+            aria-live="polite"
+            aria-atomic="true"
             aria-label="Passa alla domanda successiva"
             v-if="currentQuestion < data.domande.length - 1"
             class="ml-4 inline-flex text-black bg-blue-300 border-0 py-2 px-8 focus:outline-none hover:bg-blue-500 rounded-md text-2xl font-bold"
@@ -152,14 +165,15 @@ export default {
       this.$emit("updatePoints", this.punti);
     },
     nextQuestion() {
-      if (this.currentQuestion < this.data.domande.length) {
-        if (this.answer == this.domande[this.currentQuestion].soluzione)
-          this.punti += 25;
-        else this.punti += 5;
-        this.currentQuestion++;
-      }
+      if (this.answer == this.domande[this.currentQuestion].soluzione)
+        this.punti += 25;
+      else this.punti += 5;
+      this.currentQuestion++;
     },
     checkAnswers: function () {
+      if (this.answer == this.domande[this.currentQuestion].soluzione)
+        this.punti += 25;
+      else this.punti += 5;
       this.quizCompleted = true;
       this.updateScore();
     },
